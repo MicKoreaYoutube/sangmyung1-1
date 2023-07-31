@@ -6,7 +6,19 @@ export const siteConfig = {
     "Beautifully designed components built with Radix UI and Tailwind CSS.",
   mainNav: [
     {
-      title: "Home",
+      title: "메인",
+      href: "/",
+    },
+    {
+      title: "공지사항",
+      href: "/",
+    },
+    {
+      title: "건의 게시판",
+      href: "/",
+    },
+    {
+      title: "돈 벌어다주기",
       href: "/",
     },
   ],
