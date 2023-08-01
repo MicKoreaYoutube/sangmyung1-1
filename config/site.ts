@@ -27,4 +27,26 @@ export const siteConfig = {
     github: "https://github.com/shadcn/ui",
     docs: "https://ui.shadcn.com",
   },
+  logAbout: {
+    login: [
+      {
+        title: "회원 가입",
+        href: "/join",
+      },
+      {
+        title: "로그인",
+        href: "/login",
+      },
+    ],
+    logout: [
+      {
+        title: "회원 정보",
+        href: "/user",
+      },
+      {
+        title: "로그아웃",
+        href: "/logout",
+      },
+    ],
+  }
 }
