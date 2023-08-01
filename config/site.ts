@@ -32,24 +32,20 @@ export const siteConfig = {
       {
         title: "회원 가입",
         href: "/join",
-        variant: "default"
       },
       {
         title: "로그인",
         href: "/login",
-        variant: "outline"
       },
     ],
     logout: [
       {
         title: "회원 정보",
         href: "/user",
-        variant: "default"
       },
       {
         title: "로그아웃",
         href: "/logout",
-        variant: "outline"
       },
     ],
   }
