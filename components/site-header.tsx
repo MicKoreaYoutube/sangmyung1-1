@@ -31,7 +31,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                       rel="noreferrer"
                       className={buttonVariants({ variant: "outline" })}
                     >
-                      {item.title} + setVariant.at(index)
+                      {item.title} + {setVariant.at(index)}
                     </Link>
                   )
               )}
