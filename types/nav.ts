@@ -4,3 +4,8 @@ export interface NavItem {
   disabled?: boolean
   external?: boolean
 }
+export interface LogAboutItem {
+  title: string
+  href: string
+  disabled?: boolean
+}
