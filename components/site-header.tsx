@@ -29,9 +29,9 @@ export function SiteHeader({ items }: LogAboutProps) {
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      className={buttonVariants({ variant: setVariant[index] })}
+                      className={buttonVariants({ variant: "outline" })}
                     >
-                      {item.title}
+                      {item.title} + setVariant.at(index)
                     </Link>
                   )
               )}
