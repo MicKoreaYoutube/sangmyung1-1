@@ -29,7 +29,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                       href={item.href}
                       target="_blank"
                       rel="noreferrer"
-                      className={buttonVariants({ variant: null })}
+                      className={buttonVariants({ variant: "default" })}
                     >
                       {item.title}
                     </Link>
