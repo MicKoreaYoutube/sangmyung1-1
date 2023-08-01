@@ -8,4 +8,5 @@ export interface LogAboutItem {
   title: string
   href: string
   disabled?: boolean
+  variant?: string
 }
