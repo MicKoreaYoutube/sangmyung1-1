@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button"
 export default function IndexPage() {
   return (
     <>
-      <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 max-w-[1000px] text-center place-content-center my-50">
+      <section className="container grid items-center gap-6 py-15 md:py-10 max-w-[1000px] text-center place-content-center">
         <div className="flex flex-col gap-2">
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
             Beautifully designed components <br className="hidden sm:inline" />
