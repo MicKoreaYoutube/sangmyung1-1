@@ -27,7 +27,6 @@ export function SiteHeader({ items }: LogAboutProps) {
                     <Link
                       key={index}
                       href={item.href}
-                      target="_blank"
                       rel="noreferrer"
                       className={setVariant[index]}
                     >
