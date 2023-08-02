@@ -8,7 +8,7 @@ export default function IndexPage() {
     <>
       <section className="container grid items-center gap-6 my-28 max-w-[1000px] text-center">
         <div className="flex flex-col gap-2">
-          <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
+          <h1 className="text-4xl font-extrabold leading-tight tracking-tighter">
             Beautifully designed components <br className="hidden sm:inline" />
             built with Radix UI and Tailwind CSS.
           </h1>
