@@ -9,8 +9,8 @@ export default function IndexPage() {
       <section className="container grid items-center gap-6 my-28 max-w-[1000px] text-center place-element-center">
         <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-extrabold leading-tight tracking-tighter">
-            Beautifully designed components <br className="hidden sm:inline" />
-            built with Radix UI and Tailwind CSS.
+            안녕하세요. 이곳은 <br className="hidden sm:inline" />
+            상명중학교 1학년 1반 건의함 사이트 입니다.
           </h1>
           <p className="text-lg text-muted-foreground">
             Accessible and customizable components that you can copy and paste
