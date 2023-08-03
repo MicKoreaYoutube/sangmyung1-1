@@ -12,7 +12,7 @@ export default function IndexPage() {
             안녕하세요. 이곳은 <br className="hidden sm:inline" />
             상명중학교 1학년 1반 건의함 사이트 입니다.
           </h1>
-          <p className="text-lg text-muted-foreground font-SUITE-Regular">
+          <p className="text-2xl text-muted-foreground font-SUITE-Regular">
             상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
           </p>
         </div>
