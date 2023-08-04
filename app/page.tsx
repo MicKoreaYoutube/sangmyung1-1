@@ -16,7 +16,7 @@ export default function IndexPage() {
             상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
           </p>
         </div>
-        <div className="flex gap-4 place-content-center">
+        <div className="flex gap-4 place-content-center font-SUITE-Regular">
           <Link
             href={siteConfig.links.docs}
             target="_blank"
@@ -35,7 +35,7 @@ export default function IndexPage() {
           </Link>
         </div>
       </section>
-      <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10">
+      <section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 bg-black">
         <div className="flex max-w-[980px] flex-col items-start gap-2">
           <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
             Beautifully designed components <br className="hidden sm:inline" />
