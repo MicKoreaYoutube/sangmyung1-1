@@ -2,6 +2,7 @@ import Link from "next/link"
 
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
+import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function IndexPage() {
   return (
@@ -65,6 +66,7 @@ export default function IndexPage() {
           </Link>
         </div>
       </section>
+      <ThemeToggle />
     </>
   )
 }
