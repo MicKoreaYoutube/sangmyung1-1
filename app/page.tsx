@@ -23,7 +23,7 @@ export default function IndexPage() {
             rel="noreferrer"
             className={buttonVariants()}
           >
-            Documentation
+            바로 사용해보기
           </Link>
           <Link
             target="_blank"
@@ -31,7 +31,7 @@ export default function IndexPage() {
             href={siteConfig.links.github}
             className={buttonVariants({ variant: "outline" })}
           >
-            GitHub
+            최근 건의사항 확인하기
           </Link>
         </div>
       </section>
