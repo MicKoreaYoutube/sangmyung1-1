@@ -16,9 +16,9 @@ export function SiteHeader({ items }: LogAboutProps) {
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
-      <div className="container flex h-16 items-center space-x-4 sm:hidden">
+      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
         <MainNav items={siteConfig.mainNav} />
-        <div className="flex flex-1 items-center justify-end space-x-4">
+        <div className="flex flex-1 items-center justify-end space-x-4 sm:hidden">
           {items?.length ? (
             <nav className="flex items-center space-x-2">
               {items?.map(
@@ -37,7 +37,7 @@ export function SiteHeader({ items }: LogAboutProps) {
             </nav>
           ) : null}
         </div>
-        <Button className="hidden sm:block">임시 햄버거 버튼</Button>
+        <Button>임시 햄버거 버튼</Button>
       </div>
     </header>
   )
