@@ -20,7 +20,7 @@ export function SiteHeader({ items }: LogAboutProps) {
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           {items?.length ? (
-            <nav className="flex items-center space-x-2 inline-block sm:hidden">
+            <nav className="flex items-center space-x-2 sm:hidden">
               {items?.map(
                 (item, index) =>
                   item.href && (
