@@ -2,7 +2,7 @@ import Link from "next/link"
 
 import { LogAboutItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
-import { buttonVariants } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
@@ -16,7 +16,7 @@ export function SiteHeader({ items }: LogAboutProps) {
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
-      <div className="container flex h-16 items-center space-x-4 sm:justify-between sm:space-x-0">
+      <div className="container flex h-16 items-center space-x-4 sm:hidden">
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           {items?.length ? (
@@ -37,6 +37,7 @@ export function SiteHeader({ items }: LogAboutProps) {
             </nav>
           ) : null}
         </div>
+        <Button className="hidden sm:block">임시 햄버거 버튼</Button>
       </div>
     </header>
   )
