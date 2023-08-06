@@ -58,7 +58,7 @@ export function SiteHeader({ items }: LogAboutProps) {
               <SheetHeader>
                 <SheetTitle>Edit profile</SheetTitle>
                 <SheetDescription>
-                  Make changes to your profile here. Click save when you're done.
+                  Make changes to your profile here. Click save when you&#39re done.
                 </SheetDescription>
               </SheetHeader>
               <div className="grid gap-4 py-4">
