@@ -6,6 +6,9 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+
 import "../public/css/media-query.css"
 
 interface LogAboutProps {
@@ -37,7 +40,7 @@ export function SiteHeader({ items }: LogAboutProps) {
               )}
             </nav>
           ) : null}
-          <Button className="nav-hidden">임시 햄버거 버튼</Button>
+          <Button className="nav-hidden" variant="ghost"><FontAwesomeIcon icon={faBars} /></Button>
         </div>
       </div>
     </header>
