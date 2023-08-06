@@ -8,7 +8,7 @@ export const siteConfig = {
     {
       title: "메인",
       href: "/",
-      disabled: false
+      disabled: true
     },
     {
       title: "공지사항",

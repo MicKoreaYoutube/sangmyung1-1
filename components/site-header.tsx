@@ -85,9 +85,6 @@ export function SiteHeader({ items }: LogAboutProps) {
                     </nav>
                   ) : null}
                 </div>
-                <div className="grid grid-cols-4 items-center gap-4">
-                  2
-                </div>
               </div>
               <SheetFooter>
                 <SheetClose asChild>
