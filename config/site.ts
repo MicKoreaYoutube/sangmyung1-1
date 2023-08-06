@@ -8,45 +8,49 @@ export const siteConfig = {
     {
       title: "메인",
       href: "/",
+      disabled: false
     },
     {
       title: "공지사항",
       href: "/",
+      disabled: false
     },
     {
       title: "건의 게시판",
       href: "/",
+      disabled: false
     },
     {
       title: "돈 벌어다주기",
       href: "/",
-    },
+      disabled: false
+    }
   ],
   links: {
     twitter: "https://twitter.com/shadcn",
     github: "https://github.com/shadcn/ui",
-    docs: "https://ui.shadcn.com",
+    docs: "https://ui.shadcn.com"
   },
   logAbout: {
     login: [
       {
         title: "회원 가입",
-        href: "/join",
+        href: "/join"
       },
       {
         title: "로그인",
-        href: "/login",
+        href: "/login"
       },
     ],
     logout: [
       {
         title: "회원 정보",
-        href: "/user",
+        href: "/user"
       },
       {
         title: "로그아웃",
-        href: "/logout",
-      },
+        href: "/logout"
+      }
     ],
   }
 }
