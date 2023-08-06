@@ -69,7 +69,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                     <nav className="gap-6">
                       {NavItems?.map(
                         (NavItems, index) =>
-                        NavItems.href && (
+                          NavItems.href && (
                             <Link
                               key={index}
                               href={NavItems.href}
@@ -79,6 +79,25 @@ export function SiteHeader({ items }: LogAboutProps) {
                               )}
                             >
                               {NavItems.title}
+                            </Link>
+                          )
+                      )}
+                    </nav>
+                  ) : null}
+                </div>
+                <div className="flex flex-1 items-center justify-end space-x-4">
+                  {items?.length ? (
+                    <nav className="nav-flex items-center space-x-2">
+                      {items?.map(
+                        (item, index) =>
+                          item.href && (
+                            <Link
+                              key={index}
+                              href={item.href}
+                              rel="noreferrer"
+                              className={setVariant[index]}
+                            >
+                              {item.title}
                             </Link>
                           )
                       )}
