@@ -63,8 +63,10 @@ export function SiteHeader({ items }: LogAboutProps) {
               </SheetHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
+                  1
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
+                  2
                 </div>
               </div>
               <SheetFooter>
