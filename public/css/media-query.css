@@ -6,13 +6,13 @@
     display: flex
 }
 
-@media (min-width: 772px) {
+@media (max-width: 772px) {
     .nav-hidden {
         display: inline-block !important
     }
 }
 
-@media (min-width: 772px) {
+@media (max-width: 772px) {
     .nav-flex {
         display: none !important
     }
