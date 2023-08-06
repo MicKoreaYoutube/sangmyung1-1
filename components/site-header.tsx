@@ -36,7 +36,7 @@ export function SiteHeader({ items }: LogAboutProps) {
               )}
             </nav>
           ) : null}
-          <Button className="lg:hidden">임시 햄버거 버튼</Button>
+          <Button className="md:hidden">임시 햄버거 버튼</Button>
         </div>
       </div>
     </header>
