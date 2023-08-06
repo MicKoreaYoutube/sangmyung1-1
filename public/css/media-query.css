@@ -1,9 +1,9 @@
 .nav-hidden {
-    display: none
+    display: none !important
 }
 
 .nav-flex {
-    display: flex
+    display: flex !important
 }
 
 @media (max-width: 772px) {
