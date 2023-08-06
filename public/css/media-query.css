@@ -1,0 +1,19 @@
+.nav-hidden {
+    display: hidden
+}
+
+.nav-flex {
+    display: flex
+}
+
+@media (max-width: 772px) {
+    .nav-hidden {
+        display: inline-block
+    }
+}
+
+@media (max-width: 772px) {
+    .nav-flex {
+        display: hidden
+    }
+}

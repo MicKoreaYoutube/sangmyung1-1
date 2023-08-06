@@ -6,6 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
+import "../public/css/media-query.css"
 
 interface LogAboutProps {
   items?: LogAboutItem[]
@@ -20,7 +21,7 @@ export function SiteHeader({ items }: LogAboutProps) {
         <MainNav items={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           {items?.length ? (
-            <nav className="md:flex items-center space-x-2 sm:hidden">
+            <nav className="nav-flex items-center space-x-2">
               {items?.map(
                 (item, index) =>
                   item.href && (
@@ -36,7 +37,7 @@ export function SiteHeader({ items }: LogAboutProps) {
               )}
             </nav>
           ) : null}
-          <Button className="md:hidden">임시 햄버거 버튼</Button>
+          <Button className="nav-hidden">임시 햄버거 버튼</Button>
         </div>
       </div>
     </header>
