@@ -25,13 +25,10 @@ import "../public/css/media-query.css"
 interface LogAboutProps {
   items?: LogAboutItem[]
 }
-interface MainNavProps {
-  NavItems?: NavItem[]
-}
 
-export function SiteHeader({ items }: LogAboutProps, { NavItems }: MainNavProps) {
+export function SiteHeader({ items }: LogAboutProps) {
   items = siteConfig.logAbout.login
-  NavItems = siteConfig.mainNav
+  const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
