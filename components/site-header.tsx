@@ -1,6 +1,6 @@
 import Link from "next/link"
 
-import { LogAboutItem } from "@/types/nav"
+import { LogAboutItem, NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
@@ -18,15 +18,20 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet"
+import { cn } from "@/lib/utils"
 
 import "../public/css/media-query.css"
 
 interface LogAboutProps {
   items?: LogAboutItem[]
 }
+interface MainNavProps {
+  NavItems?: NavItem[]
+}
 
-export function SiteHeader({ items }: LogAboutProps) {
+export function SiteHeader({ items }: LogAboutProps, { NavItems }: MainNavProps) {
   items = siteConfig.logAbout.login
+  NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b">
@@ -63,7 +68,25 @@ export function SiteHeader({ items }: LogAboutProps) {
               </SheetHeader>
               <div className="grid gap-4 py-4">
                 <div className="grid grid-cols-4 items-center gap-4">
-                  1
+                  {NavItems?.length ? (
+                    <nav className="nav-flex gap-6">
+                      {NavItems?.map(
+                        (NavItems, index) =>
+                        NavItems.href && (
+                            <Link
+                              key={index}
+                              href={NavItems.href}
+                              className={cn(
+                                "flex items-center text-sm font-medium text-muted-foreground hover:text-black",
+                                NavItems.disabled && "cursor-not-allowed opacity-80"
+                              )}
+                            >
+                              {NavItems.title}
+                            </Link>
+                          )
+                      )}
+                    </nav>
+                  ) : null}
                 </div>
                 <div className="grid grid-cols-4 items-center gap-4">
                   2
