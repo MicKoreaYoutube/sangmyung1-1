@@ -8,6 +8,16 @@ import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetDescription,
+  SheetFooter,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet"
 
 import "../public/css/media-query.css"
 
@@ -40,7 +50,30 @@ export function SiteHeader({ items }: LogAboutProps) {
               )}
             </nav>
           ) : null}
-          <Button className="nav-hidden" variant="ghost"><FontAwesomeIcon icon={faBars} /></Button>
+          <Sheet>
+            <SheetTrigger asChild>
+              <Button className="nav-hidden" variant="ghost"><FontAwesomeIcon icon={faBars} /></Button>
+            </SheetTrigger>
+            <SheetContent>
+              <SheetHeader>
+                <SheetTitle>Edit profile</SheetTitle>
+                <SheetDescription>
+                  Make changes to your profile here. Click save when you're done.
+                </SheetDescription>
+              </SheetHeader>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                </div>
+              </div>
+              <SheetFooter>
+                <SheetClose asChild>
+                  <Button type="submit">Save changes</Button>
+                </SheetClose>
+              </SheetFooter>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </header>
