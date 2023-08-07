@@ -44,7 +44,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                       key={index}
                       href={item.href}
                       rel="noreferrer"
-                      className={setVariant[index] + "font-SUITE-Regular"}
+                      className={setVariant[index]}
                     >
                       {item.title}
                     </Link>
@@ -83,7 +83,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                               key={index}
                               href={NavItems.href}
                               className={cn(
-                                "flex items-center text-sm font-medium text-muted-foreground hover:text-black font-SUITE-Regular",
+                                "flex items-center text-sm font-medium text-muted-foreground hover:text-black",
                                 NavItems.disabled && "cursor-not-allowed opacity-80"
                               )}
                             >
@@ -106,7 +106,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                               key={index}
                               href={item.href}
                               rel="noreferrer"
-                              className={setVariant[index] + "font-SUITE-Regular"}
+                              className={setVariant[index]}
                             >
                               {item.title}
                             </Link>
