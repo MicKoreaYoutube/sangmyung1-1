@@ -44,7 +44,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                       key={index}
                       href={item.href}
                       rel="noreferrer"
-                      className={setVariant[index]}
+                      className={setVariant[index] + "font-SUITE-Regular"}
                     >
                       {item.title}
                     </Link>
@@ -67,7 +67,9 @@ export function SiteHeader({ items }: LogAboutProps) {
               </SheetHeader>
               <SheetHeader>
                 <SheetDescription>
-                  상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
+                  <span className="font-SUITE-Regular">
+                    상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
+                  </span>
                 </SheetDescription>
               </SheetHeader>
               <div className="grid gap-4 py-4">
@@ -81,7 +83,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                               key={index}
                               href={NavItems.href}
                               className={cn(
-                                "flex items-center text-sm font-medium text-muted-foreground hover:text-black",
+                                "flex items-center text-sm font-medium text-muted-foreground hover:text-black font-SUITE-Regular",
                                 NavItems.disabled && "cursor-not-allowed opacity-80"
                               )}
                             >
@@ -104,7 +106,7 @@ export function SiteHeader({ items }: LogAboutProps) {
                               key={index}
                               href={item.href}
                               rel="noreferrer"
-                              className={setVariant[index]}
+                              className={setVariant[index] + "font-SUITE-Regular"}
                             >
                               {item.title}
                             </Link>
