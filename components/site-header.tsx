@@ -10,7 +10,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import {
   Sheet,
-  SheetClose,
   SheetContent,
   SheetDescription,
   SheetFooter,
@@ -85,7 +84,9 @@ export function SiteHeader({ items }: LogAboutProps) {
                     </nav>
                   ) : null}
                 </div>
-                <div className="flex flex-1 items-center justify-end space-x-4">
+              </div>
+              <SheetFooter>
+                <div className="flex flex-1 items-center space-x-4">
                   {items?.length ? (
                     <nav className="flex items-center space-x-2">
                       {items?.map(
@@ -104,11 +105,6 @@ export function SiteHeader({ items }: LogAboutProps) {
                     </nav>
                   ) : null}
                 </div>
-              </div>
-              <SheetFooter>
-                <SheetClose asChild>
-                  <Button type="submit">Save changes</Button>
-                </SheetClose>
               </SheetFooter>
             </SheetContent>
           </Sheet>
