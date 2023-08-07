@@ -64,9 +64,9 @@ export function SiteHeader({ items }: LogAboutProps) {
                 </SheetDescription>
               </SheetHeader>
               <div className="grid gap-4 py-4">
-                <div className="grid grid-cols-4 items-center gap-4">
+                <div>
                   {NavItems?.length ? (
-                    <nav className="flex flex-col gap-6">
+                    <nav className="flex flex-col gap-3">
                       {NavItems?.map(
                         (NavItems, index) =>
                           NavItems.href && (
