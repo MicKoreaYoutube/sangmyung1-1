@@ -1,4 +1,5 @@
 import Link from "next/link"
+import Image from "next/image"
 
 import { LogAboutItem, NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
@@ -57,9 +58,16 @@ export function SiteHeader({ items }: LogAboutProps) {
             </SheetTrigger>
             <SheetContent>
               <SheetHeader>
-                <SheetTitle>Edit profile</SheetTitle>
+                <SheetTitle>
+                  <Link href="/" className="flex items-center space-x-2">
+                    <Image src="logo.png" alt="로고" className="h-6 w-6" />
+                    <span className="inline-block font-bold">{siteConfig.name}</span>
+                  </Link>
+                </SheetTitle>
+              </SheetHeader>
+              <SheetHeader>
                 <SheetDescription>
-                  Make changes to your profile here. Click save when you&#39re done.
+                  상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
                 </SheetDescription>
               </SheetHeader>
               <div className="grid gap-4 py-4">
