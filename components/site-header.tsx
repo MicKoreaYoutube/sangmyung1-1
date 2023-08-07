@@ -67,7 +67,7 @@ export function SiteHeader({ items }: LogAboutProps) {
               </SheetHeader>
               <SheetHeader>
                 <SheetDescription>
-                  <span className="text-lg font-SUITE-Regular leading-4">
+                  <span className="text-lg font-SUITE-Regular leading-4 text-left">
                     상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
                   </span>
                 </SheetDescription>
