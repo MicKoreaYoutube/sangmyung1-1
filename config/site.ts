@@ -35,21 +35,21 @@ export const siteConfig = {
     login: [
       {
         title: "회원 가입",
-        href: "/join"
+        href: "/auth/join"
       },
       {
         title: "로그인",
-        href: "/login"
+        href: "/auth/login"
       },
     ],
     logout: [
       {
         title: "회원 정보",
-        href: "/user"
+        href: "/auth/user"
       },
       {
         title: "로그아웃",
-        href: "/logout"
+        href: "/auth/logout"
       }
     ],
   }
