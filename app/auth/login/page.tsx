@@ -7,66 +7,25 @@ import { ThemeToggle } from "@/components/theme-toggle"
 export default function IndexPage() {
   return (
     <>
-      <section className="container grid items-center gap-6 my-28 max-w-[1000px] text-center place-element-center">
-        <div className="flex flex-col gap-2">
-          <h1 className="text-5xl font-extrabold leading-tight tracking-tighter font-KBO-Dia-Gothic_bold">
-            안녕하세요. 이곳은 <br />
-            상명중학교 1학년 1반 건의함 사이트 입니다.
-          </h1>
-          <p className="text-2xl text-muted-foreground font-SUITE-Regular">
-            상명중학교 1학년 1반은 여러분의 건의로 완성됩니다. 언제나 편하게 건의해주세요!
-          </p>
+      <div className="h-screen bg-gradient-to-br from-blue-300 to-blue-600 flex items-center justify-center">
+        <div className="flex-1 h-full p-10 bg-white transform -skew-x-12">
+          {/* 사진 혹은 로고 칸 */}
+          <div className="h-full bg-cover bg-center hidden md:block" style={{ backgroundImage: "url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSosZx%2FbtqSmAvcykI%2FC6qWOLx9rL2VlbORZdK5o1%2Fimg.jpg')" }}></div>
+
+          {/* 로그인 창 칸 */}
+          <div className="md:w-1/2 p-6 bg-gray-200 rounded-lg transform skew-x-12">
+            <form className="space-y-4">
+              <label className="block text-lg font-semibold" htmlFor="username">사용자명</label>
+              <input className="w-full px-3 py-2 border rounded" type="text" id="username" name="username" required />
+
+              <label className="block text-lg font-semibold" htmlFor="password">비밀번호</label>
+              <input className="w-full px-3 py-2 border rounded" type="password" id="password" name="password" required />
+
+              <button className="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded transition duration-300 ease-in-out" type="submit">로그인</button>
+            </form>
+          </div>
         </div>
-        <div className="flex gap-4 place-content-center font-SUITE-Regular">
-          <Link
-            href={siteConfig.links.docs}
-            target="_blank"
-            rel="noreferrer"
-            className={buttonVariants()}
-          >
-            바로 사용해보기
-          </Link>
-          <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.github}
-            className={buttonVariants({ variant: "outline" })}
-          >
-            최근 건의사항 확인하기
-          </Link>
-          <ThemeToggle />
-        </div>
-      </section>
-      {/*<section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 bg-black dark:bg-white">
-        <div className="flex max-w-[980px] flex-col items-start gap-2 text-white dark:text-black">
-          <h1 className="text-3xl font-extrabold leading-tight tracking-tighter md:text-4xl">
-            Beautifully designed components <br className="hidden sm:inline" />
-            built with Radix UI and Tailwind CSS.
-          </h1>
-          <p className="max-w-[700px] text-lg">
-            Accessible and customizable components that you can copy and paste
-            into your apps. Free. Open Source. And Next.js 13 Ready.
-          </p>
-        </div>
-        <div className="flex gap-4">
-          <Link
-            href={siteConfig.links.docs}
-            target="_blank"
-            rel="noreferrer"
-            className={buttonVariants({ variant: "outline" })}
-          >
-            Documentation
-          </Link>
-          <Link
-            target="_blank"
-            rel="noreferrer"
-            href={siteConfig.links.github}
-            className={buttonVariants({ variant: "outline" })}
-          >
-            GitHub
-          </Link>
-        </div>
-      </section>*/}
+      </div>
     </>
   )
 }
