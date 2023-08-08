@@ -8,9 +8,9 @@ export default function IndexPage() {
   return (
     <>
       <div className="h-screen bg-gradient-to-br from-blue-300 to-blue-600 flex items-center justify-center">
-        <div className="flex-1 h-full p-10 bg-white transform -skew-x-12">
+        <div className="flex flex-1 h-full p-10 bg-white transform -skew-x-12">
           {/* 사진 혹은 로고 칸 */}
-          <div className="h-full bg-cover bg-center hidden md:block" style={{ backgroundImage: "url('https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FSosZx%2FbtqSmAvcykI%2FC6qWOLx9rL2VlbORZdK5o1%2Fimg.jpg')" }}></div>
+          <div className="h-full w-1/2 bg-cover bg-center hidden md:block" style={{ backgroundImage: "url('your-image-url')" }}></div>
 
           {/* 로그인 창 칸 */}
           <div className="md:w-1/2 p-6 bg-gray-200 rounded-lg transform skew-x-12">
