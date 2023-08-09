@@ -35,13 +35,13 @@ export default function IndexPage() {
                 로그인
               </h1>
             </div>
-            <div className="font-SUITE-Regular">
+            <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <Input placeholder="아이디를 입력하세요." />
               <Input placeholder="비밀번호를 입력하세요." />
               <Button>로그인</Button>
             </div>
             <hr />
-            <div className="font-SUITE-Regular">
+            <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <span className="px-8 text-center text-sm text-muted-foreground">계정이 없나요? <Link href="/auth/join" className="text-blue-500 hover:text-blue-700">회원가입→</Link></span>
               <p className="px-8 text-center text-sm text-muted-foreground">
                 로그인 버튼을 누르실 경우, 당신은 {" "}
