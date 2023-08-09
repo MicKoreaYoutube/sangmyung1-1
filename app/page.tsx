@@ -34,7 +34,6 @@ export default function IndexPage() {
           >
             최근 건의사항 확인하기
           </Link>
-          <ThemeToggle />
         </div>
       </section>
       {/*<section className="container grid items-center gap-6 pb-8 pt-6 md:py-10 bg-black dark:bg-white">
