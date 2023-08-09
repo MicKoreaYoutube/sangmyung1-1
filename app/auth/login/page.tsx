@@ -35,7 +35,7 @@ export default function IndexPage() {
             </svg>
             Acme Inc
           </div>
-          <div className="relative z-20 mt-auto">
+          <div className="relative z-20">
             <blockquote className="space-y-2">
               <p className="text-lg">
                 &ldquo;This library has saved me countless hours of work and
