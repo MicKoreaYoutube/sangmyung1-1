@@ -22,7 +22,7 @@ export default function IndexPage() {
           </div>
           <div className="relative z-20 mt-auto">
             <blockquote className="space-y-2">
-              <p className="text-lg">
+              <p className="text-lg font-SUITE-Regular">
                 이 곳은 상명중 1학년 1반 건의함입니다!<br />우리반에 원하는 것들을 편하게 건의해주세요!
               </p>
             </blockquote>
