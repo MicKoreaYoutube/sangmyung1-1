@@ -12,10 +12,21 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'RixInooAriDuriR';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2207-01@1.0/RixInooAriDuriR.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .font-KBO-Dia-Gothic_bold {
     font-family: 'KBO-Dia-Gothic_bold';
 }
 
 .font-SUITE-Regular {
     font-family: 'SUITE-Regular';
+}
+
+.font-RixInooAriDuriR {
+    font-family: 'RixInooAriDuriR';
 }
