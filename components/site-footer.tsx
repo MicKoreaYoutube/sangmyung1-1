@@ -72,13 +72,35 @@ export function SiteFooter() {
                     <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" className="hover:underline">Flowbite™</a>. All Rights Reserved.
                     </span>
                     <div className="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
-                        <Link href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                            <FontAwesomeIcon icon={faInstagram} />
-                            <span className="sr-only">Instagram Page</span>
+                        <Link
+                            href={siteConfig.links.github}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <div
+                                className={buttonVariants({
+                                    size: "icon",
+                                    variant: "ghost",
+                                })}
+                            >
+                                <Icons.gitHub className="h-5 w-5" />
+                                <span className="sr-only">GitHub</span>
+                            </div>
                         </Link>
-                        <Link href="#" className="text-gray-500 hover:text-gray-900 dark:hover:text-white">
-                            <FontAwesomeIcon icon={faGithub} />
-                            <span className="sr-only">Gitbub Source Code</span>
+                        <Link
+                            href={siteConfig.links.twitter}
+                            target="_blank"
+                            rel="noreferrer"
+                        >
+                            <div
+                                className={buttonVariants({
+                                    size: "icon",
+                                    variant: "ghost",
+                                })}
+                            >
+                                <Icons.instagram className="h-5 w-5 fill-current" />
+                                <span className="sr-only">Instagram</span>
+                            </div>
                         </Link>
                         <ThemeToggle />
                     </div>
