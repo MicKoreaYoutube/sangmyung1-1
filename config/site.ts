@@ -27,8 +27,8 @@ export const siteConfig = {
     }
   ],
   links: {
-    twitter: "https://twitter.com/shadcn",
-    github: "https://github.com/shadcn/ui",
+    instagram: "https://www.instagram.com/ilove_tae_gyu/",
+    github: "https://github.com/MicKoreaYoutube/sangmyung1-1",
     docs: "https://ui.shadcn.com"
   },
   logAbout: {

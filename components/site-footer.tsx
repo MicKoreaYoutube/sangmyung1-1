@@ -19,6 +19,7 @@ import {
     SheetTrigger,
 } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
+import { Instagram } from "lucide-react"
 
 export function SiteFooter() {
     return (
@@ -88,7 +89,7 @@ export function SiteFooter() {
                             </div>
                         </Link>
                         <Link
-                            href={siteConfig.links.twitter}
+                            href={siteConfig.links.instagram}
                             target="_blank"
                             rel="noreferrer"
                         >
@@ -98,7 +99,7 @@ export function SiteFooter() {
                                     variant: "ghost",
                                 })}
                             >
-                                <Icons.instagram className="h-5 w-5 fill-current" />
+                                <Instagram />
                                 <span className="sr-only">Instagram</span>
                             </div>
                         </Link>
