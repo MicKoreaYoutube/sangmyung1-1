@@ -34,7 +34,7 @@ export function SiteFooter() {
                     </div>
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
                         <div>
-                            <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
+                            <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <Link href="/informationPolicy" className="hover:underline hover:text-dark">개인정보보호처리방침</Link>
@@ -45,7 +45,7 @@ export function SiteFooter() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">게시판</h2>
+                            <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">게시판</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <Link href="/board/announcements" className="hover:underline hover:text-dark">공지사항</Link>
@@ -56,7 +56,7 @@ export function SiteFooter() {
                             </ul>
                         </div>
                         <div>
-                            <h2 className="mb-6 text-md font-semibold text-gray-900 uppercase dark:text-white">기타 이스터에그(?)</h2>
+                            <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">기타 이스터에그(?)</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
                                 <li className="mb-4">
                                     <Link href="/giveMeMoney" className="hover:underline hover:text-dark">돈 벌어다주기</Link>
