@@ -19,7 +19,7 @@ export default function IndexPage() {
           Login
         </Link>
         <div className="relative hidden h-full flex bg-zinc-900 p-10 text-white dark:border-r">
-          <div className="relative z-20 flex items-center text-lg font-medium">
+          <div className="relative flex items-center text-lg font-medium">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -34,7 +34,7 @@ export default function IndexPage() {
             </svg>
             Acme Inc
           </div>
-          <div className="relative z-20">
+          <div className="relative">
             <blockquote className="space-y-2">
               <p className="text-lg">
                 &ldquo;This library has saved me countless hours of work and
