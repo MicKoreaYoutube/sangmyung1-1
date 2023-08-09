@@ -8,7 +8,7 @@ import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faGithub } from "@fortawesome/free-solid-svg-icons";
+import { faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
 import {
     Sheet,
     SheetContent,
