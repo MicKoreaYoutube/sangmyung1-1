@@ -27,7 +27,7 @@ export const siteConfig = {
     }
   ],
   links: {
-    instagram: "https://www.instagram.com/ilove_tae_gyu/",
+    instagram: "https://www.instagram.com/leejunsibal",
     github: "https://github.com/MicKoreaYoutube/sangmyung1-1",
     docs: "https://ui.shadcn.com"
   },
