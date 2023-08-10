@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-// import { app } from "/workspace/sangmyung1-1/app/layout"
+import { app } from "/workspace/sangmyung1-1/app/layout"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
@@ -12,7 +12,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-// const auth = getAuth(app);
+const auth = getAuth(app);
 
 // signInWithEmailAndPassword(auth, email, password)
 //   .then((userCredential) => {
@@ -26,6 +26,30 @@ import { ThemeToggle } from "@/components/theme-toggle"
 //   });
 
 export default function IndexPage() {
+  const auth = getAuth(app);
+
+  const [id, setId] = React.useState();
+  const [pwd, setPwd] = React.useState();
+
+  const getId = (e: any) => {
+    setId(e.target.value);
+  };
+  const getPwd = (e: any) => {
+    setPwd(e.target.value);
+  };
+
+  function login() {
+    console.log(id, pwd)
+    {/* signInWithEmailAndPassword(auth, id.slice(0, 2) + '@sangmyung1-1.com', pwd)
+      .then((userCredential) => {
+        const user = userCredential.user;
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      }); */}
+  }
+
   return (
     <>
       <div className="relative h-[670px] flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
@@ -51,9 +75,9 @@ export default function IndexPage() {
               </h1>
             </div>
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
-              <Input placeholder="아이디를 입력하세요." />
-              <Input placeholder="비밀번호를 입력하세요." />
-              <Button>로그인</Button>
+              <Input placeholder="아이디를 입력하세요." onChange={getId} />
+              <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} />
+              <Button onClick={login}>로그인</Button>
             </div>
             <hr />
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
