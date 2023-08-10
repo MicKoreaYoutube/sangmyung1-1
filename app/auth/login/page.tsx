@@ -1,5 +1,6 @@
 'use client';
 
+import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
@@ -24,8 +25,12 @@ import { ThemeToggle } from "@/components/theme-toggle"
 //     const errorMessage = error.message;
 //   });
 
+const [idValue, setId] = React.useState('')
+const [pwdValue, setPwd] = React.useState('')
+
 function displayInput() {
-  console.log(document.querySelector('#id').value)
+  setId(idValue);
+  console.log(idValue)
 }
 
 export default function IndexPage() {
@@ -54,8 +59,8 @@ export default function IndexPage() {
               </h1>
             </div>
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
-              <Input placeholder="아이디를 입력하세요." id="id"/>
-              <Input placeholder="비밀번호를 입력하세요." id="pwd"/>
+              <Input placeholder="아이디를 입력하세요." value={idValue}/>
+              <Input placeholder="비밀번호를 입력하세요." value={pwdValue}/>
               <Button onClick={displayInput}>로그인</Button>
             </div>
             <hr />
