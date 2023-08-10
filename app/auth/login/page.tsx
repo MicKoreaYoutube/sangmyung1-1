@@ -8,6 +8,8 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 
+const auth = getAuth(app);
+
 export default function IndexPage() {
   return (
     <>
