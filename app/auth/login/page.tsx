@@ -11,16 +11,20 @@ import { ThemeToggle } from "@/components/theme-toggle"
 
 const auth = getAuth(app);
 
-signInWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed in 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-  });
+// signInWithEmailAndPassword(auth, email, password)
+//   .then((userCredential) => {
+//     // Signed in 
+//     const user = userCredential.user;
+//     // ...
+//   })
+//   .catch((error) => {
+//     const errorCode = error.code;
+//     const errorMessage = error.message;
+//   });
+
+function displayInput() {
+  console.log(document.querySelector('#id').innerHTML)
+}
 
 export default function IndexPage() {
   return (
@@ -50,7 +54,7 @@ export default function IndexPage() {
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <Input placeholder="아이디를 입력하세요." id="id"/>
               <Input placeholder="비밀번호를 입력하세요." id="pwd"/>
-              <Button>로그인</Button>
+              <Button onClick={displayInput}>로그인</Button>
             </div>
             <hr />
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
