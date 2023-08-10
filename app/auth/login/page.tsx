@@ -51,14 +51,6 @@ export default function IndexPage() {
         displayError('올바른 아이디를 입력해주세요.')
       }
     }
-    {/* signInWithEmailAndPassword(auth, id.slice(0, 2) + '@sangmyung1-1.com', pwd)
-      .then((userCredential) => {
-        const user = userCredential.user;
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-      }); */}
   }
 
   return (
