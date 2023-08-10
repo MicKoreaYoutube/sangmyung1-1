@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "/workspace/sangmyung1-1/app/layout"
+import { app } from "@/public/js/firebase"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
