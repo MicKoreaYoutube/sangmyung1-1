@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
-import "@/public/css/media-query.module.css"
+// import "@/styles/media-query.css"
 
 interface LogAboutProps {
   items?: LogAboutItem[]

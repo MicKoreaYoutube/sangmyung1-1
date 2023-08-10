@@ -1,8 +1,9 @@
 import "@/styles/globals.css"
+import "@/styles/fonts.css"
+import "@/styles/media-query.css"
+
 import { Metadata } from "next"
 import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import "@/public/css/fonts.module.css"
 
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
