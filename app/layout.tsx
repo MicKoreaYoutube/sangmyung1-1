@@ -29,7 +29,7 @@ if (user) {
   const email = user.email;
   console.log(email)
 }
-
+console.log("하 이 시발")
 
 export const metadata: Metadata = {
   title: {
