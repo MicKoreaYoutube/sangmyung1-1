@@ -3,6 +3,8 @@ import "@/styles/fonts.css"
 import "@/styles/media-query.css"
 
 import { Metadata } from "next"
+
+import "@fortawesome/fontawesome-svg-core/styles.css"; 
 import { config } from '@fortawesome/fontawesome-svg-core'
 
 import { siteConfig } from "@/config/site"
