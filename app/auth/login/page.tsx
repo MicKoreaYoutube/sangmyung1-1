@@ -25,14 +25,6 @@ import { ThemeToggle } from "@/components/theme-toggle"
 //     const errorMessage = error.message;
 //   });
 
-const [idValue, setId] = React.useState('')
-const [pwdValue, setPwd] = React.useState('')
-
-function displayInput() {
-  setId(idValue);
-  console.log(idValue)
-}
-
 export default function IndexPage() {
   return (
     <>
@@ -59,9 +51,9 @@ export default function IndexPage() {
               </h1>
             </div>
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
-              <Input placeholder="아이디를 입력하세요." value={idValue}/>
-              <Input placeholder="비밀번호를 입력하세요." value={pwdValue}/>
-              <Button onClick={displayInput}>로그인</Button>
+              <Input placeholder="아이디를 입력하세요." />
+              <Input placeholder="비밀번호를 입력하세요." />
+              <Button>로그인</Button>
             </div>
             <hr />
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
