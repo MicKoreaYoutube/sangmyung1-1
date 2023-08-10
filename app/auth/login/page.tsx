@@ -25,7 +25,7 @@ import { ThemeToggle } from "@/components/theme-toggle"
 //   });
 
 function displayInput() {
-  console.log(document.querySelector('#id').innerHTML)
+  console.log(document.querySelector('#id').value)
 }
 
 export default function IndexPage() {
