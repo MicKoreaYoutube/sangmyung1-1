@@ -34,7 +34,7 @@ export default function IndexPage() {
   };
 
   function login() {
-    if (id == null || pwd == null) {
+    if (id == '' || pwd == '') {
       displayError('모든 칸을 다 채워주세요.')
     } else {
       if (siteConfig.member.includes(id)) {
