@@ -11,19 +11,13 @@ import { cn } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 const auth = getAuth(app);
-
-// signInWithEmailAndPassword(auth, email, password)
-//   .then((userCredential) => {
-//     // Signed in 
-//     const user = userCredential.user;
-//     // ...
-//   })
-//   .catch((error) => {
-//     const errorCode = error.code;
-//     const errorMessage = error.message;
-//   });
 
 export default function IndexPage() {
   const auth = getAuth(app);
@@ -77,6 +71,12 @@ export default function IndexPage() {
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <Input placeholder="아이디를 입력하세요." onChange={getId} />
               <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} />
+              <Alert>
+                <AlertTitle>Heads up!</AlertTitle>
+                <AlertDescription>
+                  You can add components to your app using the cli.
+                </AlertDescription>
+              </Alert>
               <Button onClick={login}>로그인</Button>
             </div>
             <hr />
