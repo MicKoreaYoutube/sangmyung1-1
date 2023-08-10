@@ -17,10 +17,10 @@ import {
   AlertTitle,
 } from "@/components/ui/alert"
 
-const auth = getAuth(app);
-
 export default function IndexPage() {
   const auth = getAuth(app);
+
+  let errorMessage
 
   const [id, setId] = React.useState();
   const [pwd, setPwd] = React.useState();
@@ -33,7 +33,10 @@ export default function IndexPage() {
   };
 
   function login() {
-    console.log(id, pwd)
+    if (id == null || pwd == null) {
+      errorMessage = "모든 칸을 다 채워주세요"
+      document.querySelector('#error').classList.replace('hidden', 'inline-block')
+    }
     {/* signInWithEmailAndPassword(auth, id.slice(0, 2) + '@sangmyung1-1.com', pwd)
       .then((userCredential) => {
         const user = userCredential.user;
@@ -71,7 +74,7 @@ export default function IndexPage() {
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <Input placeholder="아이디를 입력하세요." onChange={getId} />
               <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} />
-              <Alert variant="destructive">
+              <Alert variant="destructive" className="hidden" id="error">
                 <AlertTitle>Error</AlertTitle>
                 <AlertDescription>
                   Error Message
