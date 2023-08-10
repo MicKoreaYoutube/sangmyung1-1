@@ -17,8 +17,19 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "@/public/js/firebase";
+import { getAuth } from "firebase/auth"
 
 const app = initializeApp(firebaseConfig);
+
+const auth = getAuth();
+const user = auth.currentUser;
+
+if (user) {
+  const uid = user.uid;
+  const email = user.email;
+  console.log(email)
+}
+
 
 export const metadata: Metadata = {
   title: {

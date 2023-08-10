@@ -34,7 +34,6 @@ export function SiteHeader({ items }: LogAboutProps) {
     items = siteConfig.logAbout.logout;
     const uid = user.uid;
     const email = user.email;
-    console.log(email)
   } else {
     items = siteConfig.logAbout.login;
   }
