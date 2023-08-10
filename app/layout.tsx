@@ -32,8 +32,7 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
-console.log(app)
+export const app = initializeApp(firebaseConfig);
 
 export const metadata: Metadata = {
   title: {
