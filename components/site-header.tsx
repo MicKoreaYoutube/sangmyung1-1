@@ -1,6 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { LogAboutItem, NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -26,9 +27,22 @@ interface LogAboutProps {
 }
 
 export function SiteHeader({ items }: LogAboutProps) {
-  items = siteConfig.logAbout.login
+  const auth = getAuth();
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      items = siteConfig.logAbout.logout;
+      const uid = user.uid;
+      const email = user.email;
+      console.log(email)
+    } else {
+      items = siteConfig.logAbout.login;
+    }
+  });
+
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
+
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b dark:bg-gray-900">
       <div className="container flex h-16 items-center space-x-4">
