@@ -33,6 +33,7 @@ export function SiteHeader({ items }: LogAboutProps) {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       items = siteConfig.logAbout.logout
+      const email = user.email
     } else {
       items = siteConfig.logAbout.login
     }
