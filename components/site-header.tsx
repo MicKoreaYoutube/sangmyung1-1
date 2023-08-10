@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link"
 import Image from "next/image"
 
@@ -34,6 +36,7 @@ export function SiteHeader({ items }: LogAboutProps) {
     items = siteConfig.logAbout.logout;
     const uid = user.uid;
     const email = user.email;
+    console.log(email)
   } else {
     items = siteConfig.logAbout.login;
   }

@@ -1,5 +1,3 @@
-'use client';
-
 import "@/styles/globals.css"
 import "@/styles/fonts.css"
 import "@/styles/media-query.css"
@@ -19,19 +17,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "@/public/js/firebase";
-import { getAuth } from "firebase/auth"
 
 const app = initializeApp(firebaseConfig);
-
-const auth = getAuth();
-const user = auth.currentUser;
-
-if (user) {
-  const uid = user.uid;
-  const email = user.email;
-  console.log(email)
-}
-console.log("하 이 시발")
 
 export const metadata: Metadata = {
   title: {
