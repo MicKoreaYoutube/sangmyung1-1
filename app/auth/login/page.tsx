@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "/workspace/sangmyung1-1/app/layout"
+// import { app } from "/workspace/sangmyung1-1/app/layout"
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
@@ -9,7 +9,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ThemeToggle } from "@/components/theme-toggle"
 
-const auth = getAuth(app);
+// const auth = getAuth(app);
 
 // signInWithEmailAndPassword(auth, email, password)
 //   .then((userCredential) => {
