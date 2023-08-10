@@ -40,7 +40,7 @@ export default function IndexPage() {
       if (siteConfig.member.includes(id)) {
         signInWithEmailAndPassword(auth, id.slice(0, 5) + '@sangmyung1-1.com', pwd)
           .then((userCredential) => {
-            const user = userCredential.user;
+            location.href = '/'
           })
           .catch((error) => {
             const errorCode = error.code;
