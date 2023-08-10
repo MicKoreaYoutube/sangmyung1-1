@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { LogAboutItem, NavItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -28,17 +28,16 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
+  const user = auth.currentUser;
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      items = siteConfig.logAbout.logout;
-      const uid = user.uid;
-      const email = user.email;
-      console.log(email)
-    } else {
-      items = siteConfig.logAbout.login;
-    }
-  });
+  if (user) {
+    items = siteConfig.logAbout.logout;
+    const uid = user.uid;
+    const email = user.email;
+    console.log(email)
+  } else {
+    items = siteConfig.logAbout.login;
+  }
 
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
