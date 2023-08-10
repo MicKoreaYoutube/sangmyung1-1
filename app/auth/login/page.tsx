@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "@/public/js/firebase"
+import { app } from "@/public/js/firebase";
+import { displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
@@ -34,8 +35,7 @@ export default function IndexPage() {
 
   function login() {
     if (id == null || pwd == null) {
-      errorMessage = "모든 칸을 다 채워주세요"
-      document.querySelector('#error').classList.replace('hidden', 'inline-block')
+      displayError('sangmyung', '모든 칸을 다 채워주세요.')
     }
     {/* signInWithEmailAndPassword(auth, id.slice(0, 2) + '@sangmyung1-1.com', pwd)
       .then((userCredential) => {
@@ -76,7 +76,7 @@ export default function IndexPage() {
               <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} />
               <Alert variant="destructive" className="hidden" id="error">
                 <AlertTitle>Error</AlertTitle>
-                <AlertDescription>
+                <AlertDescription id="errorMessage">
                   Error Message
                 </AlertDescription>
               </Alert>
