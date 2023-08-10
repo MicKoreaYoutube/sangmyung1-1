@@ -23,8 +23,8 @@ export default function IndexPage() {
 
   let errorMessage
 
-  const [id, setId] = React.useState();
-  const [pwd, setPwd] = React.useState();
+  const [id, setId] = React.useState('');
+  const [pwd, setPwd] = React.useState('');
 
   const getId = (e: any) => {
     setId(e.target.value);
@@ -35,7 +35,20 @@ export default function IndexPage() {
 
   function login() {
     if (id == null || pwd == null) {
-      displayError('sangmyung', '모든 칸을 다 채워주세요.')
+      displayError('모든 칸을 다 채워주세요.')
+    } else {
+      if (siteConfig.member.includes(id)) {
+        signInWithEmailAndPassword(auth, id.slice(0, 5) + '@sangmyung1-1.com', pwd)
+          .then((userCredential) => {
+            const user = userCredential.user;
+          })
+          .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+          });
+      } else {
+        displayError('올바른 아이디를 입력해주세요.')
+      }
     }
     {/* signInWithEmailAndPassword(auth, id.slice(0, 2) + '@sangmyung1-1.com', pwd)
       .then((userCredential) => {
