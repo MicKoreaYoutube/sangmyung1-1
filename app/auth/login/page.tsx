@@ -45,6 +45,7 @@ export default function IndexPage() {
           .catch((error) => {
             const errorCode = error.code;
             const errorMessage = error.message;
+            displayError(errorMessage)
           });
       } else {
         displayError('올바른 아이디를 입력해주세요.')
