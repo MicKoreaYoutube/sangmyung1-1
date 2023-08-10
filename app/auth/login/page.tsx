@@ -71,10 +71,10 @@ export default function IndexPage() {
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <Input placeholder="아이디를 입력하세요." onChange={getId} />
               <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} />
-              <Alert>
-                <AlertTitle>Heads up!</AlertTitle>
+              <Alert variant="destructive">
+                <AlertTitle>Error</AlertTitle>
                 <AlertDescription>
-                  You can add components to your app using the cli.
+                  Error Message
                 </AlertDescription>
               </Alert>
               <Button onClick={login}>로그인</Button>
