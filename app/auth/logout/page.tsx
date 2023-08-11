@@ -6,7 +6,6 @@ export default function IndexPage() {
   signOut(auth).then(() => {
     location.href = '/'
   }).catch((error) => {
-    location.href = '/auth/login'
   });
 
   return (
