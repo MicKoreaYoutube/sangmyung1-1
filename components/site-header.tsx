@@ -29,17 +29,23 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
-  const [authItems, setAuthItems] = React.useState<LogAboutItem[]>(items || []);
+  const user = auth.currentUser;
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setAuthItems(siteConfig.logAbout.logout);
-    } else {
-      setAuthItems(siteConfig.logAbout.login);
-    }
-  });
+  if (user !== null) {
+    items = siteConfig.logAbout.logout
+    // The user object has basic properties such as display name, email, etc.
+    const displayName = user.displayName;
+    const email = user.email;
+    const photoURL = user.photoURL;
+    const emailVerified = user.emailVerified;
 
-  items = authItems
+    // The user's ID, unique to the Firebase project. Do NOT use
+    // this value to authenticate with your backend server, if
+    // you have one. Use User.getToken() instead.
+    const uid = user.uid;
+  } else {
+    items = siteConfig.logAbout.login
+  }
 
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
