@@ -28,6 +28,8 @@ interface LogAboutProps {
 }
 
 export function SiteHeader({ items }: LogAboutProps) {
+  items = siteConfig.logAbout.login
+  
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
