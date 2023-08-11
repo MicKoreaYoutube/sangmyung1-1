@@ -34,8 +34,10 @@ export function SiteHeader({ items }: LogAboutProps) {
   onAuthStateChanged(auth, (user) => {
     if (user) {
       stateChange(siteConfig.logAbout.logout)
+      items = authAbout
     } else {
       stateChange(siteConfig.logAbout.login)
+      items = authAbout
     }
   });
 
