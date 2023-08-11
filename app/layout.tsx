@@ -45,14 +45,14 @@ interface RootLayoutProps {
 export default function RootLayout({ children }: RootLayoutProps) {
   const auth = getAuth();
   let items
-  
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      items = siteConfig.logAbout.logout
-    } else {
-      items = siteConfig.logAbout.login
-    }
-  });
+
+  const user = auth.currentUser;
+
+  if (user) {
+    items = siteConfig.logAbout.logout
+  } else {
+    items = siteConfig.logAbout.login
+  }
 
   return (
     <>
@@ -66,7 +66,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
-              <SiteHeader items={items}/>
+              <SiteHeader items={items} />
               <div className="flex-1">{children}</div>
               <SiteFooter />
             </div>
