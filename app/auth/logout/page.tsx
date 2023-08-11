@@ -7,12 +7,12 @@ export default function IndexPage() {
     location.href = '/'
   }).catch((error) => {
     let errorMessage = error.message
-    console.log(errorMessage)
+    document.querySelector('#error').innerHTML = errorMessage
   });
 
   return (
     <>
-      <span>로그아웃 중...</span>
+      <span id="error">로그아웃 중...</span>
     </>
   )
 }
