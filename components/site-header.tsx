@@ -28,16 +28,12 @@ interface LogAboutProps {
 }
 
 export function SiteHeader({ items }: LogAboutProps) {
-  const [authAbout, stateChange] = React.useState(siteConfig.logAbout.login)
-
   const auth = getAuth();
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      stateChange(siteConfig.logAbout.logout)
-      items = authAbout
+      items = siteConfig.logAbout.logout
     } else {
-      stateChange(siteConfig.logAbout.login)
-      items = authAbout
+      items = siteConfig.logAbout.login
     }
   });
 
