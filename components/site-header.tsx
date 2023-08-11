@@ -29,18 +29,20 @@ interface LogAboutProps {
   items?: LogAboutItem[]
 }
 
-const auth = getAuth();
-let items
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    items = siteConfig.logAbout.logout
-  } else {
-    items = siteConfig.logAbout.login
-  }
-});
-
 export function SiteHeader({ items }: LogAboutProps) {
+
+  // const auth = getAuth();
+  // const user = auth.currentUser;
+
+  // if (user) {
+  //   // User is signed in, see docs for a list of available properties
+  //   // https://firebase.google.com/docs/reference/js/auth.user
+  //   // ...
+  // } else {
+  //   // No user is signed in.
+  // }
+
+  items = siteConfig.logAbout.logout
 
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
