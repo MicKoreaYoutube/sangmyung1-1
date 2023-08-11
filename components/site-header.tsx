@@ -36,7 +36,6 @@ export function SiteHeader({ items }: LogAboutProps) {
 
   if (user) {
     items = siteConfig.logAbout.logout
-    const email = user.email
   } else {
     items = siteConfig.logAbout.login
   }
