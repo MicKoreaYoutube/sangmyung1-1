@@ -29,15 +29,18 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
-  items = items || siteConfig.logAbout.login;
+
+  const [authItems, setAuthItems] = useState<LogAboutItem[]>(items || []);
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      items = siteConfig.logAbout.logout;
+      setAuthItems(siteConfig.logAbout.logout);
     } else {
-      items = siteConfig.logAbout.login;
+      setAuthItems(siteConfig.logAbout.login);
     }
   });
+
+  items = authItems
 
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
