@@ -4,9 +4,10 @@ import "@/styles/media-query.css"
 
 import { Metadata } from "next"
 
-import "@fortawesome/fontawesome-svg-core/styles.css"; 
+import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from '@fortawesome/fontawesome-svg-core'
 
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
@@ -41,7 +42,18 @@ interface RootLayoutProps {
   children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+const auth = getAuth();
+let buttonItems
+
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    buttonItems = siteConfig.logAbout.logout
+  } else {
+    buttonItems = siteConfig.logAbout.login
+  }
+});
+
+export default function RootLayout({ children }: RootLayoutProps, { buttonItems }: any) {
   return (
     <>
       <html lang="en" suppressHydrationWarning>
@@ -54,7 +66,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
-              <SiteHeader />
+              <SiteHeader items={buttonItems} />
               <div className="flex-1">{children}</div>
               <SiteFooter />
             </div>

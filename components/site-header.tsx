@@ -2,8 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import React, { useState } from 'react';
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
-import { LogAboutItem, NavItem } from "@/types/nav"
+import { LogAboutItem } from "@/types/nav"
 import { siteConfig } from "@/config/site"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
@@ -28,19 +27,6 @@ interface LogAboutProps {
 }
 
 export function SiteHeader({ items }: LogAboutProps) {
-  items = siteConfig.logAbout.login
-  
-  const auth = getAuth();
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      items = siteConfig.logAbout.logout
-      console.log(items)
-    } else {
-      items = siteConfig.logAbout.login
-      console.log(items)
-    }
-  });
-
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
 
