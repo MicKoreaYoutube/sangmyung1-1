@@ -43,7 +43,7 @@ export function SiteHeader({ items }: LogAboutProps) {
   return (
     <header className="bg-background sticky top-0 z-40 w-full border-b dark:bg-gray-900">
       <div className="container flex h-16 items-center space-x-4">
-        <MainNav items={siteConfig.mainNav} />
+        <MainNav navItems={siteConfig.mainNav} />
         <div className="flex flex-1 items-center justify-end space-x-4">
           {items?.length ? (
             <nav className="nav-flex items-center space-x-2">

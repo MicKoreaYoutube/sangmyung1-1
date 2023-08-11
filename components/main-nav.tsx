@@ -9,30 +9,30 @@ import { Icons } from "@/components/icons"
 import { LogOut } from "lucide-react"
 
 interface MainNavProps {
-  items?: NavItem[]
+  navItems?: NavItem[]
 }
 
-export function MainNav({ items }: MainNavProps) {
+export function MainNav({ navItems }: MainNavProps) {
   return (
     <div className="flex gap-6 md:gap-10">
       <Link href="/" className="flex items-center space-x-2">
         <Image src="logo.png" alt="로고" className="h-6 w-6" />
         <span className="inline-block font-bold">{siteConfig.name}</span>
       </Link>
-      {items?.length ? (
+      {navItems?.length ? (
         <nav className="nav-flex gap-6">
-          {items?.map(
-            (item, index) =>
-              item.href && (
+          {navItems?.map(
+            (navItems, index) =>
+            navItems.href && (
                 <Link
                   key={index}
-                  href={item.href}
+                  href={navItems.href}
                   className={cn(
                     "flex items-center text-sm font-medium text-muted-foreground hover:text-black",
-                    item.disabled && "cursor-not-allowed opacity-80"
+                    navItems.disabled && "cursor-not-allowed opacity-80"
                   )}
                 >
-                  {item.title}
+                  {navItems.title}
                 </Link>
               )
           )}
