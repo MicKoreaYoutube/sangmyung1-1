@@ -9,6 +9,7 @@ export default function IndexPage() {
     location.href = '/'
   }).catch((error) => {
     let errorMessage = error.message
+    document.querySelector('#error').innerHTML = errorMessage
   });
 
   return (
