@@ -1,5 +1,3 @@
-'use client';
-
 import { getAuth, signOut } from "firebase/auth";
 
 export default function IndexPage() {
