@@ -29,19 +29,15 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
-  const [authItems, setAuthItems] = useState<LogAboutItem[]>(items || []);
-  
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setAuthItems(siteConfig.logAbout.logout);
-      } else {
-        setAuthItems(siteConfig.logAbout.login);
-      }
-    });
+  const [authItems, setAuthItems] = React.useState<LogAboutItem[]>(items || []);
 
-    return () => unsubscribe(); // Cleanup function to unsubscribe
-  }, [auth]);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      setAuthItems(siteConfig.logAbout.logout);
+    } else {
+      setAuthItems(siteConfig.logAbout.login);
+    }
+  });
 
   items = authItems
 
