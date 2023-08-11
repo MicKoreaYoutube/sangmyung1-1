@@ -30,17 +30,9 @@ interface LogAboutProps {
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
   const user = auth.currentUser;
-  console.log(user)
 
   if (user !== null) {
     items = siteConfig.logAbout.logout
-    // The user object has basic properties such as display name, email, etc.
-    const displayName = user.displayName;
-    const email = user.email;
-    const photoURL = user.photoURL;
-    const emailVerified = user.emailVerified;
-
-    const uid = user.uid;
   } else {
     items = siteConfig.logAbout.login
   }
