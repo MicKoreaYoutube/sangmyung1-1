@@ -30,6 +30,7 @@ interface LogAboutProps {
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
   const user = auth.currentUser;
+  console.log(user)
 
   if (user !== null) {
     items = siteConfig.logAbout.logout
@@ -39,9 +40,6 @@ export function SiteHeader({ items }: LogAboutProps) {
     const photoURL = user.photoURL;
     const emailVerified = user.emailVerified;
 
-    // The user's ID, unique to the Firebase project. Do NOT use
-    // this value to authenticate with your backend server, if
-    // you have one. Use User.getToken() instead.
     const uid = user.uid;
   } else {
     items = siteConfig.logAbout.login
