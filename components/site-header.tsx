@@ -28,15 +28,6 @@ interface LogAboutProps {
 }
 
 export function SiteHeader({ items }: LogAboutProps) {
-  const auth = getAuth();
-  const user = auth.currentUser;
-
-  if (user !== null) {
-    items = siteConfig.logAbout.logout
-  } else {
-    items = siteConfig.logAbout.login
-  }
-
   const NavItems = siteConfig.mainNav
   const setVariant = [buttonVariants(), buttonVariants({ variant: "outline" })]
 
