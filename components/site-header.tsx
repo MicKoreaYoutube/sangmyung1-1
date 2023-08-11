@@ -29,13 +29,13 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
-  let authItems = items || siteConfig.logAbout.login;
+  items = items || siteConfig.logAbout.login;
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      authItems = siteConfig.logAbout.logout;
+      items = siteConfig.logAbout.logout;
     } else {
-      authItems = siteConfig.logAbout.login;
+      items = siteConfig.logAbout.login;
     }
   });
 
