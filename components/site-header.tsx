@@ -1,8 +1,6 @@
-'use client';
-
 import Link from "next/link"
 import Image from "next/image"
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { LogAboutItem } from "@/types/nav"
@@ -31,16 +29,19 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
   const auth = getAuth();
-
   const [authItems, setAuthItems] = useState<LogAboutItem[]>(items || []);
+  
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setAuthItems(siteConfig.logAbout.logout);
+      } else {
+        setAuthItems(siteConfig.logAbout.login);
+      }
+    });
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      setAuthItems(siteConfig.logAbout.logout);
-    } else {
-      setAuthItems(siteConfig.logAbout.login);
-    }
-  });
+    return () => unsubscribe(); // Cleanup function to unsubscribe
+  }, [auth]);
 
   items = authItems
 
