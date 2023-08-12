@@ -49,9 +49,9 @@ export default function RootLayout({ children }: RootLayoutProps) {
   const user = auth.currentUser;
 
   if (user) {
-    items = siteConfig.logAbout.login
-  } else {
     items = siteConfig.logAbout.logout
+  } else {
+    items = siteConfig.logAbout.login
   }
 
   return (
