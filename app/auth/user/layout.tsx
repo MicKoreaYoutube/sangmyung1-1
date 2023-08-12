@@ -1,3 +1,5 @@
+'use client';
+
 import "@/styles/globals.css"
 import "@/styles/fonts.css"
 import "@/styles/media-query.css"
@@ -14,7 +16,6 @@ import { SiteFooter } from "@/components/site-footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
-import { initializeApp } from 'firebase/app';
 import { app, auth } from "@/public/js/firebase";
 import { Button } from "@/components/ui/button"
 import {
@@ -33,7 +34,6 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
-import { Children } from "react";
 
 export default function RootLayout({ children }: any) {
 
