@@ -36,9 +36,9 @@ export function SiteHeader({ items }: LogAboutProps) {
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
-      stateChanger(siteConfig.logAbout.login)
-    } else {
       stateChanger(siteConfig.logAbout.logout)
+    } else {
+      stateChanger(siteConfig.logAbout.login)
     }
   });
 
