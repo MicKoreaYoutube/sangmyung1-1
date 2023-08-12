@@ -1,4 +1,5 @@
 import { getAuth, signOut } from "firebase/auth";
+import { displayError } from "@/public/js/function"
 
 export default function IndexPage() {
   const auth = getAuth();
@@ -6,11 +7,14 @@ export default function IndexPage() {
   signOut(auth).then(() => {
     location.href = '/'
   }).catch((error) => {
+
   });
 
   return (
     <>
-      <span id="error">로그아웃 중...</span>
+      <div id="error" className="hidden">
+      <span id="errorMessage">로그아웃 중...</span>
+      </div>
     </>
   )
 }
