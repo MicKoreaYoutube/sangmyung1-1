@@ -32,7 +32,7 @@ interface LogAboutProps {
 
 export function SiteHeader({ items }: LogAboutProps) {
 
-  const [navState, stateChanger] = useState()
+  const [navState, stateChanger] = useState(siteConfig.logAbout)
 
   onAuthStateChanged(auth, (user) => {
     if (user) {
