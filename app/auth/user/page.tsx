@@ -29,13 +29,16 @@ export default function IndexPage() {
 
     const [statusMessage, messageChanger] = useState('')
 
+    let userId
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
             const msg = user.displayName
             messageChanger(msg)
             user.email.slice(0, 5)
             const cutEmail = user.email.slice(0, 5)
-            const userId = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+            const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+            userId = id[0]
         } else {
             // User is signed out
             // ...
@@ -65,12 +68,20 @@ export default function IndexPage() {
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
                                 <Label htmlFor="name">아이디</Label>
-                                <Input id="name" defaultValue={userId[0]} />
+                                <Input id="name" defaultValue={userId} disabled />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage} value={statusMessage}/>
+                                <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage} value={statusMessage} />
                             </div>
+                            <div class="relative">
+                                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                                <div class="absolute inset-0 flex items-center justify-center">
+                                    <span class="bg-white px-3 text-gray-500 text-sm">가운데에 나타날 텍스트</span>
+                                </div>
+                            </div>
+                            <h2 className="text-3xl">{userId}</h2>
+                            <span className="text-xl">{statusMessage}</span>
                         </CardContent>
                         <CardFooter>
                             <Button className="font-SUITE-Regular text-lg">Save changes</Button>
