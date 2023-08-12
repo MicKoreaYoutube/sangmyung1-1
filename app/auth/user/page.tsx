@@ -22,7 +22,7 @@ export default function IndexPage() {
     return (
         <>
             <Tabs defaultValue="profile" className="flex">
-                <TabsList className="flex-col grid w-64 grid-cols-3 flex-none">
+                <TabsList className="flex-col grid w-64 grid-rows-3 flex-none">
                     <TabsTrigger value="profile">프로필</TabsTrigger>
                     <TabsTrigger value="email">이메일 등록</TabsTrigger>
                     <TabsTrigger value="password">비밀번호 변경</TabsTrigger>
