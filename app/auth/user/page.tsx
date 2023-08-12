@@ -21,7 +21,7 @@ import {
 export default function IndexPage() {
     return (
         <>
-            <Tabs defaultValue="account flex">
+            <Tabs defaultValue="profile" className="flex">
                 <TabsList className="flex flex-col w-64 flex-none">
                     <TabsTrigger value="profile">프로필</TabsTrigger>
                     <TabsTrigger value="email">이메일 등록</TabsTrigger>
