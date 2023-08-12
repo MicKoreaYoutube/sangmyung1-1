@@ -20,6 +20,7 @@ import { initializeApp } from 'firebase/app';
 import { firebaseConfig } from "@/public/js/firebase";
 
 const app = initializeApp(firebaseConfig);
+initializeApp()
 
 export const metadata: Metadata = {
   title: {
