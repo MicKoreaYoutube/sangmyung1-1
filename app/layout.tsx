@@ -1,3 +1,5 @@
+'use client'
+
 import "@/styles/globals.css"
 import "@/styles/fonts.css"
 import "@/styles/media-query.css"
@@ -18,6 +20,7 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 import { initializeApp } from 'firebase/app';
 import { app, auth } from "@/public/js/firebase";
+import React, { useState } from "react";
 
 export const metadata: Metadata = {
   title: {
@@ -41,14 +44,14 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  let items
+  const [items, stateChanger] = useState(siteConfig.logAbout.login)
 
   const user = auth.currentUser;
 
   if (user) {
-    items = siteConfig.logAbout.logout
+    stateChanger(siteConfig.logAbout.login)
   } else {
-    items = siteConfig.logAbout.login
+    stateChanger(siteConfig.logAbout.logout)
   }
 
   return (
