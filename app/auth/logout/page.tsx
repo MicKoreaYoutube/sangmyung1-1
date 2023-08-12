@@ -7,13 +7,14 @@ export default function IndexPage() {
   signOut(auth).then(() => {
     location.href = '/'
   }).catch((error) => {
-
+    const errorMessage = error.message
+    displayError(errorMessage)
   });
 
   return (
     <>
       <div id="error" className="hidden">
-      <span id="errorMessage">로그아웃 중...</span>
+        <span id="errorMessage">로그아웃 중...</span>
       </div>
     </>
   )

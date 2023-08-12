@@ -21,8 +21,6 @@ import {
 export default function IndexPage() {
   const auth = getAuth(app);
 
-  let errorMessage
-
   const [id, setId] = React.useState('');
   const [pwd, setPwd] = React.useState('');
 
