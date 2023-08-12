@@ -1,5 +1,12 @@
 'use client';
 
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "@/public/js/firebase";
+
+import React, { useState } from "react"
+
+import { SiteConfig, siteConfig } from "@/config/site";
+
 import { Button } from "@/components/ui/button"
 import {
     Card,
@@ -19,6 +26,28 @@ import {
 } from "@/components/ui/tabs"
 
 export default function IndexPage() {
+
+    const [statusMessage, messageChanger] = useState('')
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            const msg = user.displayName
+            messageChanger(msg)
+            user.email.slice(0, 5)
+            const cutEmail = user.email.slice(0, 5)
+            const userId = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+
+            console.log('찾은 항목들: ', userId);
+        } else {
+            // User is signed out
+            // ...
+        }
+    });
+
+    const changeMessage = () => {
+        messageChanger(statusMessage)
+    }
+
     return (
         <>
             <Tabs defaultValue="profile">
@@ -37,12 +66,12 @@ export default function IndexPage() {
                         </CardHeader>
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
-                                <Label htmlFor="name">Name</Label>
-                                <Input id="name" defaultValue="Pedro Duarte" />
+                                <Label htmlFor="name">아이디</Label>
+                                <Input id="name" defaultValue="@peduarte" />
                             </div>
                             <div className="space-y-1">
-                                <Label htmlFor="username">Username</Label>
-                                <Input id="username" defaultValue="@peduarte" />
+                                <Label htmlFor="statusMessage">상태메시지</Label>
+                                <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage} value={statusMessage}/>
                             </div>
                         </CardContent>
                         <CardFooter>
