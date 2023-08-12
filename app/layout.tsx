@@ -1,8 +1,8 @@
-'use client'
-
 import "@/styles/globals.css"
 import "@/styles/fonts.css"
 import "@/styles/media-query.css"
+
+import { Metadata } from "next"
 
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from '@fortawesome/fontawesome-svg-core'
@@ -18,22 +18,29 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 import { initializeApp } from 'firebase/app';
 import { app, auth } from "@/public/js/firebase";
-import React, { useState } from "react";
+
+export const metadata: Metadata = {
+  title: {
+    default: siteConfig.name,
+    template: `%s - ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "white" },
+    { media: "(prefers-color-scheme: dark)", color: "black" },
+  ],
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+}
 
 interface RootLayoutProps {
   children: React.ReactNode
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const [items, stateChanger] = useState(siteConfig.logAbout.login)
-
-  const user = auth.currentUser;
-
-  if (user) {
-    stateChanger(siteConfig.logAbout.login)
-  } else {
-    stateChanger(siteConfig.logAbout.logout)
-  }
 
   return (
     <>
@@ -47,7 +54,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
             <div className="relative flex min-h-screen flex-col">
-              <SiteHeader items={items} />
+              <SiteHeader />
               <div className="flex-1">{children}</div>
               <SiteFooter />
             </div>
