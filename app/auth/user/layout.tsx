@@ -36,7 +36,6 @@ import {
 } from "@/components/ui/tabs"
 
 export default function RootLayout({ children }: any) {
-
     return (
         <>
             <Tabs defaultValue="account" className="w-[400px]">
