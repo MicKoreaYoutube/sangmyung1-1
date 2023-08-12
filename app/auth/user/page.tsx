@@ -21,13 +21,13 @@ import {
 export default function IndexPage() {
     return (
         <>
-            <Tabs defaultValue="profile" className="flex">
-                <TabsList className="grid w-64 grid-rows-3 gap-7 flex-none">
+            <Tabs defaultValue="profile">
+                <TabsList className="grid w-full grid-cols-3">
                     <TabsTrigger value="profile">프로필</TabsTrigger>
                     <TabsTrigger value="email">이메일 등록</TabsTrigger>
                     <TabsTrigger value="password">비밀번호 변경</TabsTrigger>
                 </TabsList>
-                <TabsContent value="profile" className="flex-1">
+                <TabsContent value="profile">
                     <Card>
                         <CardHeader>
                             <CardTitle>Account</CardTitle>
