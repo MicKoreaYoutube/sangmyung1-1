@@ -42,6 +42,8 @@ export function SiteHeader({ items }: LogAboutProps) {
     }
   });
 
+  console.log('fuckyou')
+
   items = navState
 
   const NavItems = siteConfig.mainNav
