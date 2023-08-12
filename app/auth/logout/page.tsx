@@ -1,3 +1,5 @@
+'use client';
+
 import { getAuth, signOut } from "firebase/auth";
 import { displayError } from "@/public/js/function"
 
