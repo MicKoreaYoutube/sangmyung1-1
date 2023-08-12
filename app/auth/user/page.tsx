@@ -27,7 +27,7 @@ export default function IndexPage() {
                     <TabsTrigger value="email">이메일 등록</TabsTrigger>
                     <TabsTrigger value="password">비밀번호 변경</TabsTrigger>
                 </TabsList>
-                <div className="flex-auto">
+                <div className="flex-1">
                     <TabsContent value="profile">
                         <Card>
                             <CardHeader>
