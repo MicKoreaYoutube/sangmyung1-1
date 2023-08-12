@@ -36,11 +36,13 @@ export function SiteHeader({ items }: LogAboutProps) {
 
   const user = auth.currentUser;
 
-  if (user) {
-    stateChanger(siteConfig.logAbout.login)
-  } else {
-    stateChanger(siteConfig.logAbout.logout)
-  }
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      stateChanger(siteConfig.logAbout.login)
+    } else {
+      stateChanger(siteConfig.logAbout.logout)
+    }
+  });
 
   items = navState
 
