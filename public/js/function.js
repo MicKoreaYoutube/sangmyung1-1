@@ -1,3 +1,5 @@
+'use client';
+
 export function displayError(msg) {
     document.querySelector('#errorMessage').innerHTML = msg;
     document.querySelector('#error').classList.replace('hidden', 'inline-block')
