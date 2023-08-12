@@ -30,12 +30,12 @@ export default function IndexPage() {
                 <TabsContent value="profile">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Account</CardTitle>
-                            <CardDescription>
-                                Make changes to your account here. Click save when you&#39;re done.
+                            <CardTitle className="font-KBO-Dia-Gothic_bold">프로필</CardTitle>
+                            <CardDescription className="font-SUITE-Regular">
+                                다른 사람들에게 보여지는 당신의 프로필입니다.
                             </CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 font-SUITE-Regular">
                             <div className="space-y-1">
                                 <Label htmlFor="name">Name</Label>
                                 <Input id="name" defaultValue="Pedro Duarte" />
@@ -46,19 +46,19 @@ export default function IndexPage() {
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button>Save changes</Button>
+                            <Button className="font-SUITE-Regular">Save changes</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
                 <TabsContent value="email">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Email</CardTitle>
-                            <CardDescription>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold">Email</CardTitle>
+                            <CardDescription className="font-SUITE-Regular">
                                 Make changes to your account here. Click save when you&#39;re done.
                             </CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 font-SUITE-Regular">
                             <div className="space-y-1">
                                 <Label htmlFor="name">Name</Label>
                                 <Input id="name" defaultValue="Pedro Duarte" />
@@ -68,7 +68,7 @@ export default function IndexPage() {
                                 <Input id="username" defaultValue="@peduarte" />
                             </div>
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className="font-SUITE-Regular">
                             <Button>Save changes</Button>
                         </CardFooter>
                     </Card>
@@ -76,12 +76,12 @@ export default function IndexPage() {
                 <TabsContent value="password">
                     <Card>
                         <CardHeader>
-                            <CardTitle>Password</CardTitle>
-                            <CardDescription>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold">Password</CardTitle>
+                            <CardDescription className="font-SUITE-Regular">
                                 Change your password here. After saving, you&#39;ll be logged out.
                             </CardDescription>
                         </CardHeader>
-                        <CardContent className="space-y-2">
+                        <CardContent className="space-y-2 font-SUITE-Regular">
                             <div className="space-y-1">
                                 <Label htmlFor="current">Current password</Label>
                                 <Input id="current" type="password" />
@@ -91,7 +91,7 @@ export default function IndexPage() {
                                 <Input id="new" type="password" />
                             </div>
                         </CardContent>
-                        <CardFooter>
+                        <CardFooter className="font-SUITE-Regular">
                             <Button>Save password</Button>
                         </CardFooter>
                     </Card>
