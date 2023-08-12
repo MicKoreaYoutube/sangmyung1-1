@@ -74,10 +74,10 @@ export default function IndexPage() {
                                 <Label htmlFor="statusMessage">상태메시지</Label>
                                 <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage} value={statusMessage} />
                             </div>
-                            <div class="relative">
-                                <hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                                <div class="absolute inset-0 flex items-center justify-center">
-                                    <span class="bg-white px-3 text-gray-500 text-sm">가운데에 나타날 텍스트</span>
+                            <div className="relative">
+                                <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <span className="bg-white px-3 text-gray-500 text-sm">미리보기</span>
                                 </div>
                             </div>
                             <h2 className="text-3xl">{userId}</h2>
