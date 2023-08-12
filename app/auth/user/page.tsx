@@ -21,15 +21,39 @@ import {
 export default function IndexPage() {
     return (
         <>
-            <Tabs defaultValue="account" className="w-[400px]">
+            <Tabs defaultValue="profile">
                 <TabsList className="grid w-full grid-cols-2">
-                    <TabsTrigger value="account">Account</TabsTrigger>
-                    <TabsTrigger value="password">Password</TabsTrigger>
+                    <TabsTrigger value="profile">프로필</TabsTrigger>
+                    <TabsTrigger value="email">이메일 등록</TabsTrigger>
+                    <TabsTrigger value="password">비밀번호 변경</TabsTrigger>
                 </TabsList>
-                <TabsContent value="account">
+                <TabsContent value="profile">
                     <Card>
                         <CardHeader>
                             <CardTitle>Account</CardTitle>
+                            <CardDescription>
+                                Make changes to your account here. Click save when you&#39;re done.
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent className="space-y-2">
+                            <div className="space-y-1">
+                                <Label htmlFor="name">Name</Label>
+                                <Input id="name" defaultValue="Pedro Duarte" />
+                            </div>
+                            <div className="space-y-1">
+                                <Label htmlFor="username">Username</Label>
+                                <Input id="username" defaultValue="@peduarte" />
+                            </div>
+                        </CardContent>
+                        <CardFooter>
+                            <Button>Save changes</Button>
+                        </CardFooter>
+                    </Card>
+                </TabsContent>
+                <TabsContent value="email">
+                    <Card>
+                        <CardHeader>
+                            <CardTitle>Email</CardTitle>
                             <CardDescription>
                                 Make changes to your account here. Click save when you&#39;re done.
                             </CardDescription>
