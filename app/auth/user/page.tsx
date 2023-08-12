@@ -36,8 +36,7 @@ export default function IndexPage() {
             user.email.slice(0, 5)
             const cutEmail = user.email.slice(0, 5)
             const userId = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-
-            console.log('찾은 항목들: ', userId);
+            console.log(userId[0])
         } else {
             // User is signed out
             // ...
@@ -67,7 +66,7 @@ export default function IndexPage() {
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
                                 <Label htmlFor="name">아이디</Label>
-                                <Input id="name" defaultValue="@peduarte" />
+                                <Input id="name" defaultValue={0} />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
