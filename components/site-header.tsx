@@ -34,8 +34,6 @@ export function SiteHeader({ items }: LogAboutProps) {
 
   const [navState, stateChanger] = useState(siteConfig.logAbout.login)
 
-  const user = auth.currentUser;
-
   onAuthStateChanged(auth, (user) => {
     if (user) {
       stateChanger(siteConfig.logAbout.login)
