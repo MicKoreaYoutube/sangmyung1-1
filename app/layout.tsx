@@ -17,10 +17,7 @@ import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
 
 import { initializeApp } from 'firebase/app';
-import { firebaseConfig } from "@/public/js/firebase";
-
-const app = initializeApp(firebaseConfig);
-initializeApp()
+import { app, auth } from "@/public/js/firebase";
 
 export const metadata: Metadata = {
   title: {
@@ -44,7 +41,6 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const auth = getAuth();
   let items
 
   const user = auth.currentUser;

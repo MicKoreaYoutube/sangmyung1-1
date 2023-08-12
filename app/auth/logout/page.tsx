@@ -2,10 +2,9 @@
 
 import { getAuth, signOut } from "firebase/auth";
 import { displayError } from "@/public/js/function"
+import { auth } from "@/public/js/firebase"
 
 export default function IndexPage() {
-  const auth = getAuth();
-
   signOut(auth).then(() => {
     location.href = '/'
   }).catch((error) => {

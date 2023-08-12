@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app } from "@/public/js/firebase";
+import { app, auth } from "@/public/js/firebase";
 import { displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site"
@@ -19,7 +19,6 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage() {
-  const auth = getAuth(app);
 
   const [id, setId] = React.useState('');
   const [pwd, setPwd] = React.useState('');
