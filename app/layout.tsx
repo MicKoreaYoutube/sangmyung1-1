@@ -4,8 +4,6 @@ import "@/styles/globals.css"
 import "@/styles/fonts.css"
 import "@/styles/media-query.css"
 
-import { Metadata } from "next"
-
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from '@fortawesome/fontawesome-svg-core'
 
@@ -21,23 +19,6 @@ import { ThemeProvider } from "@/components/theme-provider"
 import { initializeApp } from 'firebase/app';
 import { app, auth } from "@/public/js/firebase";
 import React, { useState } from "react";
-
-export const metadata: Metadata = {
-  title: {
-    default: siteConfig.name,
-    template: `%s - ${siteConfig.name}`,
-  },
-  description: siteConfig.description,
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "white" },
-    { media: "(prefers-color-scheme: dark)", color: "black" },
-  ],
-  icons: {
-    icon: "/logo.png",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-}
 
 interface RootLayoutProps {
   children: React.ReactNode
