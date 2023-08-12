@@ -30,7 +30,7 @@ export default function IndexPage() {
                 <TabsContent value="profile">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="font-KBO-Dia-Gothic_bold text-xl">프로필</CardTitle>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">프로필</CardTitle>
                             <CardDescription className="font-SUITE-Regular text-lg">
                                 다른 사람들에게 보여지는 당신의 프로필입니다.
                             </CardDescription>
@@ -53,7 +53,7 @@ export default function IndexPage() {
                 <TabsContent value="email">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="font-KBO-Dia-Gothic_bold text-xl">Email</CardTitle>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">Email</CardTitle>
                             <CardDescription className="font-SUITE-Regular text-lg">
                                 Make changes to your account here. Click save when you&#39;re done.
                             </CardDescription>
@@ -76,7 +76,7 @@ export default function IndexPage() {
                 <TabsContent value="password">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="font-KBO-Dia-Gothic_bold text-xl">Password</CardTitle>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">Password</CardTitle>
                             <CardDescription className="font-SUITE-Regular text-lg">
                                 Change your password here. After saving, you&#39;ll be logged out.
                             </CardDescription>
