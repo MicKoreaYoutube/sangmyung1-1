@@ -68,7 +68,7 @@ export default function IndexPage() {
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
                                 <Label htmlFor="name">아이디</Label>
-                                <Input id="name" defaultValue={userId} disabled />
+                                <Input id="name" defaultValue={userId} disabled value={userId} />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
