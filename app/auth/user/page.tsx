@@ -29,7 +29,7 @@ export default function IndexPage() {
 
     const [statusMessage, messageChanger] = useState('')
 
-    let userId
+    const [userId, idDefiner] = useState('')
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
@@ -38,7 +38,7 @@ export default function IndexPage() {
             user.email.slice(0, 5)
             const cutEmail = user.email.slice(0, 5)
             const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-            userId = id[0]
+            idDefiner(id[0])
             console.log(userId, statusMessage)
         } else {
             // User is signed out
@@ -70,7 +70,6 @@ export default function IndexPage() {
                             <div className="space-y-1">
                                 <Label htmlFor="name">아이디</Label>
                                 <Input id="name" value={userId} disabled />
-                                <Input id="name" value="fuck" disabled />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
