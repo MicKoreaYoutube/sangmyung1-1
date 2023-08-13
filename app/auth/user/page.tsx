@@ -29,7 +29,7 @@ import {
     Alert,
     AlertDescription,
     AlertTitle,
-  } from "@/components/ui/alert"
+} from "@/components/ui/alert"
 
 export default function IndexPage() {
     const statusMessageInput = useRef(null);
@@ -82,7 +82,7 @@ export default function IndexPage() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input ref={statusMessageInput} defaultValue={statusMessage} />
+                                <Input ref={statusMessageInput} defaultValue={statusMessage} placeholder="상태메시지를 입력하세요..." />
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>
@@ -99,24 +99,27 @@ export default function IndexPage() {
                 <TabsContent value="email">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">Email</CardTitle>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">이메일 등록</CardTitle>
                             <CardDescription className="font-SUITE-Regular text-lg">
-                                Make changes to your account here. Click save when you&#39;re done.
+                                이메일을 등록하시면 최신 건의함 소식을 이메일로 빠르게 받아보실 수 있습니다!
+                                이메일을 등록하시기 전, 관리자에게 받은 코드를 입력해주세요.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
-                                <Label htmlFor="name">Name</Label>
-                                <Input id="name" defaultValue="Pedro Duarte" />
-                            </div>
-                            <div className="space-y-1">
-                                <Label htmlFor="username">Username</Label>
-                                <Input id="username" defaultValue="@peduarte" />
+                                <Label htmlFor="code">코드 입력</Label>
+                                <Input id="code" placeholder="코드를 입력하세요..." />
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg">Save changes</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={displayError}>Save changes</Button>
                         </CardFooter>
+                        <Alert variant="destructive" className="hidden" id="error">
+                            <AlertTitle>Error</AlertTitle>
+                            <AlertDescription id="errorMessage">
+                                Error Message
+                            </AlertDescription>
+                        </Alert>
                     </Card>
                 </TabsContent>
                 <TabsContent value="password">
