@@ -69,11 +69,11 @@ export default function IndexPage() {
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
                                 <Label htmlFor="name">아이디</Label>
-                                <Input id="name" defaultValue={userId} disabled value={userId} />
+                                <Input id="name" value={userId} disabled />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage} value={statusMessage} />
+                                <Input id="statusMessage" onChange={changeMessage} value={statusMessage} />
                             </div>
                             <div className="relative">
                                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
