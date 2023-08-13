@@ -70,6 +70,7 @@ export default function IndexPage() {
                             <div className="space-y-1">
                                 <Label htmlFor="name">아이디</Label>
                                 <Input id="name" value={userId} disabled />
+                                <Input id="name" value="fuck" disabled />
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
