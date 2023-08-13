@@ -6,7 +6,7 @@ import { buttonVariants } from "@/components/ui/button"
 export default function IndexPage() {
   return (
     <>
-      <section className="container grid items-center gap-6 my-28 max-w-[1000px] text-center place-element-center">
+      <section className="container grid items-center gap-6 my-28 max-w-[1000px] text-center">
         <div className="flex flex-col gap-2">
           <h1 className="text-5xl font-extrabold leading-tight tracking-tighter font-KBO-Dia-Gothic_bold">
             안녕하세요. 이곳은 <br />
