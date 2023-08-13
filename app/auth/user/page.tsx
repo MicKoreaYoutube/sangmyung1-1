@@ -1,6 +1,6 @@
 'use client';
 
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
 
 import React, { useState } from "react"
@@ -46,6 +46,17 @@ export default function IndexPage() {
 
     const changeMessage = (e: any) => {
         messageChanger(e.target.value)
+    }
+
+    function changeStatusMessage() {
+        updateProfile(auth.currentUser, {
+            displayName: "1972년 11월 21일 오렌지병을 앓고 있던 김두한이가 사망했습네다"
+        }).then(() => {
+            console.log('siuuuuuuuuuuuuuu')
+        }).catch((error) => {
+            // An error occurred
+            // ...
+        });
     }
 
     return (
