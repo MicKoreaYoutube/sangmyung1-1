@@ -8,7 +8,7 @@ export default function IndexPage() {
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
-        <pre className="font-SUITE-Regular whitespace-pre-line text-xl">
+        <p className="font-SUITE-Regular whitespace-pre text-xl">
           제 0장 정의
           1. 관리자는 상명중학교 1학년 1반 2학기 학급 회장을 의미한다.
           2. 유저는 이 건의함을 이용하는 모든 사람을 의미한다.
@@ -64,7 +64,7 @@ export default function IndexPage() {
           ②증명서에는 개정 사항, 개정 사유 그리고 유저 3명 이상의 자필 서명이 있어야 효력을 발휘한다.
           제 20조 최종 개정안이 나오면 학급원 전원 투표를 부쳐 결과를 토대로 시행한다.
           제 21조 이용약관은 최종 개정안으로 결정된 다음 날부터 그 효력을 발휘한다.
-        </pre>
+        </p>
       </section>
     </>
   )
