@@ -48,7 +48,7 @@ export default function IndexPage() {
 
     const changeStatusMessage = () => {
         updateProfile(auth.currentUser, {
-            displayName: statusMessage
+            displayName: document.getElementById('statusMessage').nodeValue
         }).then(() => {
             history.go(0);
         }).catch((error) => {
