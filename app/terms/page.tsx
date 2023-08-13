@@ -7,8 +7,8 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid items-center gap-6 my-28 max-w-[1000px] text-center place-element-center">
-        <h1 className="font-KBO-Dia-Gothic_bold text-3xl">이용약관</h1>
-        <p className="font-SUITE-Regular" style={{ whiteSpace: 'pre-line' }}>
+        <h1 className="font-KBO-Dia-Gothic_bold text-9xl">이용약관</h1>
+        <p className="font-SUITE-Regular whitespace-pre-line">
           제 0장 정의
           1​. 관리자는 상명중학교 1학년 1반 2학기 학급 회장을 의미한다.
           2. 유저는 이 건의함을 이용하는 모든 사람을 의미한다.
