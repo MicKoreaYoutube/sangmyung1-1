@@ -6,7 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 export default function IndexPage() {
   return (
     <>
-        <p className="whitespace-pre-wrap font-SUITE-Regular text-xl" style={{ whiteSpace: 'pre-wrap' }}>
+        <p className="whitespace-pre-line font-SUITE-Regular text-xl" style={{ whiteSpace: 'pre-line' }}>
           제 0장 정의
           1. 관리자는 상명중학교 1학년 1반 2학기 학급 회장을 의미한다.
           2. 유저는 이 건의함을 이용하는 모든 사람을 의미한다.
