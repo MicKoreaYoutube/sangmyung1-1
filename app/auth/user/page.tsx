@@ -67,7 +67,7 @@ export default function IndexPage() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" onChange={changeMessage} value={statusMessage} />
+                                <Input id="statusMessage" onInput={changeMessage} value={statusMessage} />
                             </div>
                             <div className="relative">
                                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
