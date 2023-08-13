@@ -29,11 +29,14 @@ export default function IndexPage() {
 
     const [statusMessage, messageChanger] = useState('')
 
+    let msg
+
     const [userId, idDefiner] = useState('')
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
             messageChanger(user.displayName)
+            msg = user.displayName
             user.email.slice(0, 5)
             const cutEmail = user.email.slice(0, 5)
             const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
@@ -42,7 +45,7 @@ export default function IndexPage() {
     });
 
     const changeMessage = (e: any) => {
-        console.log('fuck you')
+        messageChanger(e.target.value)
     }
 
     return (
@@ -68,7 +71,7 @@ export default function IndexPage() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" onChange={changeMessage} value={statusMessage} />
+                                <Input id="statusMessage" onChange={changeMessage} value={msg} />
                             </div>
                             <div className="relative">
                                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
