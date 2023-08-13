@@ -1,6 +1,6 @@
 'use client';
 
-import { onAuthStateChanged, updateProfile } from "firebase/auth";
+import { onAuthStateChanged, updateProfile, updatePassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
 import { displayError } from "@/public/js/function";
 
@@ -33,6 +33,9 @@ import {
 
 export default function IndexPage() {
     const statusMessageInput = useRef(null);
+    const current = useRef(null);
+    const newPwd = useRef(null);
+    const newPwdCheck = useRef(null);
 
     const [statusMessage, messageChanger] = useState('')
 
@@ -61,6 +64,36 @@ export default function IndexPage() {
 
     const codeError = () => {
         displayError('옳지 않은 코드 입니다')
+    }
+
+    const changePwd = () => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                const email = user.email
+                signInWithEmailAndPassword(auth, email, current.current.value)
+                    .then((userCredential) => {
+                        if (newPwd.current.value == newPwdCheck.current.value) {
+                            const user = auth.currentUser;
+                            const newPassword = newPwd.current.value;
+
+                            updatePassword(user, newPassword).then(() => {
+                                location.href = '/auth/logout'
+                            }).catch((error) => {
+                                const errorCode = error.code;
+                                const errorMessage = error.message;
+                                displayError(errorMessage)
+                            });
+                        } else {
+                            displayError('새로운 비밀번호 입력창과 비밀번호 확인 입력창이 일치하지 않습니다')
+                        }
+                    })
+                    .catch((error) => {
+                        const errorCode = error.code;
+                        const errorMessage = error.message;
+                        displayError(errorMessage)
+                    });
+            }
+        });
     }
 
     return (
@@ -114,38 +147,48 @@ export default function IndexPage() {
                                 <Label htmlFor="code">코드 입력</Label>
                                 <Input type="number" id="code" placeholder="코드를 입력하세요..." />
                             </div>
+                            <Alert variant="destructive" className="hidden" id="error">
+                                <AlertTitle>Error</AlertTitle>
+                                <AlertDescription id="errorMessage">
+                                    Error Message
+                                </AlertDescription>
+                            </Alert>
                         </CardContent>
                         <CardFooter>
                             <Button className="font-SUITE-Regular text-lg" onClick={codeError}>Save changes</Button>
                         </CardFooter>
-                        <Alert variant="destructive" className="hidden" id="error">
-                            <AlertTitle>Error</AlertTitle>
-                            <AlertDescription id="errorMessage">
-                                Error Message
-                            </AlertDescription>
-                        </Alert>
                     </Card>
                 </TabsContent>
                 <TabsContent value="password">
                     <Card>
                         <CardHeader>
-                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">Password</CardTitle>
+                            <CardTitle className="font-KBO-Dia-Gothic_bold text-2xl">비밀번호 변경</CardTitle>
                             <CardDescription className="font-SUITE-Regular text-lg">
-                                Change your password here. After saving, you&#39;ll be logged out.
+                                비밀번호를 변경하세요! 변경 후에는 자동으로 로그아웃 됩니다.
                             </CardDescription>
                         </CardHeader>
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
-                                <Label htmlFor="current">Current password</Label>
-                                <Input id="current" type="password" />
+                                <Label htmlFor="current">현재 비밀번호</Label>
+                                <Input ref={current} type="password" />
                             </div>
                             <div className="space-y-1">
-                                <Label htmlFor="new">New password</Label>
-                                <Input id="new" type="password" />
+                                <Label htmlFor="new">새로운 비밀번호</Label>
+                                <Input ref={newPwd} type="password" />
                             </div>
+                            <div className="space-y-1">
+                                <Label htmlFor="newCheck">새로운 비밀번호 확인</Label>
+                                <Input ref={newPwdCheck} type="password" />
+                            </div>
+                            <Alert variant="destructive" className="hidden" id="error">
+                                <AlertTitle>Error</AlertTitle>
+                                <AlertDescription id="errorMessage">
+                                    Error Message
+                                </AlertDescription>
+                            </Alert>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg">Save password</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={changePwd}>Save password</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
