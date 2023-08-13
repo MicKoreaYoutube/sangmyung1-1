@@ -5,7 +5,7 @@ import { auth } from "@/public/js/firebase";
 
 import React, { useState } from "react"
 
-import { SiteConfig, siteConfig } from "@/config/site";
+import { siteConfig } from "@/config/site";
 
 import { Button } from "@/components/ui/button"
 import {
@@ -42,7 +42,7 @@ export default function IndexPage() {
     });
 
     const changeMessage = (e: any) => {
-        messageChanger(e.target.value)
+        console.log('fuck you')
     }
 
     return (
