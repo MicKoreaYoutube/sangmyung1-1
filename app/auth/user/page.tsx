@@ -94,7 +94,7 @@ export default function IndexPage() {
                             <span className="text-xl">{statusMessage}</span>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg">Save changes</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={changeStatusMessage}>Save changes</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
