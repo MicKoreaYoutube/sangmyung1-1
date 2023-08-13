@@ -59,6 +59,10 @@ export default function IndexPage() {
         });
     }
 
+    const codeError = () => {
+        displayError('옳지 않은 코드 입니다')
+    }
+
     return (
         <>
             <Tabs defaultValue="profile">
@@ -108,11 +112,11 @@ export default function IndexPage() {
                         <CardContent className="space-y-2 font-SUITE-Regular text-lg">
                             <div className="space-y-1">
                                 <Label htmlFor="code">코드 입력</Label>
-                                <Input id="code" placeholder="코드를 입력하세요..." />
+                                <Input type="number" id="code" placeholder="코드를 입력하세요..." />
                             </div>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg" onClick={displayError}>Save changes</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={codeError}>Save changes</Button>
                         </CardFooter>
                         <Alert variant="destructive" className="hidden" id="error">
                             <AlertTitle>Error</AlertTitle>
