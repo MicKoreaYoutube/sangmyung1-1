@@ -1,7 +1,8 @@
 'use client';
 
-import { onAuthStateChanged } from "firebase/auth";
+import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
+import { displayError } from "@/public/js/function";
 
 import React, { useState } from "react"
 
@@ -24,6 +25,11 @@ import {
     TabsList,
     TabsTrigger,
 } from "@/components/ui/tabs"
+import {
+    Alert,
+    AlertDescription,
+    AlertTitle,
+  } from "@/components/ui/alert"
 
 export default function IndexPage() {
 
@@ -40,8 +46,16 @@ export default function IndexPage() {
         }
     });
 
-    const changeMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
-        messageChanger(e.target.value)
+    const changeStatusMessage = () => {
+        updateProfile(auth.currentUser, {
+            displayName: statusMessage
+        }).then(() => {
+            history.go(0);
+        }).catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            displayError(errorMessage)
+        });
     }
 
     return (
@@ -67,19 +81,17 @@ export default function IndexPage() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" onInput={changeMessage} value={statusMessage} />
+                                <Input id="statusMessage" value={statusMessage} />
                             </div>
-                            <div className="relative">
-                                <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-                                <div className="absolute inset-0 flex items-center justify-center">
-                                    <span className="bg-white px-3 text-gray-500 text-sm">미리보기</span>
-                                </div>
-                            </div>
-                            <h2 className="text-3xl">{userId}</h2>
-                            <span className="text-xl">{statusMessage}</span>
+                            <Alert variant="destructive" className="hidden" id="error">
+                                <AlertTitle>Error</AlertTitle>
+                                <AlertDescription id="errorMessage">
+                                    Error Message
+                                </AlertDescription>
+                            </Alert>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg">Save changes</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={changeStatusMessage}>Save changes</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
