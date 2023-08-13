@@ -7,7 +7,6 @@ import { Metadata } from "next"
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from '@fortawesome/fontawesome-svg-core'
 
-import { getAuth, onAuthStateChanged } from "firebase/auth";
 import { siteConfig } from "@/config/site"
 import { fontSans } from "@/lib/fonts"
 import { cn } from "@/lib/utils"
@@ -15,9 +14,6 @@ import { SiteHeader } from "@/components/site-header"
 import { SiteFooter } from "@/components/site-footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-
-import { initializeApp } from 'firebase/app';
-import { app, auth } from "@/public/js/firebase";
 
 export const metadata: Metadata = {
   title: {

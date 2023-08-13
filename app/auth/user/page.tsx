@@ -41,8 +41,8 @@ export default function IndexPage() {
         }
     });
 
-    const changeMessage = (event: any) => {
-        messageChanger(event.target.value)
+    const changeMessage = (e: any) => {
+        messageChanger(e.target.value)
     }
 
     return (

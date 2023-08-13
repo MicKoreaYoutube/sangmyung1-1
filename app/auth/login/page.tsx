@@ -3,15 +3,13 @@
 import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { app, auth } from "@/public/js/firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/public/js/firebase";
 import { displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site"
-import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { ThemeToggle } from "@/components/theme-toggle"
 import {
   Alert,
   AlertDescription,
