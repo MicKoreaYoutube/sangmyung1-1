@@ -1,6 +1,6 @@
 'use client';
 
-import { onAuthStateChanged, updateProfile } from "firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
 
 import React, { useState } from "react"
@@ -34,21 +34,14 @@ export default function IndexPage() {
     onAuthStateChanged(auth, (user) => {
         if (user) {
             messageChanger(user.displayName)
-            user.email.slice(0, 5)
             const cutEmail = user.email.slice(0, 5)
             const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
             idDefiner(id[0])
         }
     });
 
-    const changeMessage = (e: any) => {
+    const changeMessage = (e: React.ChangeEvent<HTMLInputElement>) => {
         messageChanger(e.target.value)
-    }
-
-    function changeStatusMessage() {
-        updateProfile(auth.currentUser, {
-            displayName: "1972년 11월 21일 오렌지병을 앓고 있던 김두한이가 사망했습네다"
-        })
     }
 
     return (
@@ -76,6 +69,14 @@ export default function IndexPage() {
                                 <Label htmlFor="statusMessage">상태메시지</Label>
                                 <Input id="statusMessage" onChange={changeMessage} value={statusMessage} />
                             </div>
+                            <div className="relative">
+                                <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <span className="bg-white px-3 text-gray-500 text-sm">미리보기</span>
+                                </div>
+                            </div>
+                            <h2 className="text-3xl">{userId}</h2>
+                            <span className="text-xl">{statusMessage}</span>
                         </CardContent>
                         <CardFooter>
                             <Button className="font-SUITE-Regular text-lg">Save changes</Button>
