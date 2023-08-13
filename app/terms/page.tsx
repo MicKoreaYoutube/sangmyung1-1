@@ -8,7 +8,7 @@ export default function IndexPage() {
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
-        <p className="font-SUITE-Regular whitespace-pre-line">
+        <pre className="font-SUITE-Regular whitespace-pre-line">
           제 0장 정의
           1. 관리자는 상명중학교 1학년 1반 2학기 학급 회장을 의미한다.
           2. 유저는 이 건의함을 이용하는 모든 사람을 의미한다.
@@ -68,7 +68,7 @@ export default function IndexPage() {
 
           부칙
           제 1조 관리자에게 상습적이고 지속적인 폭행, 절도 행위, 비방행위 등을 할 경우에 영구 정지 이상의 형에 처한다.
-        </p>
+        </pre>
       </section>
     </>
   )
