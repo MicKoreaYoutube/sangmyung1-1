@@ -39,15 +39,11 @@ export default function IndexPage() {
             const cutEmail = user.email.slice(0, 5)
             const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
             idDefiner(id[0])
-            console.log(userId, statusMessage)
-        } else {
-            // User is signed out
-            // ...
         }
     });
 
-    const changeMessage = () => {
-        messageChanger(statusMessage)
+    const changeMessage = (event) => {
+        messageChanger(event.target.value)
     }
 
     return (
