@@ -46,9 +46,13 @@ export default function IndexPage() {
         }
     });
 
+    const changeMessage = (e: any) => {
+        messageChanger(e.target.value)
+    }
+
     const changeStatusMessage = () => {
         updateProfile(auth.currentUser, {
-            displayName: document.getElementById('statusMessage').nodeValue
+            displayName: statusMessage
         }).then(() => {
             history.go(0);
         }).catch((error) => {
@@ -81,7 +85,7 @@ export default function IndexPage() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" defaultValue={statusMessage} />
+                                <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage}/>
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>
