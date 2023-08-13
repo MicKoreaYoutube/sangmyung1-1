@@ -6,7 +6,7 @@ import { Button, buttonVariants } from "@/components/ui/button"
 export default function IndexPage() {
   return (
     <>
-      <section className="container grid items-center gap-6 my-28 max-w-[1000px] place-element-center">
+      <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
         <p className="font-SUITE-Regular whitespace-pre-line">
           제 0장 정의
