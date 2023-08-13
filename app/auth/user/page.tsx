@@ -35,13 +35,13 @@ export default function IndexPage() {
 
     const [statusMessage, messageChanger] = useState('')
 
-    let msg
+    const [msg, msgChanger] = useState('')
 
     const [userId, idDefiner] = useState('')
 
     onAuthStateChanged(auth, (user) => {
         if (user) {
-            msg = user.displayName
+            msgChanger(user.displayName)
             messageChanger(user.displayName)
             const cutEmail = user.email.slice(0, 5)
             const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
