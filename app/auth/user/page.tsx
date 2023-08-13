@@ -42,7 +42,7 @@ export default function IndexPage() {
         }
     });
 
-    const changeMessage = (event) => {
+    const changeMessage = (event: any) => {
         messageChanger(event.target.value)
     }
 
