@@ -4,7 +4,7 @@ import { onAuthStateChanged, updateProfile } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
 import { displayError } from "@/public/js/function";
 
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 
 import { siteConfig } from "@/config/site";
 
@@ -32,6 +32,7 @@ import {
   } from "@/components/ui/alert"
 
 export default function IndexPage() {
+    const statusMessageInput = useRef(null);
 
     const [statusMessage, messageChanger] = useState('')
 
@@ -45,10 +46,6 @@ export default function IndexPage() {
             idDefiner(id[0])
         }
     });
-
-    const changeMessage = (e: any) => {
-        messageChanger(e.target.value)
-    }
 
     const changeStatusMessage = () => {
         updateProfile(auth.currentUser, {
@@ -85,7 +82,7 @@ export default function IndexPage() {
                             </div>
                             <div className="space-y-1">
                                 <Label htmlFor="statusMessage">상태메시지</Label>
-                                <Input id="statusMessage" defaultValue={statusMessage} onChange={changeMessage}/>
+                                <Input ref={statusMessageInput} defaultValue={statusMessage} />
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>
