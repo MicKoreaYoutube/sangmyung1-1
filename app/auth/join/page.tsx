@@ -17,12 +17,12 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 export default function IndexPage() {
+  
+  logined()
 
   const codeError = () => {
     displayError('옳지 않은 코드 입니다')
   }
-
-  logined()
 
   return (
     <>
