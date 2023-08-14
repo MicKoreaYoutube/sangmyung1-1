@@ -7,3 +7,13 @@ export function displayError(msg) {
         }, 3000);
     }
 }
+
+export function logined() {
+    alert('이미 로그인 하셨습니다.')
+    history.go(-1)
+}
+
+export function logouted() {
+    alert('로그인을 하셔야 접속 하실 수 있습니다.')
+    history.go(-1)
+}

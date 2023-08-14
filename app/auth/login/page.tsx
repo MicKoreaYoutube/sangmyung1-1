@@ -5,7 +5,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
-import { displayError } from "@/public/js/function";
+import { displayError, logined } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site"
 import { Button } from "@/components/ui/button"
@@ -17,6 +17,8 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage() {
+
+  logined()
 
   const [id, setId] = React.useState('');
   const [pwd, setPwd] = React.useState('');

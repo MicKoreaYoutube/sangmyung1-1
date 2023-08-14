@@ -1,10 +1,13 @@
 'use client';
 
-import { getAuth, signOut } from "firebase/auth";
-import { displayError } from "@/public/js/function"
+import { signOut } from "firebase/auth";
+import { displayError, logouted } from "@/public/js/function"
 import { auth } from "@/public/js/firebase"
 
 export default function IndexPage() {
+
+  logouted()
+
   signOut(auth).then(() => {
     location.href = '/'
   }).catch((error) => {

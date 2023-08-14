@@ -2,7 +2,7 @@
 
 import { onAuthStateChanged, updateProfile, updatePassword, signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
-import { displayError } from "@/public/js/function";
+import { displayError, logouted } from "@/public/js/function";
 
 import React, { useState, useRef } from "react"
 
@@ -32,6 +32,9 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage() {
+
+    logouted()
+
     const statusMessageInput = useRef(null);
     const current = useRef(null);
     const newPwd = useRef(null);
