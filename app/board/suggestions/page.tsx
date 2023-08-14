@@ -28,32 +28,35 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 
 export default function IndexPage() {
-
-  let suggestions_list: any
+  const [suggestions_list, setSuggestionsList] = useState([]);
 
   useEffect(() => {
-    onSnapshot(collection(db, "suggestions"), (snapshot) => {
-      const tags = snapshot.docs.map(
-        doc => doc.data()
-      )
-      suggestions_list = tags
-    })
-  })
+    const unsubscribe = onSnapshot(collection(db, "suggestions"), (snapshot) => {
+      const tags = snapshot.docs.map(doc => doc.data());
+      setSuggestionsList(tags); // 상태 업데이트로 수정
+    });
+
+    // Clean up subscription when component unmounts
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   return (
     <>
       <ScrollArea className="h-72 w-48 rounded-md border">
         <div className="p-4">
-          {suggestions_list.map((suggestions_list: any) => (
-            <React.Fragment>
-              <div className="text-sm" key={suggestions_list}>
-                {suggestions_list.title}
-              </div>
-              <Separator className="my-2" />
-            </React.Fragment>
-          ))}
+            <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+            {suggestions_list.map((suggestion, index) => (
+              <React.Fragment key={index}>
+                <div className="text-sm">
+                  {suggestion.title}
+                </div>
+                <Separator className="my-2" />
+              </React.Fragment>
+            ))}
         </div>
-      </ScrollArea >
+      </ScrollArea>
     </>
   )
 }
