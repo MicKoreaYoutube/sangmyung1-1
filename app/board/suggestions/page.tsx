@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 export default function IndexPage() {
 
   useEffect(() => {
-    onSnapshot(collection(db, "cities"), (snapshot) => {
+    onSnapshot(collection(db, "suggestions"), (snapshot) => {
       console.log(snapshot.docs);
     })
   })
