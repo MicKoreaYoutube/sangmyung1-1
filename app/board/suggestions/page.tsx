@@ -13,6 +13,7 @@ export default function IndexPage() {
   }
 
   fetchData()
+  console.log('이게 이렇게 오래 끌 부분이냐?')
 
   return (
     <>
