@@ -27,15 +27,19 @@ export default function IndexPage() {
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
         <ScrollArea className="font-SUITE-Regular rounded-md border">
           <div className="p-4">
-            {suggestions_list.map((suggestion, index) => (
-              <React.Fragment key={index}>
-                <div>
-                  <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime}</span></h3>
-                  <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
-                </div>
-                <Separator className="my-2" />
-              </React.Fragment>
-            ))}
+            {suggestions_list?.length ? (
+              <nav className="nav-flex items-center space-x-2">
+                {suggestions_list.map((suggestion, index) => (
+                  <React.Fragment key={index}>
+                    <div>
+                      <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime}</span></h3>
+                      <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
+                    </div>
+                    <Separator className="my-2" />
+                  </React.Fragment>
+                ))}
+              </nav>
+            ) : null}
           </div>
         </ScrollArea>
       </section>
