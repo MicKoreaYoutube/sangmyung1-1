@@ -33,8 +33,6 @@ import {
 
 export default function IndexPage() {
 
-    logouted()
-
     const statusMessageInput = useRef(null);
     const current = useRef(null);
     const newPwd = useRef(null);

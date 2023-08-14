@@ -17,8 +17,6 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
 export default function IndexPage() {
-  
-  logined()
 
   const codeError = () => {
     displayError('옳지 않은 코드 입니다')
@@ -45,7 +43,7 @@ export default function IndexPage() {
           <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
             <div className="flex flex-col space-y-2 text-center">
               <h1 className="text-2xl font-semibold tracking-tight font-KBO-Dia-Gothic_bold">
-                로그인
+                회원가입
               </h1>
               <span className="px-8 text-center text-sm text-muted-foreground font-SUITE-Regular">회원가입을 위해 관리자에게 받은 코드를 입력하세요</span>
             </div>
@@ -57,13 +55,13 @@ export default function IndexPage() {
                   Error Message
                 </AlertDescription>
               </Alert>
-              <Button onClick={codeError}>로그인</Button>
+              <Button onClick={codeError}>코드 확인</Button>
             </div>
             <hr />
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <span className="px-8 text-center text-sm text-muted-foreground">계정이 이미 있나요?<Link href="/auth/login" className="text-blue-500 hover:text-blue-700">로그인→</Link></span>
               <p className="px-8 text-center text-sm text-muted-foreground">
-                로그인 버튼을 누르실 경우, 당신은 {" "}
+                회원가입 버튼을 누르실 경우, 당신은 {" "}
                 <Link
                   href="/terms"
                   className="underline underline-offset-4 hover:text-primary"

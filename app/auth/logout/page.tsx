@@ -6,8 +6,6 @@ import { auth } from "@/public/js/firebase"
 
 export default function IndexPage() {
 
-  logouted()
-
   signOut(auth).then(() => {
     location.href = '/'
   }).catch((error) => {
