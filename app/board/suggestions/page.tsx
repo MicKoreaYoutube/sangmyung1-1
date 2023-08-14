@@ -1,5 +1,3 @@
-'use clinet';
-
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 
@@ -10,6 +8,7 @@ export default function IndexPage() {
     const querySnapshot = await getDocs(collection(db, "suggestions"));
     querySnapshot.forEach((doc) => {
       console.log(`${doc.id} => ${doc.data()}`);
+      console.log('이게 이렇게 오래 끌 부분이냐?')
     });
   }
 
