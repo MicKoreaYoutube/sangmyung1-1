@@ -1,5 +1,3 @@
-'use client';
-
 import { onSnapshot, collection, getDocs } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
@@ -28,13 +26,12 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 
 export default function IndexPage() {
-
-  let suggestions_list: any
+  const [suggestions_list, setSuggestionsList] = useState([]);
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "suggestions"), (snapshot) => {
       const tags = snapshot.docs.map(doc => doc.data());
-      suggestions_list = tags
+      setSuggestionsList(tags); // 상태 업데이트로 수정
     });
 
     // Clean up subscription when component unmounts
@@ -49,7 +46,7 @@ export default function IndexPage() {
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
         <ScrollArea className="font-SUITE-Regular rounded-md border">
           <div className="p-4">
-            {suggestions_list.map((suggestion: any, index: any) => (
+            {suggestions_list.map((suggestion, index) => (
               <React.Fragment key={index}>
                 <div>
                   <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime}</span></h3>
