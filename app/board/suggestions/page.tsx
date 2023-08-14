@@ -44,9 +44,10 @@ export default function IndexPage() {
 
   return (
     <>
-      <ScrollArea className="h-72 w-48 rounded-md border">
-        <div className="p-4">
-            <h4 className="mb-4 text-sm font-medium leading-none">Tags</h4>
+      <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
+        <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
+        <ScrollArea className="font-SUITE-Regular rounded-md border">
+          <div className="p-4">
             {suggestions_list.map((suggestion, index) => (
               <React.Fragment key={index}>
                 <div className="text-sm">
@@ -55,8 +56,9 @@ export default function IndexPage() {
                 <Separator className="my-2" />
               </React.Fragment>
             ))}
-        </div>
-      </ScrollArea>
+          </div>
+        </ScrollArea>
+      </section>
     </>
   )
 }
