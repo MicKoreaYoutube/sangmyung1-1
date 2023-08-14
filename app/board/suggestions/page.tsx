@@ -24,50 +24,36 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 
+import { ScrollArea } from "@/components/ui/scroll-area"
+import { Separator } from "@/components/ui/separator"
+
 export default function IndexPage() {
+
+  let suggestions_list: any
 
   useEffect(() => {
     onSnapshot(collection(db, "suggestions"), (snapshot) => {
-      console.log(snapshot.docs.map(doc => doc.data()));
+      const tags = snapshot.docs.map(
+        doc => doc.data()
+      )
+      suggestions_list = tags
     })
   })
 
   return (
     <>
-      <Card className="w-[350px] p-10">
-        <CardHeader>
-          <CardTitle>Create project</CardTitle>
-          <CardDescription>Deploy your new project in one-click.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" placeholder="Name of your project" />
+      <ScrollArea className="h-72 w-48 rounded-md border">
+        <div className="p-4">
+          {suggestions_list.map((suggestions_list: any) => (
+            <React.Fragment>
+              <div className="text-sm" key={suggestions_list}>
+                {suggestions_list.title}
               </div>
-              <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="framework">Framework</Label>
-                <Select>
-                  <SelectTrigger id="framework">
-                    <SelectValue placeholder="Select" />
-                  </SelectTrigger>
-                  <SelectContent position="popper">
-                    <SelectItem value="next">Next.js</SelectItem>
-                    <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                    <SelectItem value="astro">Astro</SelectItem>
-                    <SelectItem value="nuxt">Nuxt.js</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </div>
-          </form>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
-          <Button>Deploy</Button>
-        </CardFooter>
-      </Card>
+              <Separator className="my-2" />
+            </React.Fragment>
+          ))}
+        </div>
+      </ScrollArea >
     </>
   )
 }
