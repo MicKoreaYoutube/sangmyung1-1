@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link"
 import Image from "next/image"
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import { auth } from "@/public/js/firebase";
 import { displayError, logined } from "@/public/js/function";
 
@@ -17,6 +17,15 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage() {
+
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        if (typeof window !== 'undefined') {
+            alert('이미 로그인 하셨습니다.')
+            history.go(-1)
+        }
+    }
+});
 
   const [id, setId] = React.useState('');
   const [pwd, setPwd] = React.useState('');
@@ -76,7 +85,7 @@ export default function IndexPage() {
             </div>
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
               <Input placeholder="아이디를 입력하세요." onChange={getId} />
-              <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} type="password"/>
+              <Input placeholder="비밀번호를 입력하세요." onChange={getPwd} type="password" />
               <Alert variant="destructive" className="hidden" id="error">
                 <AlertTitle>Error</AlertTitle>
                 <AlertDescription id="errorMessage">

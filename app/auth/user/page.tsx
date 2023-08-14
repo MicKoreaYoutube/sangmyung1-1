@@ -33,6 +33,16 @@ import {
 
 export default function IndexPage() {
 
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+        } else {
+            if (typeof window !== 'undefined') {
+                alert('로그인을 하셔야 접속 하실 수 있습니다.')
+                history.go(-1)
+            }
+        }
+    });
+
     const statusMessageInput = useRef(null);
     const current = useRef(null);
     const newPwd = useRef(null);
@@ -96,8 +106,6 @@ export default function IndexPage() {
             }
         });
     }
-
-    logouted()
 
     return (
         <>
