@@ -12,7 +12,7 @@ export const siteConfig = {
     },
     {
       title: "공지사항",
-      href: "/board/anouncements",
+      href: "/board/announcements",
       disabled: false
     },
     {
