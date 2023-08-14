@@ -18,8 +18,6 @@ import {
 
 export default function IndexPage() {
 
-  logined()
-
   const [id, setId] = React.useState('');
   const [pwd, setPwd] = React.useState('');
 
@@ -49,6 +47,8 @@ export default function IndexPage() {
       }
     }
   }
+
+  logined()
 
   return (
     <>
