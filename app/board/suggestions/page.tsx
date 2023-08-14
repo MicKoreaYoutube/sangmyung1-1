@@ -1,19 +1,22 @@
-import { collection, getDocs } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 
 import { Button } from "@/components/ui/button";
 
 export default function IndexPage() {
-  async function fetchData () {
-    const querySnapshot = await getDocs(collection(db, "suggestions"));
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-      console.log('이게 이렇게 오래 끌 부분이냐?')
-    });
+  async function fetchData() {
+    const docRef = doc(db, "suggestions", "8XyqHAA1pgbF1KcYOidR");
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      console.log("Document data:", docSnap.data());
+    } else {
+      // docSnap.data() will be undefined in this case
+      console.log("No such document!");
+    }
   }
 
   fetchData()
-  console.log('이게 이렇게 오래 끌 부분이냐?')
 
   return (
     <>
