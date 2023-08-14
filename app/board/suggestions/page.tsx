@@ -34,7 +34,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <Card className="w-[350px]">
+      <Card className="w-[350px] p-10">
         <CardHeader>
           <CardTitle>Create project</CardTitle>
           <CardDescription>Deploy your new project in one-click.</CardDescription>
