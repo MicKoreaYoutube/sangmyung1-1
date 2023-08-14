@@ -10,7 +10,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     onSnapshot(collection(db, "cities"), (snapshot) => {
-      console.log(snapshot);
+      console.log(snapshot.docs);
     })
   })
 
