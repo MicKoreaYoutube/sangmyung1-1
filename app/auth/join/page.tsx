@@ -1,14 +1,11 @@
 import Link from "next/link"
 import Image from "next/image"
 
-import { onAuthStateChanged } from "firebase/auth"
-
 import { siteConfig } from "@/config/site"
 import { buttonVariants } from "@/components/ui/button"
 import { ThemeToggle } from "@/components/theme-toggle"
 
 import { displayError, logined } from "@/public/js/function"
-import { auth } from "@/public/js/firebase"
 import {
   Alert,
   AlertDescription,
@@ -19,18 +16,11 @@ import { Button } from "@/components/ui/button"
 
 export default function IndexPage() {
 
-  onAuthStateChanged(auth, (user) => {
-    if (user) {
-      if (typeof window !== 'undefined') {
-        alert('이미 로그인 하셨습니다.')
-        history.go(-1)
-      }
-    }
-  });
-
   const codeError = () => {
     displayError('옳지 않은 코드 입니다')
   }
+
+  logined()
 
   return (
     <>
@@ -58,7 +48,7 @@ export default function IndexPage() {
               <span className="px-8 text-center text-sm text-muted-foreground font-SUITE-Regular">회원가입을 위해 관리자에게 받은 코드를 입력하세요</span>
             </div>
             <div className="font-SUITE-Regular flex flex-col justify-center space-y-6">
-              <Input placeholder="코드를 입력하세요." type="number" />
+              <Input placeholder="코드를 입력하세요." type="number"/>
               <Alert variant="destructive" className="hidden" id="error">
                 <AlertTitle>Error</AlertTitle>
                 <AlertDescription id="errorMessage">
