@@ -32,8 +32,8 @@ export default function IndexPage() {
                 {suggestions_list.map((suggestion, index) => (
                   <div key={index}>
                     <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime}</span></h3>
-                    <span className="text-lg text-gray-700">{suggestion.content}...</span>
-                    <Separator className="my-2" />
+                    {/* <span className="text-lg text-gray-700">{suggestion.content}...</span>
+                    <Separator className="my-2" /> */}
                   </div>
                 ))}
               </nav>
