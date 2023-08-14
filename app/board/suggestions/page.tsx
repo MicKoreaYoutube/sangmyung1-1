@@ -28,12 +28,13 @@ import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 
 export default function IndexPage() {
-  const [suggestions_list, setSuggestionsList] = useState([]);
+
+  let suggestions_list: any
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "suggestions"), (snapshot) => {
       const tags = snapshot.docs.map(doc => doc.data());
-      setSuggestionsList(tags); // 상태 업데이트로 수정
+      suggestions_list = tags
     });
 
     // Clean up subscription when component unmounts
@@ -48,7 +49,7 @@ export default function IndexPage() {
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
         <ScrollArea className="font-SUITE-Regular rounded-md border">
           <div className="p-4">
-            {suggestions_list.map((suggestion, index) => (
+            {suggestions_list.map((suggestion: any, index: any) => (
               <React.Fragment key={index}>
                 <div>
                   <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime}</span></h3>
