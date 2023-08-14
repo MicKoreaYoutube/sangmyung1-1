@@ -12,17 +12,17 @@ export const siteConfig = {
     },
     {
       title: "공지사항",
-      href: "/",
+      href: "/board/anouncements",
       disabled: false
     },
     {
       title: "건의 게시판",
-      href: "/",
+      href: "/board/suggestions",
       disabled: false
     },
     {
       title: "돈 벌어다주기",
-      href: "/",
+      href: "/giveMeMoney",
       disabled: false
     }
   ],
