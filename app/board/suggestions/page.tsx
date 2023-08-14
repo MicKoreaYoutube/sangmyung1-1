@@ -1,5 +1,3 @@
-'use client';
-
 import { onSnapshot, collection, getDocs } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
@@ -13,10 +11,9 @@ export default function IndexPage() {
   useEffect(() => {
     const unsubscribe = onSnapshot(collection(db, "suggestions"), (snapshot) => {
       const tags = snapshot.docs.map(doc => doc.data());
-      setSuggestionsList(tags); // 상태 업데이트로 수정
+      setSuggestionsList(tags);
     });
 
-    // Clean up subscription when component unmounts
     return () => {
       unsubscribe();
     };
