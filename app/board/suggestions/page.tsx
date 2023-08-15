@@ -8,7 +8,25 @@ import React, { useState, useEffect } from 'react';
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card"
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
 
 export default function IndexPage() {
   const [suggestions_list, setSuggestionsList] = useState([]);
@@ -21,7 +39,7 @@ export default function IndexPage() {
         return {
           ...suggestionData,
           changeTime: changeTime,
-          id: doc.id, 
+          id: doc.id,
         };
       });
       setSuggestionsList(suggestions);
@@ -36,25 +54,33 @@ export default function IndexPage() {
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px]">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">건의사항</h1>
-        <ScrollArea className="font-SUITE-Regular rounded-lg border justify-start">
-          <div className="p-4">
-            {suggestions_list?.length ? (
-              <nav className="flex flex-col space-x-2">
-                {suggestions_list.map((suggestion, index) => (
-                  <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2">
-                    <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
-                    <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
-                    <Separator className="my-2"/>
-                  </Link>
-                ))}
-              </nav>
-            ) : (
-              <p>Loading...</p>
-          )}
-          <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" })}>+나도 건의하기</Link>
-          </div>
-        </ScrollArea>
-      </section>
+        <Card>
+          <CardHeader>
+            <CardTitle>건의사항 목록</CardTitle>
+            <CardDescription>최근에 올라온 건의들 입니다!</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="p-4">
+              {suggestions_list?.length ? (
+                <nav className="flex flex-col space-x-2">
+                  {suggestions_list.map((suggestion, index) => (
+                    <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2">
+                      <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
+                      <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
+                      <Separator className="my-2" />
+                    </Link>
+                  ))}
+                </nav>
+              ) : (
+                <p>Loading...</p>
+              )}
+            </div>
+          </CardContent>
+          <CardFooter className="flex justify-end">
+            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" })}>+나도 건의하기</Link>
+          </CardFooter>
+        </Card>
+      </section >
     </>
   )
 }
