@@ -60,7 +60,7 @@ export default function IndexPage() {
                 const seconds = Math.floor(milliseconds / 1000); // 밀리초를 초로 변환
                 console.log("현재 시간 (초):", seconds);
                 setNewDocumentData({ author: id, changeTime: seconds, content: content.current.value, status: status.current.value, title: title.current.value, uploadTime: seconds })
-
+                console.log(newDocumentData)
             }
         });
         try {
