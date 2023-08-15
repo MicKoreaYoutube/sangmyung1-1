@@ -1,9 +1,6 @@
 'use client'
 
 import Link from "next/link"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import * as z from "zod"
 
 import { displayError } from "@/public/js/function";
 
@@ -13,15 +10,7 @@ import React, { useState, useRef } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
 import { siteConfig } from "@/config/site";
-import {
-    Form,
-    FormControl,
-    FormDescription,
-    FormField,
-    FormItem,
-    FormLabel,
-    FormMessage,
-} from "@/components/ui/form"
+
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -48,32 +37,8 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
-import { toast } from "@/components/ui/use-toast"
 
 export default function IndexPage() {
-
-    const FormSchema = z.object({
-        email: z
-            .string({
-                required_error: "Please select an email to display.",
-            })
-            .email(),
-    })
-
-    const form = useForm<z.infer<typeof FormSchema>>({
-        resolver: zodResolver(FormSchema),
-    })
-
-    function onSubmit(data: z.infer<typeof FormSchema>) {
-        toast({
-            title: "You submitted the following values:",
-            description: (
-                <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-                    <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-                </pre>
-            ),
-        })
-    }
 
     const title = useRef(null);
     const content = useRef(null);
@@ -101,16 +66,16 @@ export default function IndexPage() {
                 console.log(newDocumentData)
             }
         });
-        // try {
-        //     await addDoc(collectionRef, newDocumentData);
-        //     const suggestionId = collectionRef.id;
-        //     const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
+        try {
+            await addDoc(collectionRef, newDocumentData);
+            const suggestionId = collectionRef.id;
+            const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
 
-        //     await addDoc(commentsCollection, {});
-        //     location.href = "/board/suggestions"
-        // } catch (error) {
-        //     displayError(error)
-        // }
+            await addDoc(commentsCollection, {});
+            location.href = "/board/suggestions"
+        } catch (error) {
+            displayError(error)
+        }
     }
 
     return (
@@ -144,33 +109,17 @@ export default function IndexPage() {
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="framework">공개 범위</Label>
-                                <Form {...form}>
-                                    <CardContent className="font-SUITE-Regular">
-                                        <form onSubmit={form.handleSubmit(onSubmit)} className="w-2/3 space-y-6">
-                                            <FormField
-                                                control={form.control}
-                                                name="email"
-                                                render={({ field }) => (
-                                                    <FormItem>
-                                                        <FormLabel>Email</FormLabel>
-                                                        <Select onValueChange={field.onChange} defaultValue={field.value}>
-                                                            <SelectTrigger id="framework">
-                                                                <SelectValue placeholder="공개 범위 지정하기" />
-                                                            </SelectTrigger>
-                                                            <SelectContent ref={status} position="popper">
-                                                                <SelectItem value="all">전체</SelectItem>
-                                                                <SelectItem value="onlyStudent">학생들만</SelectItem>
-                                                                <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
-                                                                <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
-                                                            </SelectContent>
-                                                        </Select>
-                                                    </FormItem>
-                                                )}
-                                            />
-                                            <Button type="submit">Submit</Button>
-                                        </form>
-                                    </CardContent>
-                                </Form>
+                                <Select>
+                                    <SelectTrigger id="framework">
+                                        <SelectValue placeholder="공개 범위 지정하기" />
+                                    </SelectTrigger>
+                                    <SelectContent ref={status} position="popper">
+                                        <SelectItem value="all">전체</SelectItem>
+                                        <SelectItem value="onlyStudent">학생들만</SelectItem>
+                                        <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
+                                        <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
+                                    </SelectContent>
+                                </Select>
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>
