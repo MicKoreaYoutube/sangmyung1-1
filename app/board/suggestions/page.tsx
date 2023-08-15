@@ -38,7 +38,7 @@ export default function IndexPage() {
         <ScrollArea className="font-SUITE-Regular rounded-md border">
           <div className="p-4">
             {suggestions_list?.length ? (
-              <nav className="nav-flex items-center h-full space-x-2">
+              <nav className="nav-flex items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
                   <div key={index} className="flex items-center h-full">
                     <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.toLocaleString()}</span></h3>
