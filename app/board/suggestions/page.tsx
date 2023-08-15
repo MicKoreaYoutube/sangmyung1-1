@@ -40,11 +40,11 @@ export default function IndexPage() {
             {suggestions_list?.length ? (
               <nav className="flex flex-col items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
-                  <div key={index}>
-                    <Link className="text-2xl block font-KBO-Dia-Gothic_bold" href={`/board/suggestions/${suggestion.id}`}>{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></Link>
+                  <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="underline hover:underline-offset-2">
+                    <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
                     <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
                     <Separator className="my-2"/>
-                  </div>
+                  </Link>
                 ))}
               </nav>
             ) : (
