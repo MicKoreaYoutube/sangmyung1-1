@@ -33,12 +33,12 @@ export default function IndexPage() {
 
   return (
     <>
-      <section className="container grid gap-6 my-28 max-w-[1000px] content-start">
+      <section className="container grid gap-6 my-28 max-w-[1000px] justify-start">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">건의사항</h1>
         <ScrollArea className="font-SUITE-Regular rounded-lg border">
           <div className="p-4">
             {suggestions_list?.length ? (
-              <nav className="flex flex-col items-center space-x-2">
+              <nav className="flex flex-col space-x-2">
                 {suggestions_list.map((suggestion, index) => (
                   <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2">
                     <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
