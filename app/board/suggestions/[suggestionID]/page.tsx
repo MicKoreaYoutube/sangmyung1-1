@@ -25,7 +25,6 @@ export default function IndexPage({
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        // 단일 문서 가져오기 (getDoc 사용)
         async function fetchSingleData() {
             const docRef = doc(db, "suggestions", params.suggestionID);
             const docSnap = await getDoc(docRef);
@@ -51,11 +50,11 @@ export default function IndexPage({
                     <div>
                         <Card>
                             <CardHeader>
-                                <CardTitle>{data.title}</CardTitle>
-                                <CardDescription>{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
+                                <CardTitle className="font-KBO-Dia-Gothic_bold">{data.title}</CardTitle>
+                                <CardDescription className="font-SUITE-Regular">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-lg">{data.content}</p>
+                                <p className="text-lg font-SUITE-Regular whitespce-pre-line">{data.content}</p>
                             </CardContent>
                         </Card>
                     </div>
