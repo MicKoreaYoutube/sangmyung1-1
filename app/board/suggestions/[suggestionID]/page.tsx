@@ -75,7 +75,7 @@ export default function IndexPage({
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespce-pre-line">{data.content}</p>
                             </CardContent>
-                            <CardFooter className="font-SUITE-Regular flex flex-col">
+                            <CardFooter className="font-SUITE-Regular flex flex-col justify-start">
                                 <Input placeholder="댓글을 달아보세요..." />
                                 {subcollectionData.map((item) => (
                                     <div key={item.id}>
