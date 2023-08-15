@@ -44,7 +44,7 @@ export default function IndexPage() {
               <nav className="nav-flex items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
                   <div key={index}>
-                    <Link className="text-xl block" href={suggestion.id}>{suggestion.title} ·<span className="text-gray-400">{suggestion.author}·{suggestion.changeTime.toLocaleString()}</span></Link>
+                    <Link className="text-xl block" href={`/board/suggestions/${suggestion.id}`}>{suggestion.title} ·<span className="text-gray-400">{suggestion.author}·{suggestion.changeTime.toLocaleString()}</span></Link>
                     <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
                     <Separator className="my-2" />
                   </div>
