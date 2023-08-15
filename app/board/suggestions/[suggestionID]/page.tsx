@@ -64,10 +64,10 @@ export default function IndexPage({
 
     return (
         <>
-            <section className="container grid gap-6 my-28 max-w-[1000px] justify-start">
+            <section className="container grid gap-6 my-28 max-w-[1000px]">
                 {data ? (
                     <div>
-                        <Card>
+                        <Card className="justify-start">
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold">{data.title}</CardTitle>
                                 <CardDescription className="font-SUITE-Regular">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>

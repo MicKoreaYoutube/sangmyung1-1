@@ -33,9 +33,9 @@ export default function IndexPage() {
 
   return (
     <>
-      <section className="container grid gap-6 my-28 max-w-[1000px] justify-start">
+      <section className="container grid gap-6 my-28 max-w-[1000px]">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">건의사항</h1>
-        <ScrollArea className="font-SUITE-Regular rounded-lg border">
+        <ScrollArea className="font-SUITE-Regular rounded-lg border justify-start">
           <div className="p-4">
             {suggestions_list?.length ? (
               <nav className="flex flex-col space-x-2">
