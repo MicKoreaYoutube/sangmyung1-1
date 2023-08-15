@@ -60,22 +60,22 @@ export default function IndexPage() {
                 console.log(id)
                 console.log(seconds)
                 console.log(content.current.value)
-                console.log(status.current.value)
+                console.log(status.current.innerHTML)
                 console.log(title.current.value)
                 setNewDocumentData({ author: id, changeTime: seconds, content: content.current.value, status: status.current.value, title: title.current.value, uploadTime: seconds })
                 console.log(newDocumentData)
             }
         });
-        try {
-            await addDoc(collectionRef, newDocumentData);
-            const suggestionId = collectionRef.id;
-            const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
+        // try {
+        //     await addDoc(collectionRef, newDocumentData);
+        //     const suggestionId = collectionRef.id;
+        //     const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
 
-            await addDoc(commentsCollection, {});
-            location.href = "/board/suggestions"
-        } catch (error) {
-            displayError(error)
-        }
+        //     await addDoc(commentsCollection, {});
+        //     location.href = "/board/suggestions"
+        // } catch (error) {
+        //     displayError(error)
+        // }
     }
 
     return (
@@ -111,9 +111,9 @@ export default function IndexPage() {
                                 <Label htmlFor="framework">공개 범위</Label>
                                 <Select>
                                     <SelectTrigger id="framework">
-                                        <SelectValue placeholder="공개 범위 지정하기" />
+                                        <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
                                     </SelectTrigger>
-                                    <SelectContent ref={status} position="popper">
+                                    <SelectContent position="popper">
                                         <SelectItem value="all">전체</SelectItem>
                                         <SelectItem value="onlyStudent">학생들만</SelectItem>
                                         <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
