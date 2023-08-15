@@ -38,7 +38,7 @@ export default function IndexPage() {
         <ScrollArea className="font-SUITE-Regular rounded-lg border justify-start">
           <div className="p-4">
             {suggestions_list?.length ? (
-              <nav className="flex flex-col space-x-2">
+              <nav className="flex flex-col space-x-2 justify-start">
                 {suggestions_list.map((suggestion, index) => (
                   <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2">
                     <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
