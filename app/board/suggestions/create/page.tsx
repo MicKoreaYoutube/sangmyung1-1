@@ -73,8 +73,6 @@ export default function IndexPage() {
         // }
     }
 
-    console.log(newDocumentData)
-
     return (
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
