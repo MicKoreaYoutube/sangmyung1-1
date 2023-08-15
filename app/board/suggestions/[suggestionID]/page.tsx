@@ -79,7 +79,7 @@ export default function IndexPage({
                                 {subcollectionData.map((item) => (
                                     <div key={item.id}>
                                         <Separator className="my-2"/>
-                                        {item.id}: {item.content}
+                                        {item.id}: {item.comment}
                                     </div>
                                 ))}
                             </CardFooter>
