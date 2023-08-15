@@ -57,6 +57,11 @@ export default function IndexPage() {
                 const milliseconds = currentDate.getTime(); // 밀리초 단위로 현재 시간을 얻기
 
                 const seconds = Math.floor(milliseconds / 1000); // 밀리초를 초로 변환
+                console.log(id)
+                console.log(seconds)
+                console.log(content.current.value)
+                console.log(status.current.value)
+                console.log(title.current.value)
                 setNewDocumentData({ author: id, changeTime: seconds, content: content.current.value, status: status.current.value, title: title.current.value, uploadTime: seconds })
                 console.log(newDocumentData)
             }
