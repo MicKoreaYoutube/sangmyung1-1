@@ -1,6 +1,6 @@
 'use client';
 
-import { onSnapshot, doc, getDoc, Timestamp } from "firebase/firestore";
+import { onSnapshot, collection, doc, getDoc, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
 
@@ -15,6 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
 
 export default function IndexPage({
     params,
@@ -38,6 +39,24 @@ export default function IndexPage({
         fetchSingleData();
     }, []);
 
+    const [subcollectionData, setSubcollectionData] = useState([]);
+
+    useEffect(() => {
+        async function fetchSubcollectionData() {
+            const docRef = doc(db, "your-collection-name", "your-document-id");
+            const subcollectionRef = collection(docRef, "your-subcollection-name"); // 서브컬렉션 이름으로 대체
+            const subcollectionSnapshot = await getDocs(subcollectionRef);
+
+            const subcollectionArray: any = [];
+            subcollectionSnapshot.forEach((doc) => {
+                subcollectionArray.push({ id: doc.id, ...doc.data() });
+            });
+
+            setSubcollectionData(subcollectionArray);
+        }
+        fetchSubcollectionData();
+    }, []);
+
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
         return dateObject.toLocaleString();
@@ -56,6 +75,14 @@ export default function IndexPage({
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespce-pre-line">{data.content}</p>
                             </CardContent>
+                            <CardFooter className="font-SUITE-Regular flex flex-col">
+                                {subcollectionData.map((item) => (
+                                    <div key={item.id}>
+                                        <Separator className="my-2"/>
+                                        {item.id}: {item.content}
+                                    </div>
+                                ))}
+                            </CardFooter>
                         </Card>
                     </div>
                 ) : (
