@@ -33,7 +33,7 @@ export default function IndexPage() {
 
   return (
     <>
-      <section className="container grid gap-6 my-28 max-w-[1000px]">
+      <section className="container grid gap-6 my-28 max-w-[1000px] justify-content-start">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">건의사항</h1>
         <ScrollArea className="font-SUITE-Regular rounded-lg border">
           <div className="p-4">

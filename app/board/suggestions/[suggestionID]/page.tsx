@@ -64,7 +64,7 @@ export default function IndexPage({
 
     return (
         <>
-            <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
+            <section className="container grid gap-6 my-28 max-w-[1000px] justify-content-start">
                 {data ? (
                     <div>
                         <Card>
@@ -82,7 +82,7 @@ export default function IndexPage({
                                     <div key={item.id}>
                                         <Separator className="my-2" />
                                         <h3 className="text-lg">{item.author} · {formatTimestamp(item.changeTime)}</h3>
-                                        <p className="text-md">{item.content}</p>
+                                        <p className="text-md">{item.comment}</p>
                                     </div>
                                 ))}
                             </CardFooter>
