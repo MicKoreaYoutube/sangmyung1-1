@@ -36,8 +36,8 @@ export default function IndexPage() {
                 <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">나도 건의하기</h1>
                 <Card>
                     <CardHeader>
-                        <CardTitle>Create project</CardTitle>
-                        <CardDescription>Deploy your new project in one-click.</CardDescription>
+                        <CardTitle>건의사항 입력하기</CardTitle>
+                        <CardDescription>여러분이 생각하는 우리반에서 고쳐야 할 점이나 사이트에 대한 것 등을 건의해주세요!</CardDescription>
                     </CardHeader>
                     <CardContent>
                         <form>
@@ -59,25 +59,24 @@ export default function IndexPage() {
                                     </p>
                                 </div>
                                 <div className="flex flex-col space-y-1.5">
-                                    <Label htmlFor="framework">Framework</Label>
+                                    <Label htmlFor="framework">공개 범위</Label>
                                     <Select>
                                         <SelectTrigger id="framework">
-                                            <SelectValue placeholder="Select" />
+                                            <SelectValue placeholder="공개 범위 지정하기" />
                                         </SelectTrigger>
                                         <SelectContent position="popper">
-                                            <SelectItem value="next">Next.js</SelectItem>
-                                            <SelectItem value="sveltekit">SvelteKit</SelectItem>
-                                            <SelectItem value="astro">Astro</SelectItem>
-                                            <SelectItem value="nuxt">Nuxt.js</SelectItem>
+                                            <SelectItem value="all">전체</SelectItem>
+                                            <SelectItem value="onlyStudent">학생들만</SelectItem>
+                                            <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
+                                            <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
                                         </SelectContent>
                                     </Select>
                                 </div>
                             </div>
                         </form>
                     </CardContent>
-                    <CardFooter className="flex justify-between">
-                        <Button variant="outline">Cancel</Button>
-                        <Button>Deploy</Button>
+                    <CardFooter className="flex justify-end">
+                        <Button>건의하기</Button>
                     </CardFooter>
                 </Card>
             </section>
