@@ -55,24 +55,22 @@ export default function IndexPage() {
                 const currentDate = new Date(); // 현재 시간을 나타내는 Date 객체 생성
 
                 const milliseconds = currentDate.getTime(); // 밀리초 단위로 현재 시간을 얻기
-                console.log("현재 시간 (밀리초):", milliseconds);
 
                 const seconds = Math.floor(milliseconds / 1000); // 밀리초를 초로 변환
-                console.log("현재 시간 (초):", seconds);
                 setNewDocumentData({ author: id, changeTime: seconds, content: content.current.value, status: status.current.value, title: title.current.value, uploadTime: seconds })
                 console.log(newDocumentData)
             }
         });
-        try {
-            await addDoc(collectionRef, newDocumentData);
-            const suggestionId = collectionRef.id;
-            const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
+        // try {
+        //     await addDoc(collectionRef, newDocumentData);
+        //     const suggestionId = collectionRef.id;
+        //     const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
 
-            await addDoc(commentsCollection, {});
-            location.href = "/board/suggestions"
-        } catch (error) {
-            displayError(error)
-        }
+        //     await addDoc(commentsCollection, {});
+        //     location.href = "/board/suggestions"
+        // } catch (error) {
+        //     displayError(error)
+        // }
     }
 
     console.log(newDocumentData)
