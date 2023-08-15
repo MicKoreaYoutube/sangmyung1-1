@@ -37,18 +37,16 @@ export default function IndexPage() {
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
-        <ScrollArea className="font-SUITE-Regular rounded-md border">
+        <ScrollArea className="font-SUITE-Regular rounded-lg border">
           <div className="p-4">
             {suggestions_list?.length ? (
               <nav className="nav-flex items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
-                  <>
-                    <div key={index}>
-                      <Link className="text-xl block" href="hello">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.toLocaleString()}</span></Link>
-                      <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
-                    </div>
+                  <div key={index} className="w-full">
+                    <Link className="text-xl block" href="hello">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.toLocaleString()}</span></Link>
+                    <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
                     <Separator className="my-2 w-full" />
-                  </>
+                  </div>
                 ))}
               </nav>
             ) : null}
