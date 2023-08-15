@@ -13,8 +13,6 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 
 export default function IndexPage({
@@ -75,7 +73,7 @@ export default function IndexPage({
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespce-pre-line">{data.content}</p>
                             </CardContent>
-                            <CardFooter className="font-SUITE-Regular flex flex-col justify-start">
+                            <CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
                                 <Input placeholder="댓글을 달아보세요..." />
                                 {subcollectionData.map((item) => (
                                     <div key={item.id}>

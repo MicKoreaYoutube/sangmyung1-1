@@ -56,17 +56,17 @@ export default function IndexPage() {
         <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">건의사항</h1>
         <Card>
           <CardHeader>
-            <CardTitle>건의사항 목록</CardTitle>
-            <CardDescription>최근에 올라온 건의들 입니다!</CardDescription>
+            <CardTitle className="font-KBO-Dia-Gothic_bold">건의사항 목록</CardTitle>
+            <CardDescription className="font-SUITE-Regular">최근에 올라온 건의들 입니다!</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="p-4">
               {suggestions_list?.length ? (
-                <nav className="flex flex-col space-x-2">
+                <nav className="flex flex-col space-x-2 w-full">
                   {suggestions_list.map((suggestion, index) => (
-                    <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2">
+                    <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
                       <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
-                      <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
+                      <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
                       <Separator className="my-2" />
                     </Link>
                   ))}
@@ -77,7 +77,7 @@ export default function IndexPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" })}>+나도 건의하기</Link>
+            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular"}>+나도 건의하기</Link>
           </CardFooter>
         </Card>
       </section >
