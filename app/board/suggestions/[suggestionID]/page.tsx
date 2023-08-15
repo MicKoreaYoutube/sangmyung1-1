@@ -55,22 +55,8 @@ export default function IndexPage({
                                 <CardDescription>{data.author}·{formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <form>
-                                    <div className="grid w-full items-center gap-4">
-                                        <div className="flex flex-col space-y-1.5">
-                                            <Label htmlFor="name">Name</Label>
-                                            <Input id="name" placeholder="Name of your project" />
-                                        </div>
-                                        <div className="flex flex-col space-y-1.5">
-                                            <Label htmlFor="framework">Framework</Label>
-                                        </div>
-                                    </div>
-                                </form>
+                                <p className="text-lg">{data.content}</p>
                             </CardContent>
-                            <CardFooter className="flex justify-between">
-                                <Button variant="outline">Cancel</Button>
-                                <Button>Deploy</Button>
-                            </CardFooter>
                         </Card>
                     </div>
                 ) : (
