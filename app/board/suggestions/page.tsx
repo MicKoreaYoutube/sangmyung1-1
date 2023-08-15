@@ -46,7 +46,7 @@ export default function IndexPage() {
                   <div key={index}>
                     <Link className="text-xl block" href={`/board/suggestions/${suggestion.id}`}>{suggestion.title} ·<span className="text-gray-400">{suggestion.author}·{suggestion.changeTime.toLocaleString()}</span></Link>
                     <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
-                    <Separator className="my-2" />
+                    <hr />
                   </div>
                 ))}
               </nav>
