@@ -23,6 +23,7 @@ export default function IndexPage() {
         return {
           ...suggestionData,
           changeTime: changeTime,
+          id: doc.id, // 여기서 문서의 ID를 추가해줍니다.
         };
       });
       setSuggestionsList(suggestions);
