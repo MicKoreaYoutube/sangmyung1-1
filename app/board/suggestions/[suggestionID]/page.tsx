@@ -52,7 +52,7 @@ export default function IndexPage({
                         <Card>
                             <CardHeader>
                                 <CardTitle>{data.title}</CardTitle>
-                                <CardDescription>{data.author}·{formatTimestamp(data.changeTime)}</CardDescription>
+                                <CardDescription>{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-lg">{data.content}</p>
