@@ -31,9 +31,9 @@ export default function IndexPage() {
               <nav className="nav-flex items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
                   <div key={index}>
-                    <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime}</span></h3>
-                    {/* <span className="text-lg text-gray-700">{suggestion.content}...</span>
-                    <Separator className="my-2" /> */}
+                    <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.seconds}</span></h3>
+                    <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
+                    <Separator className="my-2" />
                   </div>
                 ))}
               </nav>
