@@ -8,6 +8,7 @@ import React, { useState, useEffect } from 'react';
 
 import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
+import { buttonVariants } from "@/components/ui/button";
 
 export default function IndexPage() {
   const [suggestions_list, setSuggestionsList] = useState([]);
@@ -50,6 +51,7 @@ export default function IndexPage() {
             ) : (
               <p>Loading...</p>
           )}
+          <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" })}>+나도 건의하기</Link>
           </div>
         </ScrollArea>
       </section>
