@@ -43,8 +43,8 @@ export default function IndexPage({
 
     useEffect(() => {
         async function fetchSubcollectionData() {
-            const docRef = doc(db, "your-collection-name", "your-document-id");
-            const subcollectionRef = collection(docRef, "your-subcollection-name"); // 서브컬렉션 이름으로 대체
+            const docRef = doc(db, "suggestions", params.suggestionID);
+            const subcollectionRef = collection(docRef, "comment");
             const subcollectionSnapshot = await getDocs(subcollectionRef);
 
             const subcollectionArray: any = [];
