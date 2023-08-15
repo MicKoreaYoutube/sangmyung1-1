@@ -34,7 +34,7 @@ export default function IndexPage() {
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">나도 건의하기</h1>
-                <Card className="w-[350px]">
+                <Card>
                     <CardHeader>
                         <CardTitle>Create project</CardTitle>
                         <CardDescription>Deploy your new project in one-click.</CardDescription>
