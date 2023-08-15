@@ -42,11 +42,13 @@ export default function IndexPage() {
             {suggestions_list?.length ? (
               <nav className="nav-flex items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
-                  <div key={index}>
-                    <Link className="text-xl" href="hello">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.toLocaleString()}</span></Link>
-                    <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
+                  <>
+                    <div key={index}>
+                      <Link className="text-xl block" href="hello">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.toLocaleString()}</span></Link>
+                      <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
+                    </div>
                     <Separator className="my-2 w-full" />
-                  </div>
+                  </>
                 ))}
               </nav>
             ) : null}
