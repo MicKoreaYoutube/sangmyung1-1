@@ -40,7 +40,7 @@ export default function IndexPage() {
             {suggestions_list?.length ? (
               <nav className="nav-flex items-center space-x-2">
                 {suggestions_list.map((suggestion, index) => (
-                  <div key={index}>
+                  <div key={index} className="items-center h-full">
                     <h3 className="text-xl">{suggestion.title} ·<span className="text-sm text-gray-400">{suggestion.author}</span>·<span className="text-sm text-gray-400">{suggestion.changeTime.toLocaleString()}</span></h3>
                     <span className="text-lg text-gray-700">{suggestion.content.slice(0, 40)}...</span>
                     <Separator className="my-2 w-full" />
