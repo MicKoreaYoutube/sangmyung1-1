@@ -4,6 +4,12 @@ import { signOut } from "firebase/auth";
 import { displayError, logouted } from "@/public/js/function"
 import { auth } from "@/public/js/firebase"
 
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
+
 export default function IndexPage() {
 
   signOut(auth).then(() => {
@@ -15,9 +21,12 @@ export default function IndexPage() {
 
   return (
     <>
-      <div id="error" className="hidden">
-        <span id="errorMessage">로그아웃 중...</span>
-      </div>
+      <Alert variant="destructive" className="hidden" id="error">
+        <AlertTitle>Error</AlertTitle>
+        <AlertDescription id="errorMessage">
+          Error Message
+        </AlertDescription>
+      </Alert>
     </>
   )
 }
