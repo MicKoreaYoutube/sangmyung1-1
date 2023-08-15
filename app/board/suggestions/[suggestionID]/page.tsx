@@ -76,10 +76,13 @@ export default function IndexPage({
                                 <p className="text-lg font-SUITE-Regular whitespce-pre-line">{data.content}</p>
                             </CardContent>
                             <CardFooter className="font-SUITE-Regular flex flex-col">
+                                <Label htmlFor="comment">댓글</Label>
+                                <Input placeholder="댓글을 달아보세요..." />
                                 {subcollectionData.map((item) => (
                                     <div key={item.id}>
-                                        <Separator className="my-2"/>
-                                        {item.id}: {item.comment}
+                                        <Separator className="my-2" />
+                                        <h3 className="text-lg">{item.author} · {formatTimestamp(item.changeTime)}</h3>
+                                        <p className="text-md">{item.content}</p>
                                     </div>
                                 ))}
                             </CardFooter>
