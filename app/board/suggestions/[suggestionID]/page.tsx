@@ -64,7 +64,7 @@ export default function IndexPage({
 
     return (
         <>
-            <section className="container grid gap-6 my-28 max-w-[1000px] justify-content-between">
+            <section className="container grid gap-6 my-28 max-w-[1000px] content-start">
                 {data ? (
                     <div>
                         <Card>
