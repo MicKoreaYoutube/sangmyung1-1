@@ -1,6 +1,6 @@
 'use client';
 
-import { onSnapshot, doc, getDoc } from "firebase/firestore";
+import { onSnapshot, doc, getDoc, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
 
@@ -39,6 +39,11 @@ export default function IndexPage({
         fetchSingleData();
     }, []);
 
+    function formatTimestamp(timestamp: Timestamp) {
+        const dateObject = new Date(timestamp.seconds * 1000);
+        return dateObject.toLocaleString();
+    }
+
     return (
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
@@ -47,7 +52,7 @@ export default function IndexPage({
                         <Card>
                             <CardHeader>
                                 <CardTitle>{data.title}</CardTitle>
-                                <CardDescription>{data.author}·{new Date(data.changeTime).toLocaleString()}</CardDescription>
+                                <CardDescription>{data.author}·{formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <form>
