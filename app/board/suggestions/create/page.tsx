@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import { displayError } from "@/public/js/function";
 
-import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { getFirestore, collection, addDoc, Timestamp } from "firebase/firestore";
 import { db, auth } from "@/public/js/firebase";
 import React, { useState, useRef } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
@@ -44,7 +44,7 @@ export default function IndexPage() {
     const content = useRef(null);
     const status = useRef(null);
 
-    const [newDocumentData, setNewDocumentData] = useState({ author: "", changeTime: "", content: "", status: "", title: "", uploadTime: "" } as any);
+    const [newDocumentData, setNewDocumentData] = useState({ author: [], changeTime: Timestamp.now(), content: Text, status: "", title: String, uploadTime: Timestamp.now() });
 
     async function addNewDocument() {
         const collectionRef = collection(db, "suggestions");
@@ -53,16 +53,13 @@ export default function IndexPage() {
                 const cutEmail = user.email.slice(0, 5)
                 const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                 const currentDate = new Date(); // 현재 시간을 나타내는 Date 객체 생성
-
-                const milliseconds = currentDate.getTime(); // 밀리초 단위로 현재 시간을 얻기
-
-                const seconds = Math.floor(milliseconds / 1000); // 밀리초를 초로 변환
                 console.log(id)
-                console.log(seconds)
                 console.log(content.current.value)
-                console.log(status.current.innerHTML)
+                const status_list = {전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous"}
+                const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
+                console.log(status_list[statusValue])
                 console.log(title.current.value)
-                setNewDocumentData({ author: id, changeTime: seconds, content: content.current.value, status: status.current.value, title: title.current.value, uploadTime: seconds })
+                setNewDocumentData({ author: id, changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) })
                 console.log(newDocumentData)
             }
         });
@@ -114,7 +111,7 @@ export default function IndexPage() {
                                         <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
                                     </SelectTrigger>
                                     <SelectContent position="popper">
-                                        <SelectItem value="all">전체</SelectItem>
+                                        <SelectItem value="all"></SelectItem>
                                         <SelectItem value="onlyStudent">학생들만</SelectItem>
                                         <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
                                         <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
@@ -137,4 +134,3 @@ export default function IndexPage() {
         </>
     )
 }
-
