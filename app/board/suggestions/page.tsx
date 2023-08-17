@@ -53,11 +53,11 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px]">
-        <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">건의사항</h1>
+        <h1 className="font-KBO-Dia-Gothic_bold text-4xl lg:text-7xl text-center">건의사항</h1>
         <Card>
           <CardHeader>
-            <CardTitle className="font-KBO-Dia-Gothic_bold">건의사항 목록</CardTitle>
-            <CardDescription className="font-SUITE-Regular">최근에 올라온 건의들 입니다!</CardDescription>
+            <CardTitle className="font-KBO-Dia-Gothic_bold lg:text-4xl">건의사항 목록</CardTitle>
+            <CardDescription className="font-SUITE-Regular lg:text-2xl">최근에 올라온 건의들 입니다!</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="p-4">
@@ -83,7 +83,7 @@ export default function IndexPage() {
 
           </CardContent>
           <CardFooter className="flex justify-end">
-            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular"}>+나도 건의하기</Link>
+            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+나도 건의하기</Link>
           </CardFooter>
         </Card>
       </section >
