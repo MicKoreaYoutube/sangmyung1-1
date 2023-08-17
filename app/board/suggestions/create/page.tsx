@@ -111,10 +111,11 @@ export default function IndexPage() {
                                         <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
                                     </SelectTrigger>
                                     <SelectContent position="popper">
-                                        <SelectItem value="all"></SelectItem>
+                                        <SelectItem value="all">전체</SelectItem>
                                         <SelectItem value="onlyStudent">학생들만</SelectItem>
                                         <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
                                         <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
+                                        <SelectItem value="anonymous">익명</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>
