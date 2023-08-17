@@ -53,10 +53,11 @@ export default function IndexPage() {
                 const cutEmail = user.email.slice(0, 5)
                 const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                 const currentDate = new Date(); // 현재 시간을 나타내는 Date 객체 생성
-                console.log(id)
+                console.log(id[0])
                 console.log(content.current.value)
                 const status_list = {전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous"}
                 const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
+                console.log(status.current.innerHTML)
                 console.log(status_list[statusValue])
                 console.log(title.current.value)
                 setNewDocumentData({ author: id, changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) })
