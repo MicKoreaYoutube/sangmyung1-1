@@ -44,7 +44,7 @@ export default function IndexPage() {
     const content = useRef(null);
     const status = useRef(null);
 
-    const [newDocumentData, setNewDocumentData] = useState({ author: [], changeTime: Timestamp.now(), content: String, status: "", title: String, uploadTime: Timestamp.now() });
+    const [newDocumentData, setNewDocumentData] = useState({ author: "", changeTime: Timestamp.now(), content: String, status: "", title: String, uploadTime: Timestamp.now() });
 
     async function addNewDocument() {
         const collectionRef = collection(db, "suggestions");
@@ -55,25 +55,25 @@ export default function IndexPage() {
                 const currentDate = new Date(); // 현재 시간을 나타내는 Date 객체 생성
                 console.log(id[0])
                 console.log(content.current.value)
-                const status_list = {전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous"}
+                const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
                 const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
                 console.log(status.current.innerHTML)
                 console.log(status_list[statusValue])
                 console.log(title.current.value)
-                setNewDocumentData({ author: id, changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) })
+                setNewDocumentData({ author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) })
                 console.log(newDocumentData)
             }
         });
-        // try {
-        //     await addDoc(collectionRef, newDocumentData);
-        //     const suggestionId = collectionRef.id;
-        //     const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
+        try {
+            await addDoc(collectionRef, newDocumentData);
+            const suggestionId = collectionRef.id;
+            const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
 
-        //     await addDoc(commentsCollection, {});
-        //     location.href = "/board/suggestions"
-        // } catch (error) {
-        //     displayError(error)
-        // }
+            await addDoc(commentsCollection, {});
+            location.href = "/board/suggestions"
+        } catch (error) {
+            displayError(error)
+        }
     }
 
     return (
@@ -109,7 +109,7 @@ export default function IndexPage() {
                                 <Label htmlFor="framework">공개 범위</Label>
                                 <Select>
                                     <SelectTrigger id="framework">
-                                        <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
+                                        <SelectValue placeholder="공개 범위 지정하기" ref={status} />
                                     </SelectTrigger>
                                     <SelectContent position="popper">
                                         <SelectItem value="all">전체</SelectItem>
