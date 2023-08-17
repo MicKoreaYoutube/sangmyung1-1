@@ -44,7 +44,7 @@ export default function IndexPage() {
     const content = useRef(null);
     const status = useRef(null);
 
-    const [newDocumentData, setNewDocumentData] = useState({ author: [], changeTime: Timestamp.now(), content: Text, status: "", title: String, uploadTime: Timestamp.now() });
+    const [newDocumentData, setNewDocumentData] = useState({ author: [], changeTime: Timestamp.now(), content: String, status: "", title: String, uploadTime: Timestamp.now() });
 
     async function addNewDocument() {
         const collectionRef = collection(db, "suggestions");
