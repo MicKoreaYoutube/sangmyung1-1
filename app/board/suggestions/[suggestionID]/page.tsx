@@ -71,7 +71,7 @@ export default function IndexPage({
                                 <CardDescription className="font-SUITE-Regular">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-lg font-SUITE-Regular whitespce-pre-line">{data.content}</p>
+                                <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>
                             </CardContent>
                             <CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
                                 <Input placeholder="댓글을 달아보세요..." />
