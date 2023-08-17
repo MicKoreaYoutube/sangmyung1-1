@@ -63,18 +63,24 @@ export default function IndexPage() {
             <div className="p-4">
               {suggestions_list?.length ? (
                 <nav className="flex flex-col space-x-2 w-full">
-                  {suggestions_list.map((suggestion, index) => (
-                    <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                      <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} ·<span className="text-gray-400">{suggestion.author} · {suggestion.changeTime.toLocaleString()}</span></h1>
-                      <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
-                      <Separator className="my-2" />
-                    </Link>
-                  ))}
+                  {suggestions_list.map((suggestion, index) => {
+                    if (suggestion.status !== "delete") {
+                      return (
+                        <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
+                          <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title} <span className="text-gray-400">{suggestion.status == "anonymous" ? suggestion.author : "· 익명"} · {suggestion.changeTime.toLocaleString()}</span></h1>
+                          <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
+                          <Separator className="my-2" />
+                        </Link>
+                      );
+                    }
+                    return null;
+                  })}
                 </nav>
               ) : (
                 <p>Loading...</p>
               )}
             </div>
+
           </CardContent>
           <CardFooter className="flex justify-end">
             <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular"}>+나도 건의하기</Link>
