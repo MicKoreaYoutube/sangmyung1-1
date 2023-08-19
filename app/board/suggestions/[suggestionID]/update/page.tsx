@@ -94,7 +94,7 @@ export default function IndexPage({
         const currentDate = new Date();
         const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
         const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-        setNewData({ changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value })
+        await setNewData({ changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value })
         try {
             await updateDoc(docRef, newData);
             location.href = '/board/suggestions'
@@ -102,6 +102,7 @@ export default function IndexPage({
             displayError(error)
         }
     }
+    
 
     return (
         <>
