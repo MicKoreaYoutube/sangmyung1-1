@@ -61,7 +61,7 @@ export default function IndexPage({
             }
         }
         fetchSingleData();
-    }, []);
+    }, [params.suggestionID]); // params.suggestionID가 변경될 때만 useEffect 실행
 
     const [subcollectionData, setSubcollectionData] = React.useState([]);
 
@@ -79,7 +79,7 @@ export default function IndexPage({
             setSubcollectionData(subcollectionArray);
         }
         fetchSubcollectionData();
-    }, []);
+    }, [params.suggestionID]); // params.suggestionID가 변경될 때만 useEffect 실행
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
@@ -90,22 +90,19 @@ export default function IndexPage({
     const content = useRef(null);
     const status = useRef(null);
 
-    const [newData, setNewData] = useState({ changeTime: Timestamp.now(), content: String, status: "", title: String });
-
-    async function updateDocument() {
+    const updateDocument = async () => {
         const docRef = doc(db, "suggestions", params.suggestionID)
         const currentDate = new Date();
         const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
         const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-        setNewData({ changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value })
+        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
         try {
             await updateDoc(docRef, newData);
-            router.push('/board/suggestions')
+            router.push('/board/suggestions') // 페이지 이동
         } catch (error) {
             displayError(error)
         }
     }
-
 
     return (
         <>
