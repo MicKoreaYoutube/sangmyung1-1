@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link"
 import { useRouter } from 'next/router';
 
@@ -7,7 +9,7 @@ import { doc, updateDoc, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useRef } from 'react';
 
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -44,19 +46,19 @@ export default function IndexPage({
     const content = useRef(null);
     const status = useRef(null);
 
-    const updateDocument = async () => {
-        const docRef = doc(db, "suggestions", params.suggestionID)
-        const currentDate = new Date();
-        const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
-        const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
-        try {
-            await updateDoc(docRef, newData);
-            router.push('/board/suggestions') // 페이지 이동
-        } catch (error) {
-            displayError(error)
-        }
-    }
+    // const updateDocument = async () => {
+    //     const docRef = doc(db, "suggestions", params.suggestionID)
+    //     const currentDate = new Date();
+    //     const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
+    //     const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
+    //     const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
+    //     try {
+    //         await updateDoc(docRef, newData);
+    //         router.push('/board/suggestions') // 페이지 이동
+    //     } catch (error) {
+    //         displayError(error)
+    //     }
+    // }
 
     return (
         <>
@@ -111,7 +113,7 @@ export default function IndexPage({
                             </div>
                         </CardContent>
                         <CardFooter className="flex justify-end">
-                            <Button className="font-SUITE-Regular" onClick={updateDocument}>건의하기</Button>
+                            <Button className="font-SUITE-Regular">건의하기</Button>
                         </CardFooter>
                     </Card>
             </section>
