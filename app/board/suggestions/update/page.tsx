@@ -34,11 +34,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 
-export default function IndexPage({
-    params,
-}: {
-    params: { suggestionID: string };
-}) {
+export default function IndexPage() {
 
     const router = useRouter();
 
