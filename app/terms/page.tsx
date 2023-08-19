@@ -7,7 +7,7 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px] place-element-center">
-        <h1 className="font-KBO-Dia-Gothic_bold text-7xl text-center">이용약관</h1>
+        <h1 className="font-KBO-Dia-Gothic_bold text-4xl lg:text-7xl text-center">이용약관</h1>
         <p className="font-SUITE-Regular text-xl">
           제 0장 정의<br />
           1. 관리자는 상명중학교 1학년 1반 2학기 학급 회장을 의미한다.<br />
