@@ -2,8 +2,8 @@ export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
   name: "상명중 1-1 건의함",
-  logo: "https://github.com/MicKoreaYoutube/img/assets/118183460/d6e23741-e2c2-442b-ab87-f7e2bdc52c8a",
-  logoDark: "https://github.com/MicKoreaYoutube/img/assets/118183460/642e7957-ec81-4d49-9e8d-8ba94a194c3f",
+  logo: "logo.png",
+  logoDark: "logo-dark.png",
   mainNav: [
     {
       title: "메인",
