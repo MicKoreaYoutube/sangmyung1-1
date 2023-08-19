@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { onSnapshot, collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
 
@@ -29,25 +29,30 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 
 export default function IndexPage() {
-  const [suggestions_list, setSuggestionsList] = useState([]);
+  const [suggestionsList, setSuggestionsList] = useState([]);
 
   useEffect(() => {
-    const unsubscribe = onSnapshot(collection(db, "suggestions"), (snapshot) => {
-      const suggestions = snapshot.docs.map(doc => {
+    async function fetchSortedData() {
+      const collectionRef = collection(db, "suggestions"); // 컬렉션 이름으로 대체
+      const q = query(collectionRef, orderBy("changeTime", "desc"));
+
+      const querySnapshot = await getDocs(q);
+      const sortedData: any = [];
+
+      querySnapshot.forEach((doc) => {
         const suggestionData = doc.data();
         const changeTime = new Date(suggestionData.changeTime.seconds * 1000);
-        return {
+        sortedData.push({
+          id: doc.id,
           ...suggestionData,
           changeTime: changeTime,
-          id: doc.id,
-        };
+        });
       });
-      setSuggestionsList(suggestions);
-    });
 
-    return () => {
-      unsubscribe();
-    };
+      setSuggestionsList(sortedData);
+    }
+
+    fetchSortedData();
   }, []);
 
   return (
@@ -61,9 +66,9 @@ export default function IndexPage() {
           </CardHeader>
           <CardContent>
             <div className="p-4">
-              {suggestions_list?.length ? (
+              {suggestionsList?.length ? (
                 <nav className="flex flex-col space-x-2 w-full">
-                  {suggestions_list.map((suggestion, index) => {
+                  {suggestionsList.map((suggestion, index) => {
                     if (suggestion.status !== "delete") {
                       return (
                         <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
@@ -80,7 +85,6 @@ export default function IndexPage() {
                 <p>Loading...</p>
               )}
             </div>
-
           </CardContent>
           <CardFooter className="flex justify-end">
             <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+나도 건의하기</Link>
@@ -90,4 +94,3 @@ export default function IndexPage() {
     </>
   )
 }
-

@@ -54,7 +54,7 @@ export default function IndexPage() {
         <div className="relative hidden h-full flex-col bg-muted p-10 text-white dark:border-r lg:flex">
           <div className="absolute inset-0 bg-zinc-900" />
           <div className="relative z-20 flex items-center text-lg font-medium font-KBO-Dia-Gothic_bold">
-            <Image src="logo.png" alt="로고" height={50} width={50} />
+            <Image src={siteConfig.logoDark} alt="로고" height={50} width={50} />
             상명중 1-1 건의함
           </div>
           <div className="relative z-20 mt-auto">

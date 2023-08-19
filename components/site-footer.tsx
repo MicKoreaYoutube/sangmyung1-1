@@ -28,7 +28,7 @@ export function SiteFooter() {
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <Link href="/" className="flex items-center">
-                            <Image src="logo.png" className="h-8 mr-3" alt="sangmyung1-1 Logo" />
+                            <Image src={siteConfig.logo} className="h-8 mr-3" alt="sangmyung1-1 Logo" />
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">상명중1-1 건의함</span>
                         </Link>
                     </div>
