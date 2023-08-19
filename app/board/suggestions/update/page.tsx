@@ -1,7 +1,6 @@
 'use client';
 
 import Link from "next/link"
-import { useRouter } from 'next/router';
 
 import { displayError } from "@/public/js/function";
 
@@ -35,8 +34,6 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage() {
-
-    const router = useRouter();
 
     const title = useRef(null);
     const content = useRef(null);
