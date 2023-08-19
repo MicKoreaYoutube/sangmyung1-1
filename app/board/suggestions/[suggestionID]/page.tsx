@@ -67,8 +67,8 @@ export default function IndexPage({
                     <div>
                         <Card className="justify-start">
                             <CardHeader>
-                                <CardTitle className="font-KBO-Dia-Gothic_bold">{data.title}</CardTitle>
-                                <CardDescription className="font-SUITE-Regular">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
+                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">{data.title}</CardTitle>
+                                <CardDescription className="font-SUITE-Regular md:text-2xl">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>

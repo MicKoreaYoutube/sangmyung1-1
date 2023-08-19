@@ -33,7 +33,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     async function fetchSortedData() {
-      const collectionRef = collection(db, "suggestions"); // 컬렉션 이름으로 대체
+      const collectionRef = collection(db, "suggestions");
       const q = query(collectionRef, orderBy("changeTime", "desc"));
 
       const querySnapshot = await getDocs(q);
@@ -58,11 +58,11 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px]">
-        <h1 className="font-KBO-Dia-Gothic_bold text-4xl lg:text-7xl text-center">건의사항</h1>
+        <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">건의사항</h1>
         <Card>
           <CardHeader>
-            <CardTitle className="font-KBO-Dia-Gothic_bold lg:text-4xl">건의사항 목록</CardTitle>
-            <CardDescription className="font-SUITE-Regular lg:text-2xl">최근에 올라온 건의들 입니다!</CardDescription>
+            <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 목록</CardTitle>
+            <CardDescription className="font-SUITE-Regular md:text-2xl">최근에 올라온 건의들 입니다!</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="p-4">
