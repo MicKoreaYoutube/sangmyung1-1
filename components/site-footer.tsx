@@ -36,9 +36,6 @@ export function SiteFooter() {
                         <div>
                             <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                <li className="mb-4">
-                                    <Link href="/privacy" className="hover:underline hover:text-dark">개인정보보호처리방침</Link>
-                                </li>
                                 <li>
                                     <Link href="/terms" className="hover:underline hover:text-dark">이용약관</Link>
                                 </li>

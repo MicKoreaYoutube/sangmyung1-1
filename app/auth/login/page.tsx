@@ -94,13 +94,6 @@ export default function IndexPage() {
                 >
                   이용약관
                 </Link>
-                과{" "}
-                <Link
-                  href="/privacy"
-                  className="underline underline-offset-4 hover:text-primary"
-                >
-                  개인정보보호처리방침
-                </Link>
                 에 동의한 것으로 간주합니다.
               </p>
             </div>
