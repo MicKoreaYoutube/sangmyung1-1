@@ -22,7 +22,9 @@ import {
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
+  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select"
@@ -71,11 +73,26 @@ export default function IndexPage() {
                   {suggestionsList.map((suggestion, index) => {
                     if (suggestion.status !== "delete") {
                       return (
-                        <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                          <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
+                        <>
+                          <div className="flex justify-between">
+                            <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
+                              <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
+                            </Link>
+                            <Select>
+                              <SelectTrigger className="w-[180px]">
+                                <SelectValue placeholder="⋮" />
+                              </SelectTrigger>
+                              <SelectContent>
+                                <SelectGroup>
+                                  <SelectItem value="apple">수정</SelectItem>
+                                  <SelectItem value="banana">삭제</SelectItem>
+                                </SelectGroup>
+                              </SelectContent>
+                            </Select>
+                          </div>
                           <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
                           <Separator className="my-2" />
-                        </Link>
+                        </>
                       );
                     }
                     return null;
