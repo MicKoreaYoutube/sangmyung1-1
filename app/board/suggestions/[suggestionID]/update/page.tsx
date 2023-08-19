@@ -1,12 +1,12 @@
-'use client'
+'use client';
 
 import Link from "next/link"
 
 import { displayError } from "@/public/js/function";
 
-import { getFirestore, collection, addDoc, Timestamp } from "firebase/firestore";
-import { db, auth } from "@/public/js/firebase";
-import React, { useState, useRef } from 'react';
+import { doc, updateDoc, Timestamp, getDoc, collection, getDocs } from "firebase/firestore";
+import { db } from "@/public/js/firebase";
+import React, { useState, useRef, useEffect } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
 import { siteConfig } from "@/config/site";
@@ -38,33 +38,66 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 
-export default function IndexPage() {
+export default function IndexPage({
+    params,
+}: {
+    params: { suggestionID: string };
+}) {
+
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        async function fetchSingleData() {
+            const docRef = doc(db, "suggestions", params.suggestionID);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setData({ id: docSnap.id, ...docSnap.data() });
+            } else {
+                console.log("No such document!");
+            }
+        }
+        fetchSingleData();
+    }, []);
+
+    const [subcollectionData, setSubcollectionData] = useState([]);
+
+    useEffect(() => {
+        async function fetchSubcollectionData() {
+            const docRef = doc(db, "suggestions", params.suggestionID);
+            const subcollectionRef = collection(docRef, "comment");
+            const subcollectionSnapshot = await getDocs(subcollectionRef);
+
+            const subcollectionArray: any = [];
+            subcollectionSnapshot.forEach((doc) => {
+                subcollectionArray.push({ id: doc.id, ...doc.data() });
+            });
+
+            setSubcollectionData(subcollectionArray);
+        }
+        fetchSubcollectionData();
+    }, []);
+
+    function formatTimestamp(timestamp: Timestamp) {
+        const dateObject = new Date(timestamp.seconds * 1000);
+        return dateObject.toLocaleString();
+    }
 
     const title = useRef(null);
     const content = useRef(null);
     const status = useRef(null);
 
-    const [newDocumentData, setNewDocumentData] = useState({ author: "", changeTime: Timestamp.now(), content: String, status: "", title: String, uploadTime: Timestamp.now() });
+    const [newData, setNewData] = useState({ changeTime: Timestamp.now(), content: String, status: "", title: String });
 
-    async function addNewDocument() {
-        const collectionRef = collection(db, "suggestions");
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                const cutEmail = user.email.slice(0, 5)
-                const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                const currentDate = new Date(); 
-                const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
-                const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-                setNewDocumentData({ author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) })
-            }
-        });
+    async function updateDocument() {
+        const docRef = doc(db, "suggestions", params.suggestionID)
+        const currentDate = new Date();
+        const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
+        const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
+        setNewData({ changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value })
         try {
-            await addDoc(collectionRef, newDocumentData);
-            const suggestionId = collectionRef.id;
-            const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
-
-            await addDoc(commentsCollection, {});
-            location.href = "/board/suggestions"
+            await updateDoc(docRef, newData);
+            location.href = '/board/suggestions'
         } catch (error) {
             displayError(error)
         }
@@ -74,6 +107,7 @@ export default function IndexPage() {
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
+                {data ? (
                 <Card>
                     <CardHeader>
                         <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 입력하기</CardTitle>
@@ -83,11 +117,11 @@ export default function IndexPage() {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">제목</Label>
-                                <Input ref={title} placeholder="제목을 입력하세요..." max={127} />
+                                <Input ref={title} placeholder="제목을 입력하세요..." max={127} defaultValue={data.title}/>
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="message-2">건의 할 내용</Label>
-                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} />
+                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content}/>
                                 <p className="text-sm text-muted-foreground">
                                     건의하기 버튼을 누르실 경우, 당신은 {" "}
                                     <Link
@@ -123,9 +157,12 @@ export default function IndexPage() {
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-end">
-                        <Button className="font-SUITE-Regular" onClick={addNewDocument}>건의하기</Button>
+                        <Button className="font-SUITE-Regular" onClick={updateDocument}>건의하기</Button>
                     </CardFooter>
                 </Card>
+                ) : (
+                    <p>Loading...</p>
+                )}
             </section>
         </>
     )
