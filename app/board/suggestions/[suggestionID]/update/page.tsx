@@ -1,19 +1,12 @@
-'use client';
-
 import Link from "next/link"
 import { useRouter } from 'next/router';
 
 import { displayError } from "@/public/js/function";
 
-import { doc, updateDoc, Timestamp, getDoc, collection, getDocs } from "firebase/firestore";
+import { doc, updateDoc, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
-import React, { useState, useRef, useEffect } from 'react';
-import { onAuthStateChanged } from "firebase/auth";
+import React, { useRef } from 'react';
 
-import { siteConfig } from "@/config/site";
-
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
