@@ -79,7 +79,7 @@ export default function IndexPage() {
                               <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
                             </Link>
                             <Select>
-                              <SelectTrigger className="w-full">
+                              <SelectTrigger className="w-1">
                                 <SelectValue placeholder="⋮" />
                               </SelectTrigger>
                               <SelectContent>
