@@ -78,7 +78,7 @@ export default function IndexPage() {
                             <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
                               <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
                             </Link>
-                            <div>
+                            <div className="flex flex-row space-x-1">
                               <Link
                                 href={`/board/suggestions/${suggestion.id}/update`}
                                 rel="noreferrer"
@@ -87,7 +87,7 @@ export default function IndexPage() {
                                 수정
                               </Link>
                               <Link
-                                href={`/board/suggestions/${suggestion.id}/delete`}
+                                href={`/board/suggestions/${suggestion.id}`}
                                 rel="noreferrer"
                                 className={buttonVariants({ variant: "destructive" })}
                               >
