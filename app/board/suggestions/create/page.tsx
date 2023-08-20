@@ -51,7 +51,7 @@ export default function IndexPage() {
                 const cutEmail = user.email.slice(0, 5)
                 const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                 const currentDate = new Date(); 
-                const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
+                const status_list = { 전체: "all", 학생들만: "onlyStudent", 관리자에게만: "onlyAdmin", 선생님에게만: "onlyTeacher", 익명: "anonymous" }
                 const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
                 const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                 try {
@@ -59,8 +59,6 @@ export default function IndexPage() {
                     const suggestionId = collectionRef.id;
                     const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
                     await addDoc(commentsCollection, { status: "delete" })
-        
-                    await addDoc(commentsCollection, {});
                     location.href = "/board/suggestions"
                 } catch (error) {
                     displayError(error)
