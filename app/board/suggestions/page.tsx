@@ -78,17 +78,22 @@ export default function IndexPage() {
                             <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
                               <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
                             </Link>
-                            <Select>
-                              <SelectTrigger className="w-0.5">
-                                <SelectValue placeholder="⋮" />
-                              </SelectTrigger>
-                              <SelectContent>
-                                <SelectGroup>
-                                  <SelectItem value="update"><Link href={`/board/suggestions/${suggestion.id}/update`}>수정</Link></SelectItem>
-                                  <SelectItem value="delete">삭제</SelectItem>
-                                </SelectGroup>
-                              </SelectContent>
-                            </Select>
+                            <div>
+                              <Link
+                                href={`/board/suggestions/${suggestion.id}/update`}
+                                rel="noreferrer"
+                                className={buttonVariants({ variant: "secondary" })}
+                              >
+                                수정
+                              </Link>
+                              <Link
+                                href={`/board/suggestions/${suggestion.id}/delete`}
+                                rel="noreferrer"
+                                className={buttonVariants({ variant: "destructive" })}
+                              >
+                                삭제
+                              </Link>
+                            </div>
                           </div>
                           <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
                           <Separator className="my-2" />
