@@ -58,6 +58,14 @@ export default function IndexPage() {
                     await addDoc(collectionRef, newData);
                     const suggestionId = collectionRef.id;
                     const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
+                    await addDoc(commentsCollection, {
+                        author: String,
+                        changeTime: Timestamp,
+                        content: String,
+                        status: "delete",
+                        title: String,
+                        updloadTime: Timestamp
+                    })
         
                     await addDoc(commentsCollection, {});
                     location.href = "/board/suggestions"
