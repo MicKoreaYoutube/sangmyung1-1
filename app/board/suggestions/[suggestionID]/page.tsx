@@ -15,11 +15,7 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
-export default function IndexPage({
-    params,
-}: {
-    params: { suggestionID: string };
-}) {
+export default function IndexPage({ params }: { params: { suggestionID: string } }) {
 
     const [data, setData] = useState(null);
 
