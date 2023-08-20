@@ -48,7 +48,11 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     const deleteData = useRef(null);
 
-    deleteData.current.click()
+    useEffect(() => {
+        if (deleteData.current) {
+            deleteData.current.click();
+        }
+      }, []);
 
     return (
         <>
