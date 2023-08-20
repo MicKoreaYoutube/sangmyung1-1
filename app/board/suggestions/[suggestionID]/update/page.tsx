@@ -39,6 +39,8 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
     const content = useRef(null);
     const status = useRef(null);
 
+    console.log(params.suggestionID)
+
     // const updateDocument = async () => {
     //     const docRef = doc(db, "suggestions", params.suggestionID)
     //     const currentDate = new Date();
