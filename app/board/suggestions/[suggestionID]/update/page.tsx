@@ -106,7 +106,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                         </div>
                     </CardContent>
                     <CardFooter className="flex justify-end">
-                        <Button className="font-SUITE-Regular">건의하기</Button>
+                        <Button className="font-SUITE-Regular" onClick={updateDocument}>건의하기</Button>
                     </CardFooter>
                 </Card>
             </section>
