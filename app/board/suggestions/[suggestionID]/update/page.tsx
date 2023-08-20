@@ -127,7 +127,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                         <Label htmlFor="framework">공개 범위</Label>
                                         <Select>
                                             <SelectTrigger id="framework">
-                                                <SelectValue placeholder="공개 범위 지정하기" ref={status} dangerouslySetInnerHTML={data.status}/>
+                                                <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
                                             </SelectTrigger>
                                             <SelectContent position="popper">
                                                 <SelectItem value="all">전체</SelectItem>
