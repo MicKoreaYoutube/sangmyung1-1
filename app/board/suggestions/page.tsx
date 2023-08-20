@@ -78,7 +78,7 @@ export default function IndexPage() {
                             <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
                               <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
                             </Link>
-                            <div className="flex flex-row space-x-1">
+                            <div className="flex flex-row space-x-3">
                               <Link
                                 href={`/board/suggestions/${suggestion.id}/update`}
                                 rel="noreferrer"
