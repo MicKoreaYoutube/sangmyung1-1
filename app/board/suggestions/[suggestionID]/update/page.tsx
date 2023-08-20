@@ -1,7 +1,6 @@
 'use client';
 
 import Link from "next/link"
-import { useRouter } from 'next/router';
 
 import { displayError } from "@/public/js/function";
 
@@ -35,9 +34,6 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage({ params }: { params: { suggestionID: string } }) {
-
-    const router = useRouter();
-    const { paramName } = router.query;
 
     const title = useRef(null);
     const content = useRef(null);
