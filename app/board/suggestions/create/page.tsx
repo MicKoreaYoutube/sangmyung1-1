@@ -44,30 +44,29 @@ export default function IndexPage() {
     const content = useRef(null);
     const status = useRef(null);
 
-    const [newDocumentData, setNewDocumentData] = useState({ author: "", changeTime: Timestamp.now(), content: String, status: "", title: String, uploadTime: Timestamp.now() });
-
     async function addNewDocument() {
         const collectionRef = collection(db, "suggestions");
-        onAuthStateChanged(auth, (user) => {
+        onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const cutEmail = user.email.slice(0, 5)
                 const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                 const currentDate = new Date(); 
                 const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
                 const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-                setNewDocumentData({ author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) })
+                const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
+                try {
+                    await addDoc(collectionRef, newData);
+                    const suggestionId = collectionRef.id;
+                    const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
+        
+                    await addDoc(commentsCollection, {});
+                    location.href = "/board/suggestions"
+                } catch (error) {
+                    displayError(error)
+                }
             }
         });
-        try {
-            await addDoc(collectionRef, newDocumentData);
-            const suggestionId = collectionRef.id;
-            const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
-
-            await addDoc(commentsCollection, {});
-            location.href = "/board/suggestions"
-        } catch (error) {
-            displayError(error)
-        }
+        
     }
 
     return (
