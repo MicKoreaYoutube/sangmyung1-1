@@ -116,12 +116,16 @@ export default function IndexPage() {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className="w-1">
                                   <DropdownMenuGroup>
-                                    <DropdownMenuItem>
-                                      <Link href={`/board/suggestions/${suggestion.id}/update`}>수정</Link>
-                                    </DropdownMenuItem>
-                                    <DropdownMenuItem>
-                                      <Link href={`/board/suggestions/${suggestion.id}/delete`}>삭제</Link>
-                                    </DropdownMenuItem>
+                                    <Link href={`/board/suggestions/${suggestion.id}/update`}>
+                                      <DropdownMenuItem>
+                                        <span>수정</span>
+                                      </DropdownMenuItem>
+                                    </Link>
+                                    <Link href={`/board/suggestions/${suggestion.id}/delete`}>
+                                      <DropdownMenuItem>
+                                        <span>삭제</span>
+                                      </DropdownMenuItem>
+                                    </Link>
                                   </DropdownMenuGroup>
                                 </DropdownMenuContent>
                               </DropdownMenu>

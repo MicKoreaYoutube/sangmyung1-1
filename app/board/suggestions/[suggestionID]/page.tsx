@@ -1,6 +1,6 @@
 'use client';
 
-import { onSnapshot, collection, doc, getDoc, getDocs, Timestamp } from "firebase/firestore";
+import { collection, doc, getDoc, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
 
@@ -59,29 +59,31 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
     return (
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
-                {data ? (
-                    <Card className="justify-start">
-                        <CardHeader>
-                            <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">{data.title}</CardTitle>
-                            <CardDescription className="font-SUITE-Regular md:text-2xl">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
-                        </CardHeader>
-                        <CardContent>
-                            <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>
-                        </CardContent>
-                        <CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
-                            <Input placeholder="댓글을 달아보세요..." />
-                            {subcollectionData.map((item) => (
-                                <div key={item.id}>
-                                    <Separator className="my-2" />
-                                    <h3 className="text-lg">{item.author} · {formatTimestamp(item.changeTime)}</h3>
-                                    <p className="text-md">{item.comment}</p>
-                                </div>
-                            ))}
-                        </CardFooter>
-                    </Card>
-                ) : (
-                    <p>Loading...</p>
-                )}
+                <Card className="justify-start">
+                    {data ? (
+                        <>
+                            <CardHeader>
+                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">{data.title}</CardTitle>
+                                <CardDescription className="font-SUITE-Regular md:text-2xl">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>
+                            </CardContent>
+                            <CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
+                                <Input placeholder="댓글을 달아보세요..." />
+                                {subcollectionData.map((item) => (
+                                    <div key={item.id}>
+                                        <Separator className="my-2" />
+                                        <h3 className="text-lg">{item.author} · {formatTimestamp(item.changeTime)}</h3>
+                                        <p className="text-md">{item.comment}</p>
+                                    </div>
+                                ))}
+                            </CardFooter>
+                        </>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
+                </Card>
             </section>
         </>
     )
