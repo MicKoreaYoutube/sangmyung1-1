@@ -55,24 +55,6 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         fetchSingleData();
     }, []);
 
-    const [subcollectionData, setSubcollectionData] = useState([]);
-
-    useEffect(() => {
-        async function fetchSubcollectionData() {
-            const docRef = doc(db, "suggestions", params.suggestionID);
-            const subcollectionRef = collection(docRef, "comment");
-            const subcollectionSnapshot = await getDocs(subcollectionRef);
-
-            const subcollectionArray: any = [];
-            subcollectionSnapshot.forEach((doc) => {
-                subcollectionArray.push({ id: doc.id, ...doc.data() });
-            });
-
-            setSubcollectionData(subcollectionArray);
-        }
-        fetchSubcollectionData();
-    }, []);
-
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
         return dateObject.toLocaleString();

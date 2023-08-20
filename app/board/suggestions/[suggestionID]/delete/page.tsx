@@ -1,32 +1,12 @@
 'use client';
 
-import Link from "next/link"
-
 import { displayError } from "@/public/js/function";
 
-import { doc, updateDoc, Timestamp, collection, getDoc, getDocs } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardFooter,
-    CardHeader,
-    CardTitle,
-} from "@/components/ui/card"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
 import {
     Alert,
     AlertDescription,
@@ -52,7 +32,22 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         if (deleteData.current) {
             deleteData.current.click();
         }
-      }, []);
+    }, []);
+
+    function goBack() {
+        location.href = '/board/suggestions'
+    }
+
+    const forceDelete = async () => {
+        const docRef = doc(db, "suggestions", params.suggestionID)
+        const newData = { status: "delete" };
+        try {
+            await updateDoc(docRef, newData);
+            location.href = '/board/suggestions'
+        } catch (error) {
+            displayError(error)
+        }
+    }
 
     return (
         <>
@@ -62,18 +57,24 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                        <AlertDialogTitle>진짜로 삭제하시겠습니까?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            This action cannot be undone. This will permanently delete your
-                            account and remove your data from our servers.
+                            건의 사항을 삭제하시면 관리자에게 요청하지 않는 이상 복구 할 수 없습니다.
+                            관리자에게 요청하여도 복구하지 못 하실 수도 있습니다. 그래도 진짜로 삭제하시겠습니까?
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction>Continue</AlertDialogAction>
+                        <AlertDialogCancel onClick={goBack}>취소</AlertDialogCancel>
+                        <AlertDialogAction onClick={forceDelete}>삭제</AlertDialogAction>
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
+            <Alert variant="destructive" className="hidden" id="error">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription id="errorMessage">
+                    Error Message
+                </AlertDescription>
+            </Alert>
         </>
     )
 }
