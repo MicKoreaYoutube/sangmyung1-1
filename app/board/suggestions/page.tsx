@@ -84,8 +84,8 @@ export default function IndexPage() {
                               </SelectTrigger>
                               <SelectContent>
                                 <SelectGroup>
-                                  <SelectItem value="apple">수정</SelectItem>
-                                  <SelectItem value="banana">삭제</SelectItem>
+                                  <SelectItem value="update"><Link href={`/board/suggestions/${suggestion.id}/update`}>수정</Link></SelectItem>
+                                  <SelectItem value="delete">삭제</SelectItem>
                                 </SelectGroup>
                               </SelectContent>
                             </Select>
