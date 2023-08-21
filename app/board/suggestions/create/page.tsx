@@ -4,16 +4,14 @@ import Link from "next/link"
 
 import { displayError } from "@/public/js/function";
 
-import { getFirestore, collection, addDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db, auth } from "@/public/js/firebase";
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
 import { siteConfig } from "@/config/site";
 
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
-import { Button, buttonVariants } from "@/components/ui/button"
+import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -55,11 +53,14 @@ export default function IndexPage() {
                 const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
                 const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                 try {
-                    await addDoc(collectionRef, newData);
-                    const suggestionId = collectionRef.id;
-                    const commentsCollection = collection(db, 'suggestions', suggestionId, 'comments');
-                    await addDoc(commentsCollection, { status: "delete" })
-                    location.href = "/board/suggestions"
+                    const newDocRef = await addDoc(collectionRef, newData);
+                    console.log("New document created with ID:", newDocRef.id);
+
+                    // 생성한 문서의 서브컬렉션 "comments"에 댓글 추가
+                    const commentsCollection = collection(newDocRef, 'comments');
+                    const commentData = { status: "delete" };
+                    const newCommentDocRef = await addDoc(commentsCollection, commentData);
+                    console.log("New comment document created with ID:", newCommentDocRef.id);
                 } catch (error) {
                     displayError(error)
                 }

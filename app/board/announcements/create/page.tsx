@@ -45,7 +45,7 @@ export default function IndexPage() {
     const status = useRef(null);
 
     async function addNewDocument() {
-        const collectionRef = collection(db, "suggestions");
+        const collectionRef = collection(db, "announcements");
         onAuthStateChanged(auth, async (user) => {
             if (user) {
                 const cutEmail = user.email.slice(0, 5)

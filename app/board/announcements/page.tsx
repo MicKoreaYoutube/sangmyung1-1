@@ -51,13 +51,6 @@ import {
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -66,7 +59,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     async function fetchSortedData() {
-      const collectionRef = collection(db, "suggestions");
+      const collectionRef = collection(db, "announcements");
       const q = query(collectionRef, orderBy("changeTime", "desc"));
 
       const querySnapshot = await getDocs(q);
