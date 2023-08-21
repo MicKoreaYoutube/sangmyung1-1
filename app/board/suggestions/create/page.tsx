@@ -54,13 +54,11 @@ export default function IndexPage() {
                 const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                 try {
                     const newDocRef = await addDoc(collectionRef, newData);
-                    console.log("New document created with ID:", newDocRef.id);
-
-                    // 생성한 문서의 서브컬렉션 "comments"에 댓글 추가
                     const commentsCollection = collection(newDocRef, 'comments');
                     const commentData = { status: "delete" };
                     const newCommentDocRef = await addDoc(commentsCollection, commentData);
-                    console.log("New comment document created with ID:", newCommentDocRef.id);
+
+                    location.href = '/board/suggestions'
                 } catch (error) {
                     displayError(error)
                 }
