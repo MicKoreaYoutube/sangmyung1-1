@@ -45,12 +45,10 @@ export default function IndexPage() {
                 const currentDate = new Date(); 
                 const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                 try {
-                    await addDoc(collectionRef, newData);
-                    const announcementId = collectionRef.id;
-                    const commentsCollection = collection(db, 'announcements', announcementId, 'comments');
-        
-                    await addDoc(commentsCollection, {});
-                    location.href = "/board/announcements"
+                    const newDocRef = await addDoc(collectionRef, newData);
+                    const commentsCollection = collection(newDocRef, 'comments');
+                    const commentData = { status: "delete" };
+                    const newCommentDocRef = await addDoc(commentsCollection, commentData);
                 } catch (error) {
                     displayError(error)
                 }

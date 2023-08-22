@@ -2,6 +2,9 @@
 
 import Link from "next/link"
 
+import { auth } from "@/public/js/firebase"
+
+import { onAuthStateChanged } from "firebase/auth"
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
@@ -51,6 +54,14 @@ export default function IndexPage() {
     fetchSortedData();
   }, []);
 
+  let userInfo
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            userInfo = user
+        }
+    });
+
   return (
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px]">
@@ -70,7 +81,7 @@ export default function IndexPage() {
                         <>
                           <div className="flex justify-between">
                             <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-4">{suggestion.title}</h1>
+                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold tracking-tighter">{suggestion.title}</h1>
                             </Link>
                             <div className="flex flex-row space-x-3">
                               <DropdownMenu>

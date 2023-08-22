@@ -3,7 +3,9 @@
 import Link from "next/link"
 
 import { displayError } from "@/public/js/function";
+import { auth } from "@/public/js/firebase"
 
+import { onAuthStateChanged } from "firebase/auth"
 import { doc, updateDoc, Timestamp, collection, getDoc, getDocs } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useRef, useState, useEffect } from 'react';
@@ -33,7 +35,7 @@ import {
     AlertTitle,
 } from "@/components/ui/alert"
 
-export default function IndexPage({ params }: { params: { anouncementID: string } }) {
+export default function IndexPage({ params }: { params: { announcementID: string } }) {
 
     const title = useRef(null);
     const content = useRef(null);
@@ -42,7 +44,7 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
 
     useEffect(() => {
         async function fetchSingleData() {
-            const docRef = doc(db, "anouncements", params.anouncementID);
+            const docRef = doc(db, "anouncements", params.announcementID);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -60,7 +62,7 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
     }
 
     const updateDocument = async () => {
-        const docRef = doc(db, "anouncements", params.anouncementID)
+        const docRef = doc(db, "anouncements", params.announcementID)
         const currentDate = new Date();
         const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value };
         try {
@@ -71,10 +73,22 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
         }
     }
 
+    let userInfo
+
+    onAuthStateChanged(auth, (user) => {
+        if (user) {
+            userInfo = user
+        } else {
+            // User is signed out
+            // ...
+        }
+    });
+
+
     return (
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
-                <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
+                <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 작성하기</h1>
                 <Card>
                     {data ? (
                         <>
