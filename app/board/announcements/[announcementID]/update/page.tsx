@@ -37,7 +37,6 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
 
     const title = useRef(null);
     const content = useRef(null);
-    const status = useRef(null);
 
     const [data, setData] = useState(null);
 
@@ -63,12 +62,10 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
     const updateDocument = async () => {
         const docRef = doc(db, "anouncements", params.anouncementID)
         const currentDate = new Date();
-        const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
-        const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
+        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value };
         try {
             await updateDoc(docRef, newData);
-            location.href = '/board/suggestions'
+            location.href = '/board/anouncements'
         } catch (error) {
             displayError(error)
         }
@@ -82,43 +79,18 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
                     {data ? (
                         <>
                             <CardHeader>
-                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 입력하기</CardTitle>
-                                <CardDescription className="font-SUITE-Regular md:text-2xl">여러분이 생각하는 우리반에서 고쳐야 할 점이나 사이트에 대한 것 등을 건의해주세요!</CardDescription>
+                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">공지사항 입력하기</CardTitle>
+                                <CardDescription className="font-SUITE-Regular md:text-2xl">공지사항은 관리자가 올리는 게시물입니다. 한 단어 한 단어 주의해가며 작성해주세요!</CardDescription>
                             </CardHeader>
                             <CardContent className="font-SUITE-Regular">
                                 <div className="grid w-full items-center gap-4">
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="name">제목</Label>
-                                        <Input ref={title} placeholder="제목을 입력하세요..." max={127} defaultValue={data.title}/>
+                                        <Input ref={title} placeholder="제목을 입력하세요..." max={127} />
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="message-2">건의 할 내용</Label>
-                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content}/>
-                                        <p className="text-sm text-muted-foreground">
-                                            건의하기 버튼을 누르실 경우, 당신은 {" "}
-                                            <Link
-                                                href="/terms"
-                                                className="underline underline-offset-4 hover:text-primary"
-                                            >
-                                                이용약관
-                                            </Link>
-                                            에 동의한 것으로 간주합니다.
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="framework">공개 범위</Label>
-                                        <Select>
-                                            <SelectTrigger id="framework">
-                                                <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
-                                            </SelectTrigger>
-                                            <SelectContent position="popper">
-                                                <SelectItem value="all">전체</SelectItem>
-                                                <SelectItem value="onlyStudent">학생들만</SelectItem>
-                                                <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
-                                                <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
-                                                <SelectItem value="anonymous">익명</SelectItem>
-                                            </SelectContent>
-                                        </Select>
+                                        <Label htmlFor="message-2">공지사항 내용</Label>
+                                        <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." maxLength={1000} />
                                     </div>
                                     <Alert variant="destructive" className="hidden" id="error">
                                         <AlertTitle>Error</AlertTitle>
@@ -129,7 +101,7 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
                                 </div>
                             </CardContent>
                             <CardFooter className="flex justify-end">
-                                <Button className="font-SUITE-Regular" onClick={updateDocument}>건의하기</Button>
+                                <Button className="font-SUITE-Regular" onClick={updateDocument}>업로드하기</Button>
                             </CardFooter>
                         </>
                     ) : (
