@@ -69,7 +69,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>
                             </CardContent>
-                            <CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
+                          {/*<CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
                                 <Input placeholder="댓글을 달아보세요..." />
                                 {subcollectionData.map((item) => (
                                     <div key={item.id}>
@@ -78,7 +78,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
                                         <p className="text-md">{item.comment}</p>
                                     </div>
                                 ))}
-                            </CardFooter>
+                            </CardFooter>*/}
                         </>
                     ) : (
                         <p>Loading...</p>
