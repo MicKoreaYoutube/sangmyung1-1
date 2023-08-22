@@ -37,7 +37,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
 
     useEffect(() => {
         async function fetchSubcollectionData() {
-            const docRef = doc(db, "suggestions", params.announcementID);
+            const docRef = doc(db, "announcements", params.announcementID);
             const subcollectionRef = collection(docRef, "comment");
             const subcollectionSnapshot = await getDocs(subcollectionRef);
 
