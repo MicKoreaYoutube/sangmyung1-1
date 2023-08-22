@@ -100,7 +100,7 @@ export default function IndexPage() {
                         <>
                           <div className="flex justify-between">
                             <Link key={index} href={`/board/announcements/${announcements.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-tight">{announcements.title}</h1>
+                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-4">{announcements.title}</h1>
                             </Link>
                             <div className="flex flex-row space-x-3">
                               <DropdownMenu>
