@@ -55,7 +55,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 
 export default function IndexPage() {
-  const [suggestionsList, setSuggestionsList] = useState([]);
+  const [announcementsList, setAnnouncementsList] = useState([]);
 
   useEffect(() => {
     async function fetchSortedData() {
@@ -75,7 +75,7 @@ export default function IndexPage() {
         });
       });
 
-      setSuggestionsList(sortedData);
+      setAnnouncementsList(sortedData);
     }
 
     fetchSortedData();
@@ -92,15 +92,15 @@ export default function IndexPage() {
           </CardHeader>
           <CardContent>
             <div className="p-4">
-              {suggestionsList?.length ? (
+              {announcementsList?.length ? (
                 <nav className="flex flex-col space-x-2 w-full">
-                  {suggestionsList.map((suggestion, index) => {
-                    if (suggestion.status !== "delete") {
+                  {announcementsList.map((announcements, index) => {
+                    if (announcements.status !== "delete") {
                       return (
                         <>
                           <div className="flex justify-between">
-                            <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-tight">{suggestion.title}</h1>
+                            <Link key={index} href={`/board/suggestions/${announcements.id}`} className="hover:underline hover:underline-offset-2 w-full">
+                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-tight">{announcements.title}</h1>
                             </Link>
                             <div className="flex flex-row space-x-3">
                               <DropdownMenu>
@@ -109,12 +109,12 @@ export default function IndexPage() {
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent className="w-1">
                                   <DropdownMenuGroup>
-                                    <Link href={`/board/suggestions/${suggestion.id}/update`}>
+                                    <Link href={`/board/announcements/${announcements.id}/update`}>
                                       <DropdownMenuItem>
                                         <span>수정</span>
                                       </DropdownMenuItem>
                                     </Link>
-                                    <Link href={`/board/suggestions/${suggestion.id}/delete`}>
+                                    <Link href={`/board/announcements/${announcements.id}/delete`}>
                                       <DropdownMenuItem>
                                         <span>삭제</span>
                                       </DropdownMenuItem>
@@ -124,7 +124,7 @@ export default function IndexPage() {
                               </DropdownMenu>
                             </div>
                           </div>
-                          <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
+                          <span className="text-lg text-gray-700 font-SUITE-Regular">{announcements.content.slice(0, 40)}...</span>
                           <Separator className="my-2" />
                         </>
                       );
@@ -138,7 +138,7 @@ export default function IndexPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+공지사항 추가하기</Link>
+            <Link href="/board/announcements/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+공지사항 추가하기</Link>
           </CardFooter>
         </Card>
       </section >
