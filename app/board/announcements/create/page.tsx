@@ -24,13 +24,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import {
     Alert,
@@ -42,7 +35,6 @@ export default function IndexPage() {
 
     const title = useRef(null);
     const content = useRef(null);
-    const status = useRef(null);
 
     async function addNewDocument() {
         const collectionRef = collection(db, "announcements");
@@ -51,9 +43,7 @@ export default function IndexPage() {
                 const cutEmail = user.email.slice(0, 5)
                 const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                 const currentDate = new Date(); 
-                const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
-                const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-                const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
+                const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                 try {
                     await addDoc(collectionRef, newData);
                     const suggestionId = collectionRef.id;
@@ -97,21 +87,6 @@ export default function IndexPage() {
                                     </Link>
                                     에 동의한 것으로 간주합니다.
                                 </p>
-                            </div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="framework">공개 범위</Label>
-                                <Select>
-                                    <SelectTrigger id="framework">
-                                        <SelectValue placeholder="공개 범위 지정하기" ref={status} />
-                                    </SelectTrigger>
-                                    <SelectContent position="popper">
-                                        <SelectItem value="all">전체</SelectItem>
-                                        <SelectItem value="onlyStudent">학생들만</SelectItem>
-                                        <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
-                                        <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
-                                        <SelectItem value="anonymous">익명</SelectItem>
-                                    </SelectContent>
-                                </Select>
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>
