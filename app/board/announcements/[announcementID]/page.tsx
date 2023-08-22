@@ -18,36 +18,37 @@ import { Separator } from "@/components/ui/separator"
 export default function IndexPage({ params }: { params: { announcementID: string } }) {
 
     const [data, setData] = useState(null);
+
+    useEffect(() => {
+        async function fetchSingleData() {
+            const docRef = doc(db, "announcements", params.announcementID);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setData({ id: docSnap.id, ...docSnap.data() });
+            } else {
+                console.log("No such document!");
+            }
+        }
+        fetchSingleData();
+    }, []);
+
     const [subcollectionData, setSubcollectionData] = useState([]);
 
     useEffect(() => {
-        async function fetchData() {
+        async function fetchSubcollectionData() {
             const docRef = doc(db, "announcements", params.announcementID);
+            const subcollectionRef = collection(docRef, "comment");
+            const subcollectionSnapshot = await getDocs(subcollectionRef);
 
-            try {
-                const docSnap = await getDoc(docRef);
+            const subcollectionArray: any = [];
+            subcollectionSnapshot.forEach((doc) => {
+                subcollectionArray.push({ id: doc.id, ...doc.data() });
+            });
 
-                if (docSnap.exists()) {
-                    setData({ id: docSnap.id, ...docSnap.data() });
-                } else {
-                    console.log("No such document!");
-                }
-
-                const subcollectionRef = collection(docRef, "comment");
-                const subcollectionSnapshot = await getDocs(subcollectionRef);
-
-                const subcollectionArray = [];
-                subcollectionSnapshot.forEach((doc) => {
-                    subcollectionArray.push({ id: doc.id, ...doc.data() });
-                });
-
-                setSubcollectionData(subcollectionArray);
-            } catch (error) {
-                console.error("Error fetching data:", error);
-            }
+            setSubcollectionData(subcollectionArray);
         }
-
-        fetchData();
+        fetchSubcollectionData();
     }, []);
 
     function formatTimestamp(timestamp: Timestamp) {
@@ -68,7 +69,16 @@ export default function IndexPage({ params }: { params: { announcementID: string
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>
                             </CardContent>
-                            {/* 서브컬렉션 댓글 관련 내용 */}
+                          {/*<CardFooter className="font-SUITE-Regular flex flex-col justify-start w-full">
+                                <Input placeholder="댓글을 달아보세요..." />
+                                {subcollectionData.map((item) => (
+                                    <div key={item.id}>
+                                        <Separator className="my-2" />
+                                        <h3 className="text-lg">{item.author} · {formatTimestamp(item.changeTime)}</h3>
+                                        <p className="text-md">{item.comment}</p>
+                                    </div>
+                                ))}
+                            </CardFooter>*/}
                         </>
                     ) : (
                         <p>Loading...</p>
