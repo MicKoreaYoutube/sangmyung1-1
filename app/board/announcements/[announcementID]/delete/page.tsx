@@ -35,15 +35,15 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
     }, []);
 
     function goBack() {
-        location.href = '/board/suggestions'
+        location.href = '/board/announcements'
     }
 
     const forceDelete = async () => {
-        const docRef = doc(db, "suggestions", params.anouncementID)
+        const docRef = doc(db, "announcements", params.anouncementID)
         const newData = { status: "delete" };
         try {
             await updateDoc(docRef, newData);
-            location.href = '/board/suggestions'
+            location.href = '/board/announcements'
         } catch (error) {
             displayError(error)
         }
@@ -53,14 +53,14 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
         <>
             <AlertDialog>
                 <AlertDialogTrigger asChild>
-                    <Button variant="outline" ref={deleteData}>Show Dialog</Button>
+                    <Button variant="outline" ref={deleteData} className="hidden">Show Dialog</Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle>진짜로 삭제하시겠습니까?</AlertDialogTitle>
                         <AlertDialogDescription>
-                            건의 사항을 삭제하시면 관리자에게 요청하지 않는 이상 복구 할 수 없습니다.
-                            관리자에게 요청하여도 복구하지 못 하실 수도 있습니다. 그래도 진짜로 삭제하시겠습니까?
+                            공지사항을 삭제하시면 공지사항과 그 게시물의 댓글도 전부 삭제됩니다.
+                            그래도 진짜로 삭제하시겠습니까?
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
