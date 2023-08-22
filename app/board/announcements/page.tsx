@@ -84,11 +84,11 @@ export default function IndexPage() {
   return (
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px]">
-        <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">건의사항</h1>
+        <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항</h1>
         <Card>
           <CardHeader>
-            <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 목록</CardTitle>
-            <CardDescription className="font-SUITE-Regular md:text-2xl">최근에 올라온 건의들 입니다!</CardDescription>
+            <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">공지사항 목록</CardTitle>
+            <CardDescription className="font-SUITE-Regular md:text-2xl">관리자가 올린 공지사항입니다! 중요한 내용이 있을 수 있으니 자주자주 확인해주세요!</CardDescription>
           </CardHeader>
           <CardContent>
             <div className="p-4">
@@ -100,7 +100,7 @@ export default function IndexPage() {
                         <>
                           <div className="flex justify-between">
                             <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                              <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
+                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-tight">{suggestion.title}</h1>
                             </Link>
                             <div className="flex flex-row space-x-3">
                               <DropdownMenu>
@@ -138,7 +138,7 @@ export default function IndexPage() {
             </div>
           </CardContent>
           <CardFooter className="flex justify-end">
-            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+나도 건의하기</Link>
+            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+공지사항 추가하기</Link>
           </CardFooter>
         </Card>
       </section >
