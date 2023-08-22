@@ -43,7 +43,7 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
 
     useEffect(() => {
         async function fetchSingleData() {
-            const docRef = doc(db, "suggestions", params.anouncementID);
+            const docRef = doc(db, "anouncements", params.anouncementID);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -61,7 +61,7 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
     }
 
     const updateDocument = async () => {
-        const docRef = doc(db, "suggestions", params.anouncementID)
+        const docRef = doc(db, "anouncements", params.anouncementID)
         const currentDate = new Date();
         const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
         const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
