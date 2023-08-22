@@ -15,13 +15,13 @@ import {
 import { Input } from "@/components/ui/input"
 import { Separator } from "@/components/ui/separator"
 
-export default function IndexPage({ params }: { params: { suggestionID: string } }) {
+export default function IndexPage({ params }: { params: { announcementID: string } }) {
 
     const [data, setData] = useState(null);
 
     useEffect(() => {
         async function fetchSingleData() {
-            const docRef = doc(db, "suggestions", params.suggestionID);
+            const docRef = doc(db, "announcements", params.announcementID);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
@@ -37,7 +37,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     useEffect(() => {
         async function fetchSubcollectionData() {
-            const docRef = doc(db, "suggestions", params.suggestionID);
+            const docRef = doc(db, "suggestions", params.announcementID);
             const subcollectionRef = collection(docRef, "comment");
             const subcollectionSnapshot = await getDocs(subcollectionRef);
 
