@@ -70,7 +70,7 @@ export default function IndexPage() {
                         <>
                           <div className="flex justify-between">
                             <Link key={index} href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                              <h1 className="text-2xl block font-KBO-Dia-Gothic_bold">{suggestion.title}</h1>
+                              <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold leading-tight">{suggestion.title}</h1>
                             </Link>
                             <div className="flex flex-row space-x-3">
                               <DropdownMenu>
