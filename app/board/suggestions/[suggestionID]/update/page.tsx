@@ -5,7 +5,8 @@ import Link from "next/link"
 import { displayError } from "@/public/js/function";
 
 import { doc, updateDoc, Timestamp, collection, getDoc, getDocs } from "firebase/firestore";
-import { db } from "@/public/js/firebase";
+import { db, userInfo } from "@/public/js/firebase";
+import { accessDenied } from "@/public/js/function";
 import React, { useRef, useState, useEffect } from 'react';
 
 import { Button } from "@/components/ui/button"
@@ -73,6 +74,8 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
             displayError(error)
         }
     }
+
+    data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
 
     return (
         <>
