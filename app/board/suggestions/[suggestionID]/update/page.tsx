@@ -50,7 +50,9 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
                 if (data !== null) {
-                    data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+                    if (typeof window !== 'undefined') {
+                        data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : alert('hi')
+                    }
                 }
             } else {
                 console.log("No such document!");
