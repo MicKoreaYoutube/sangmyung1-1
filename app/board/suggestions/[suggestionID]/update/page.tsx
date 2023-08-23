@@ -49,22 +49,18 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
-                if (data !== null) {
-                    if (typeof window !== 'undefined') {
-                        data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? alert('hihi') : alert('hi')
-                    }
-                } else {
-                    if (typeof window !== 'undefined') {
-                        alert("시발")
-                    }
-                }
             } else {
                 console.log("No such document!");
             }
         }
         fetchSingleData();
+        if (data !== null) {
+            data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+        } else {
+            console.log('시발에러')
+        }
     }, []);
-    
+
     const updateDocument = async () => {
         const docRef = doc(db, "suggestions", params.suggestionID)
         const currentDate = new Date();
@@ -94,11 +90,11 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                 <div className="grid w-full items-center gap-4">
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="name">제목</Label>
-                                        <Input ref={title} placeholder="제목을 입력하세요..." max={127} defaultValue={data.title}/>
+                                        <Input ref={title} placeholder="제목을 입력하세요..." max={127} defaultValue={data.title} />
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="message-2">건의 할 내용</Label>
-                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content} rows={8}/>
+                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content} rows={8} />
                                         <p className="text-sm text-muted-foreground">
                                             건의하기 버튼을 누르실 경우, 당신은 {" "}
                                             <Link
@@ -114,7 +110,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                         <Label htmlFor="framework">공개 범위</Label>
                                         <Select>
                                             <SelectTrigger id="framework">
-                                                <SelectValue placeholder="공개 범위 지정하기" ref={status}/>
+                                                <SelectValue placeholder="공개 범위 지정하기" ref={status} />
                                             </SelectTrigger>
                                             <SelectContent position="popper">
                                                 <SelectItem value="all">전체</SelectItem>
