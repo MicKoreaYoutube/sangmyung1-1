@@ -49,8 +49,8 @@ export default function IndexPage() {
                 const cutEmail = user.email.slice(0, 5)
                 const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                 const currentDate = new Date(); 
-                const status_list = { 전체: "all", 익명: "anonymous" }
-                const statusValue: "전체" | "익명" = status.current.innerHTML
+                const status_list = { 공개: "all", 익명: "anonymous" }
+                const statusValue: "공개" | "익명" = status.current.innerHTML
                 const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                 try {
                     const newDocRef = await addDoc(collectionRef, newData);
