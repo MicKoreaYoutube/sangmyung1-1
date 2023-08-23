@@ -68,34 +68,38 @@ export default function IndexPage() {
                 <nav className="flex flex-col space-x-2 w-full">
                   {suggestionsList.map((suggestion, index) => (
                     suggestion.status !== "delete" ? (
-                      <div className="flex justify-between" key={index}>
-                        <Link href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                          <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold tracking-tighter">{suggestion.title}</h1>
-                        </Link>
-                        <div className="flex flex-row space-x-3">
-                          <DropdownMenu>
-                            <DropdownMenuTrigger asChild>
-                              <Button variant="outline">⋮</Button>
-                            </DropdownMenuTrigger>
-                            <DropdownMenuContent className="w-1">
-                              <DropdownMenuGroup>
-                                <Link href={`/board/suggestions/${suggestion.id}/update`}>
-                                  <DropdownMenuItem>
-                                    <span>수정</span>
-                                  </DropdownMenuItem>
-                                </Link>
-                                <Link href={`/board/suggestions/${suggestion.id}/delete`}>
-                                  <DropdownMenuItem>
-                                    <span>삭제</span>
-                                  </DropdownMenuItem>
-                                </Link>
-                              </DropdownMenuGroup>
-                            </DropdownMenuContent>
-                          </DropdownMenu>
+                      <>
+                        <div className="flex justify-between" key={index}>
+                          <Link href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
+                            <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold tracking-tighter">{suggestion.title}</h1>
+                          </Link>
+                          {suggestion.author.slice(0, 5) == userInfo.email.slice(0, 5) ? (
+                              <div className="flex flex-row space-x-3">
+                                <DropdownMenu>
+                                  <DropdownMenuTrigger asChild>
+                                    <Button variant="outline">⋮</Button>
+                                  </DropdownMenuTrigger>
+                                  <DropdownMenuContent className="w-1">
+                                    <DropdownMenuGroup>
+                                      <Link href={`/board/suggestions/${suggestion.id}/update`}>
+                                        <DropdownMenuItem>
+                                          <span>수정</span>
+                                        </DropdownMenuItem>
+                                      </Link>
+                                      <Link href={`/board/suggestions/${suggestion.id}/delete`}>
+                                        <DropdownMenuItem>
+                                          <span>삭제</span>
+                                        </DropdownMenuItem>
+                                      </Link>
+                                    </DropdownMenuGroup>
+                                  </DropdownMenuContent>
+                                </DropdownMenu>
+                              </div>
+                            ) : null}
                         </div>
                         <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
                         <Separator className="my-2" />
-                      </div>
+                      </>
                     ) : null
                   ))}
                 </nav>
