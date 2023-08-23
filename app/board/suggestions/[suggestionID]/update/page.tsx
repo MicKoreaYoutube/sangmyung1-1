@@ -75,7 +75,9 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         }
     }
 
-    data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+    console.log(data)
+
+    // data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
 
     return (
         <>
