@@ -49,18 +49,12 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
-                data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
             } else {
                 console.log("No such document!");
             }
         }
         fetchSingleData();
     }, []);
-
-    function formatTimestamp(timestamp: Timestamp) {
-        const dateObject = new Date(timestamp.seconds * 1000);
-        return dateObject.toLocaleString();
-    }
 
     const updateDocument = async () => {
         const docRef = doc(db, "suggestions", params.suggestionID)
@@ -78,6 +72,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     return (
         <>
+            {data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()}
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
                 <Card>
@@ -95,7 +90,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="message-2">건의 할 내용</Label>
-                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content}/>
+                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content} rows={8}/>
                                         <p className="text-sm text-muted-foreground">
                                             건의하기 버튼을 누르실 경우, 당신은 {" "}
                                             <Link
