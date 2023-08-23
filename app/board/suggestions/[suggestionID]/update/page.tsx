@@ -49,8 +49,9 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
-                console.log(data)
-                data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+                if (data !== null) {
+                    data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+                }
             } else {
                 console.log("No such document!");
             }
