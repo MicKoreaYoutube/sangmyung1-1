@@ -83,6 +83,10 @@ export default function IndexPage() {
                                 <Input ref={title} placeholder="제목을 입력하세요..." max={127} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
+                                <Label htmlFor="message-2">건의 할 내용</Label>
+                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} />
+                            </div>
+                            <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="framework">익명 여부</Label>
                                 <Select>
                                     <SelectTrigger id="framework">
@@ -93,10 +97,6 @@ export default function IndexPage() {
                                         <SelectItem value="anonymous">익명</SelectItem>
                                     </SelectContent>
                                 </Select>
-                            </div>
-                            <div className="flex flex-col space-y-1.5">
-                                <Label htmlFor="message-2">건의 할 내용</Label>
-                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} />
                                 <p className="text-sm text-muted-foreground">
                                     건의하기 버튼을 누르실 경우, 당신은 {" "}
                                     <Link
