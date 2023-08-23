@@ -73,7 +73,7 @@ export default function IndexPage() {
                           <Link href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
                             <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold tracking-tighter">{suggestion.title}</h1>
                           </Link>
-                          {suggestion.author.slice(0, 5) == userInfo.email.slice(0, 5) ? (
+                          {suggestion.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? (
                               <div className="flex flex-row space-x-3">
                                 <DropdownMenu>
                                   <DropdownMenuTrigger asChild>
@@ -107,7 +107,6 @@ export default function IndexPage() {
                 <p>Loading...</p>
               )}
             </div>
-
           </CardContent>
           <CardFooter className="flex justify-end">
             <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+나도 건의하기</Link>
