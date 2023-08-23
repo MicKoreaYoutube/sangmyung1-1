@@ -49,6 +49,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
+                data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
             } else {
                 console.log("No such document!");
             }
@@ -74,10 +75,6 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
             displayError(error)
         }
     }
-
-    console.log(data)
-
-    // data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
 
     return (
         <>
