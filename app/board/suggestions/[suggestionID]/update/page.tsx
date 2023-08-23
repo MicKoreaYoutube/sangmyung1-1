@@ -49,13 +49,15 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
+                console.log(data)
+                data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
             } else {
                 console.log("No such document!");
             }
         }
         fetchSingleData();
     }, []);
-
+    
     const updateDocument = async () => {
         const docRef = doc(db, "suggestions", params.suggestionID)
         const currentDate = new Date();
@@ -72,7 +74,6 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     return (
         <>
-            {data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()}
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
                 <Card>
