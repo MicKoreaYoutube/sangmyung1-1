@@ -53,6 +53,10 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                     if (typeof window !== 'undefined') {
                         data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? alert('hihi') : alert('hi')
                     }
+                } else {
+                    if (typeof window !== 'undefined') {
+                        alert("시발")
+                    }
                 }
             } else {
                 console.log("No such document!");
