@@ -64,7 +64,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                         <>
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">{data.title}</CardTitle>
-                                <CardDescription className="font-SUITE-Regular md:text-2xl">{data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
+                                <CardDescription className="font-SUITE-Regular md:text-2xl">{data.status == "anonymous" ? "익명" : data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-lg font-SUITE-Regular whitespace-pre-wrap">{data.content}</p>

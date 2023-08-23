@@ -51,7 +51,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                 setData({ id: docSnap.id, ...docSnap.data() });
                 if (data !== null) {
                     if (typeof window !== 'undefined') {
-                        data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : alert('hi')
+                        data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? alert('hihi') : alert('hi')
                     }
                 }
             } else {
