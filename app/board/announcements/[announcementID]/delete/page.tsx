@@ -3,7 +3,8 @@
 import { displayError } from "@/public/js/function";
 
 import { doc, updateDoc } from "firebase/firestore";
-import { db } from "@/public/js/firebase";
+import { db, userInfo } from "@/public/js/firebase";
+import { accessDenied } from "@/public/js/function";
 import React, { useRef, useEffect } from 'react';
 
 import { Button } from "@/components/ui/button"
@@ -51,6 +52,10 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
 
     return (
         <>
+            {userInfo ? (
+                userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+            ) : accessDenied()
+            }
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline" ref={deleteData} className="hidden">Show Dialog</Button>

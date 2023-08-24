@@ -5,7 +5,8 @@ import Link from "next/link"
 import { displayError } from "@/public/js/function";
 
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { db, auth } from "@/public/js/firebase";
+import { db, auth, userInfo } from "@/public/js/firebase";
+import { accessDenied } from "@/public/js/function";
 import React, { useState, useRef } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -59,6 +60,10 @@ export default function IndexPage() {
 
     return (
         <>
+            {userInfo ? (
+                userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+            ) : accessDenied()
+            }
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 작성하기</h1>
                 <Card>

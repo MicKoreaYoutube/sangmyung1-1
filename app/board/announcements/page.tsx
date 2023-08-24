@@ -3,7 +3,7 @@
 import Link from "next/link"
 
 import { collection, getDocs, orderBy, query } from "firebase/firestore";
-import { db } from "@/public/js/firebase";
+import { db, userInfo } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
 
 import { ScrollArea } from "@/components/ui/scroll-area"
@@ -137,9 +137,15 @@ export default function IndexPage() {
               )}
             </div>
           </CardContent>
-          <CardFooter className="flex justify-end">
-            <Link href="/board/announcements/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+공지사항 추가하기</Link>
-          </CardFooter>
+          {userInfo ? (
+            userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? (
+              <CardFooter className="flex justify-end">
+                <Link href="/board/announcements/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+공지사항 추가하기</Link>
+              </CardFooter>
+            ) : null
+          ) : null
+          }
+
         </Card>
       </section >
     </>
