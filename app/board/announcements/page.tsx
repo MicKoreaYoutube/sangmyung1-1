@@ -91,7 +91,7 @@ export default function IndexPage() {
             <CardDescription className="font-SUITE-Regular md:text-2xl">관리자가 올린 공지사항입니다! 중요한 내용이 있을 수 있으니 자주자주 확인해주세요!</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="p-4">
+            <div className="p-1 md:p-4">
               {announcementsList?.length ? (
                 <nav className="flex flex-col space-x-2 w-full">
                   {announcementsList.map((announcements, index) => {

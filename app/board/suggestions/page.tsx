@@ -63,7 +63,7 @@ export default function IndexPage() {
             <CardDescription className="font-SUITE-Regular md:text-2xl">최근에 올라온 건의들 입니다!</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="p-4">
+            <div className="p-1 md:p-4">
               {suggestionsList?.length ? (
                 <nav className="flex flex-col space-x-2 w-full">
                   {suggestionsList.map((suggestion, index) => (
