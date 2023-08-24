@@ -1,5 +1,3 @@
-import '@/styles/fonts.css'
-
 export default function IndexPage() {
   return (
     <>
