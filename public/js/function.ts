@@ -28,7 +28,7 @@ export function logouted() {
         } else {
             if (typeof window !== 'undefined') {
                 alert('로그인을 하셔야 접속 하실 수 있습니다.')
-                history.go(-1)
+                location.href = '/'
             }
         }
     });
