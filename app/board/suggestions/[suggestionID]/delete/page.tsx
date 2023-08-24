@@ -2,9 +2,10 @@
 
 import { displayError } from "@/public/js/function";
 
-import { doc, updateDoc } from "firebase/firestore";
-import { db } from "@/public/js/firebase";
-import React, { useRef, useEffect } from 'react';
+import { doc, updateDoc, getDoc } from "firebase/firestore";
+import { db, userInfo } from "@/public/js/firebase";
+import { accessDenied } from "@/public/js/function";
+import React, { useRef, useEffect, useState } from 'react';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -38,6 +39,22 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         location.href = '/board/suggestions'
     }
 
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        async function fetchSingleData() {
+            const docRef = doc(db, "suggestions", params.suggestionID);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setData({ id: docSnap.id, ...docSnap.data() });
+            } else {
+                console.log("No such document!");
+            }
+        }
+        fetchSingleData();
+    }, []);
+
     const forceDelete = async () => {
         const docRef = doc(db, "suggestions", params.suggestionID)
         const newData = { status: "delete" };
@@ -51,6 +68,10 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     return (
         <>
+            {userInfo ? (
+                data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+            ) : accessDenied()
+            }
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline" ref={deleteData} className="hidden">Show Dialog</Button>
