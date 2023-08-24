@@ -37,6 +37,6 @@ export function logouted() {
 export function accessDenied() {
     if (typeof window !== 'undefined') {
         alert('권한이 부족합니다.')
-        history.go(-1)
+        location.href = '/'
     }
 }

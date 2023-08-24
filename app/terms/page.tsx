@@ -1,8 +1,3 @@
-import '@/styles/fonts.css'
-
-import Link from 'next/link'
-import { Button, buttonVariants } from "@/components/ui/button"
-
 export default function IndexPage() {
   return (
     <>
@@ -39,7 +34,7 @@ export default function IndexPage() {
           제 9조 ①제 7조, 제 8조의 행위를 3회 이상 한 경우 게시판과 댓글에서 전부 영구 정지에 처한다.<br />
           ②다른 사람의 명의를 도용하여 다른 사람이 행위를 일으킨 것처럼 하는 행위를 할 경우에도 영구 정지에 처한다.<br />
           제 10조 규칙 제 12조에 따라 영구 정지를 감형 받은 경우에도 이후 재범을 할 경우 가석방 없는 영구 정지에 처한다.<br />
-          제 11조 웹사이트에 운영에 방해되는 행위(예. 웹사이트 해킹, 스크립트 공격)에 대하여는 해당 행위를 한 IP와 유저를 웹사이트에서 차단한다.<br />
+          제 11조 웹사이트에 운영에 방해되는 행위(예. 웹사이트 해킹, 스크립트 공격, 버그 악용)에 대하여는 최소 가석방 없는 영구 정지에 처한다.<br />
           <br />
           제 4장 감형의 성립과 사유<br />
           제 12조 중범죄에 해당하여 선고받은 1번과 2번, 형의 길이가 있는 제 6조 3번과 4번은 감형을 받아들이지 않는다.<br />

@@ -71,7 +71,7 @@ export default function IndexPage() {
                       <>
                         <div className="flex justify-between" key={index}>
                           <Link href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                            <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold tracking-tighter">{suggestion.title}</h1>
+                            <h1 className="text-xl md:text-3xl block font-KBO-Dia-Gothic_bold tracking-tighter inline">{suggestion.title}</h1>
                           </Link>
                           {suggestion.author.slice(0, 5) == userInfo?.email.slice(0, 5) || userInfo?.email.slice(0, 5) == "10103" || userInfo?.email.slice(0, 5) == "10132" ? (
                               <div className="flex flex-row space-x-3">

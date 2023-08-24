@@ -26,8 +26,6 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
-            } else {
-                console.log("No such document!");
             }
         }
         fetchSingleData();

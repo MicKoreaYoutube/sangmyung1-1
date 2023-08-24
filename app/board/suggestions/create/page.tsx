@@ -2,10 +2,10 @@
 
 import Link from "next/link"
 
-import { displayError } from "@/public/js/function";
+import { displayError, logouted } from "@/public/js/function";
 
 import { collection, addDoc, Timestamp } from "firebase/firestore";
-import { db, auth } from "@/public/js/firebase";
+import { db, auth, userInfo } from "@/public/js/firebase";
 import React, { useRef } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
@@ -69,6 +69,7 @@ export default function IndexPage() {
 
     return (
         <>
+            {userInfo ? null : logouted()}
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
                 <Card>
