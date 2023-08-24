@@ -74,28 +74,28 @@ export default function IndexPage() {
                             <h1 className="text-xl md:text-3xl font-KBO-Dia-Gothic_bold tracking-tighter inline-block">{suggestion.title}</h1>
                           </Link>
                           {suggestion.author.slice(0, 5) == userInfo?.email.slice(0, 5) || userInfo?.email.slice(0, 5) == "10103" || userInfo?.email.slice(0, 5) == "10132" ? (
-                              <div className="flex flex-row space-x-3">
-                                <DropdownMenu>
-                                  <DropdownMenuTrigger asChild>
-                                    <Button variant="outline">⋮</Button>
-                                  </DropdownMenuTrigger>
-                                  <DropdownMenuContent className="w-1">
-                                    <DropdownMenuGroup>
-                                      <Link href={`/board/suggestions/${suggestion.id}/update`}>
-                                        <DropdownMenuItem>
-                                          <span>수정</span>
-                                        </DropdownMenuItem>
-                                      </Link>
-                                      <Link href={`/board/suggestions/${suggestion.id}/delete`}>
-                                        <DropdownMenuItem>
-                                          <span>삭제</span>
-                                        </DropdownMenuItem>
-                                      </Link>
-                                    </DropdownMenuGroup>
-                                  </DropdownMenuContent>
-                                </DropdownMenu>
-                              </div>
-                            ) : null}
+                            <div className="flex flex-row space-x-3">
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button variant="outline">⋮</Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className="w-1">
+                                  <DropdownMenuGroup>
+                                    <Link href={`/board/suggestions/${suggestion.id}/update`}>
+                                      <DropdownMenuItem>
+                                        <span>수정</span>
+                                      </DropdownMenuItem>
+                                    </Link>
+                                    <Link href={`/board/suggestions/${suggestion.id}/delete`}>
+                                      <DropdownMenuItem>
+                                        <span>삭제</span>
+                                      </DropdownMenuItem>
+                                    </Link>
+                                  </DropdownMenuGroup>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </div>
+                          ) : null}
                         </div>
                         <span className="text-lg text-gray-700 font-SUITE-Regular">{suggestion.content.slice(0, 40)}...</span>
                         <Separator className="my-2" />
@@ -108,9 +108,11 @@ export default function IndexPage() {
               )}
             </div>
           </CardContent>
-          <CardFooter className="flex justify-end">
-            <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+나도 건의하기</Link>
-          </CardFooter>
+          {userInfo ? (
+            <CardFooter className="flex justify-end">
+              <Link href="/board/suggestions/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+나도 건의하기</Link>
+            </CardFooter>
+          ) : null}
         </Card>
       </section >
     </>

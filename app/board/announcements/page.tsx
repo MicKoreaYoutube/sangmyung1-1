@@ -91,53 +91,51 @@ export default function IndexPage() {
             <CardDescription className="font-SUITE-Regular md:text-2xl">관리자가 올린 공지사항입니다! 중요한 내용이 있을 수 있으니 자주자주 확인해주세요!</CardDescription>
           </CardHeader>
           <CardContent>
-            <div className="p-1 md:p-4">
-              {announcementsList?.length ? (
-                <nav className="flex flex-col space-x-2 w-full">
-                  {announcementsList.map((announcements, index) => {
-                    if (announcements.status !== "delete") {
-                      return (
-                        <>
-                          <div className="flex justify-between">
-                            <Link key={index} href={`/board/announcements/${announcements.id}`} className="hover:underline hover:underline-offset-2 w-full">
-                              <h1 className="text-xl md:text-3xl font-KBO-Dia-Gothic_bold tracking-tighter inline-block">{announcements.title}</h1>
-                            </Link>
-                            {announcements.author.slice(0, 5) == userInfo?.email.slice(0, 5) || userInfo?.email.slice(0, 5) == "10103" || userInfo?.email.slice(0, 5) == "10132" ? (
-                              <div className="flex flex-row space-x-3">
-                                <DropdownMenu>
-                                  <DropdownMenuTrigger asChild>
-                                    <Button variant="outline">⋮</Button>
-                                  </DropdownMenuTrigger>
-                                  <DropdownMenuContent className="w-1">
-                                    <DropdownMenuGroup>
-                                      <Link href={`/board/announcements/${announcements.id}/update`}>
-                                        <DropdownMenuItem>
-                                          <span>수정</span>
-                                        </DropdownMenuItem>
-                                      </Link>
-                                      <Link href={`/board/announcements/${announcements.id}/delete`}>
-                                        <DropdownMenuItem>
-                                          <span>삭제</span>
-                                        </DropdownMenuItem>
-                                      </Link>
-                                    </DropdownMenuGroup>
-                                  </DropdownMenuContent>
-                                </DropdownMenu>
-                              </div>
-                            ) : null}
-                          </div>
-                          <span className="text-lg text-gray-700 font-SUITE-Regular">{announcements.content.slice(0, 40)}...</span>
-                          <Separator className="my-2" />
-                        </>
-                      );
-                    }
-                    return null;
-                  })}
-                </nav>
-              ) : (
-                <p>Loading...</p>
-              )}
-            </div>
+            {announcementsList?.length ? (
+              <nav className="flex flex-col space-x-2 w-full">
+                {announcementsList.map((announcements, index) => {
+                  if (announcements.status !== "delete") {
+                    return (
+                      <>
+                        <div className="flex justify-between">
+                          <Link key={index} href={`/board/announcements/${announcements.id}`} className="hover:underline hover:underline-offset-2 w-full">
+                            <h1 className="text-xl md:text-3xl font-KBO-Dia-Gothic_bold tracking-tighter inline-block">{announcements.title}</h1>
+                          </Link>
+                          {announcements.author.slice(0, 5) == userInfo?.email.slice(0, 5) || userInfo?.email.slice(0, 5) == "10103" || userInfo?.email.slice(0, 5) == "10132" ? (
+                            <div className="flex flex-row space-x-3">
+                              <DropdownMenu>
+                                <DropdownMenuTrigger asChild>
+                                  <Button variant="outline">⋮</Button>
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent className="w-1">
+                                  <DropdownMenuGroup>
+                                    <Link href={`/board/announcements/${announcements.id}/update`}>
+                                      <DropdownMenuItem>
+                                        <span>수정</span>
+                                      </DropdownMenuItem>
+                                    </Link>
+                                    <Link href={`/board/announcements/${announcements.id}/delete`}>
+                                      <DropdownMenuItem>
+                                        <span>삭제</span>
+                                      </DropdownMenuItem>
+                                    </Link>
+                                  </DropdownMenuGroup>
+                                </DropdownMenuContent>
+                              </DropdownMenu>
+                            </div>
+                          ) : null}
+                        </div>
+                        <span className="text-lg text-gray-700 font-SUITE-Regular">{announcements.content.slice(0, 40)}...</span>
+                        <Separator className="my-2" />
+                      </>
+                    );
+                  }
+                  return null;
+                })}
+              </nav>
+            ) : (
+              <p>Loading...</p>
+            )}
           </CardContent>
           {userInfo ? (
             userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? (
@@ -145,9 +143,7 @@ export default function IndexPage() {
                 <Link href="/board/announcements/create" className={buttonVariants({ variant: "default" }) + "font-SUITE-Regular px-2"}>+공지사항 추가하기</Link>
               </CardFooter>
             ) : null
-          ) : null
-          }
-
+          ) : null}
         </Card>
       </section >
     </>
