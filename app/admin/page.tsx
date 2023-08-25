@@ -2,7 +2,8 @@
 
 import Link from "next/link"
 
-import { ChevronRight } from 'lucide-react';
+import { userInfo } from "@/public/js/firebase"
+import { accessDenied } from "@/public/js/function";
 
 import { collection, doc, getDoc, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
@@ -20,11 +21,36 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import {
+  Alert,
+  AlertDescription,
+  AlertTitle,
+} from "@/components/ui/alert"
 
 export default function IndexPage() {
   return (
     <>
-      <h1>Hallu</h1>
+      {userInfo ? (
+        userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+      ) : accessDenied()
+      }
+      <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>비밀번호 입력</CardTitle>
+        <CardDescription>관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
+      </CardHeader>
+      <CardContent>
+          <div className="grid w-full items-center gap-4">
+            <div className="flex flex-col space-y-1.5">
+              <Label htmlFor="pwd">비밀번호 입력</Label>
+              <Input placeholder="비밀번호를 입력해주세요..." />
+            </div>
+          </div>
+      </CardContent>
+      <CardFooter className="flex justify-end">
+        <Button>접속하기</Button>
+      </CardFooter>
+    </Card>
     </>
   )
 }
