@@ -7,8 +7,9 @@ export default function IndexPage() {
             이전 역사 미 작성<br />
             <br />
             2023-08-25 beta 0.5.0 - 로그인 시스템, 공지사항 시스템, 건의 사항 시스템, 이용약관, 릴리스노트 추가<br />
+            2023-08-26 beta 0.5.1 - deploy 안 되는 버그 수정<br />
             <br />
-            더 업데이트 예쩡
+            더 업데이트 예정<br />
         </p>
       </section>
     </>

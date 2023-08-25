@@ -63,6 +63,17 @@ export function SiteFooter() {
                                 </li>
                             </ul>
                         </div>
+                        <div>
+                            <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">개발</h2>
+                            <ul className="text-gray-500 dark:text-gray-400 font-medium">
+                                <li>
+                                    <Link href="https://github.com/MicKoreaYoutube/sangmyung1-1" className="hover:underline hover:text-dark">깃허브</Link>
+                                </li>
+                                <li>
+                                    <Link href="/releaseNote" className="hover:underline hover:text-dark">릴리스 노트</Link>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
                 <hr className="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
