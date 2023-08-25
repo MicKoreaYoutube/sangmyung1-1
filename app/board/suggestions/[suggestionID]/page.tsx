@@ -62,7 +62,9 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <Card className="justify-start">
-                <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute top-0 right-0"}><ChevronRight /></Link>
+                    <div className="flex justify-end">
+                        <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute"}><ChevronRight /></Link>
+                    </div>
                     {data ? (
                         <>
                             <CardHeader>
