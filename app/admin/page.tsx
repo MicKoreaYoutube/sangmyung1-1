@@ -114,7 +114,10 @@ export default function IndexPage() {
       });
 
       setUserData(data)
+      
     }
+
+    getAllData()
 
   }, []);
 
