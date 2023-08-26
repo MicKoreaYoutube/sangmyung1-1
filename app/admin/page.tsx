@@ -110,7 +110,7 @@ export default function IndexPage() {
   async function TempFunc(user: any) {
     try {
       const docRef = doc(db, "user", user);
-      await setDoc(docRef, {userBanStartTime: null, userBanEndTime: null});
+      await setDoc(docRef, {userBanStartTime: Timestamp.fromDate(currentDate), userBanEndTime: Timestamp.fromDate(currentDate)});
       console.log("Document added or updated successfully!");
     } catch (error) {
       console.error("Error adding document:", error);
