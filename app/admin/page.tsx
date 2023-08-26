@@ -132,8 +132,8 @@ export default function IndexPage() {
                     <TableHeader>
                       <TableRow>
                         <TableHead className="w-40">학번이름</TableHead>
-                        <TableHead className="w-80 hidden md:inline">정지 시작 시간</TableHead>
-                        <TableHead className="w-80 hidden md:inline">정지 종료 시간</TableHead>
+                        <TableHead className="w-80">정지 시작 시간</TableHead>
+                        <TableHead className="w-80">정지 종료 시간</TableHead>
                         <TableHead>정지 횟수</TableHead>
                         <TableHead className="text-right">{" "}</TableHead>
                       </TableRow>
@@ -142,8 +142,8 @@ export default function IndexPage() {
                       {userData.map((user) => (
                         <TableRow key={user.id}>
                           <TableCell>{user.id}</TableCell>
-                          <TableCell className="hidden md:inline">{user.userBanStartTime}</TableCell>
-                          <TableCell className="hidden md:inline">{user.userBanEndTime}</TableCell>
+                          <TableCell>{user.userBanStartTime}</TableCell>
+                          <TableCell>{user.userBanEndTime}</TableCell>
                           <TableCell>{user.userBanCount}</TableCell>
                           <TableCell className="place-self-end"><Button>정지시키기</Button></TableCell>
                         </TableRow>
