@@ -35,7 +35,7 @@ export default function IndexPage() {
     <>
       {userInfo ? (
         userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
-      ) : console.log("tlqkf")
+      ) : accessDenied()
       }
       <Card className="place-element-center m-4">
       <CardHeader>
