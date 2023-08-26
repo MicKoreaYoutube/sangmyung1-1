@@ -7,8 +7,7 @@ import { accessDenied, displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site";
 
-import { collection, getDocs, updateDoc } from "firebase/firestore";
-import { setDoc, Timestamp, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -89,24 +88,6 @@ export default function IndexPage() {
 
   }, []);
 
-  const currentDate = new Date()
-  async function TempFunc(user: any) {
-    try {
-      const docRef = doc(db, "user", user);
-      await updateDoc(docRef, {userBanCount: 0});
-      console.log("Document added or updated successfully!");
-    } catch (error) {
-      console.error("Error adding document:", error);
-    }
-  }
-  function addUser() {
-    siteConfig.member.forEach((user) => {
-      TempFunc(user)
-    })
-  }
-
-  addUser()
-
   return (
     <>
       <Card className="place-element-center m-4" ref={pwdCard}>
@@ -163,7 +144,7 @@ export default function IndexPage() {
                           <TableCell>{user.id}</TableCell>
                           <TableCell>{user.userBanStartTime}</TableCell>
                           <TableCell>{user.userBanEndTime}</TableCell>
-                          <TableCell>0</TableCell>
+                          <TableCell>{user.userBanCount}</TableCell>
                           <TableCell className="place-self-end"><Button>정지시키기</Button></TableCell>
                         </TableRow>
                       ))}
