@@ -35,7 +35,7 @@ export default function IndexPage() {
     userInfo ? (
       userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
     ) : accessDenied()
-  }, 500);
+  }, 100);
   
   return (
     <>

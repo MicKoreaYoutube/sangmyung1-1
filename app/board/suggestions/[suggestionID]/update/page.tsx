@@ -80,11 +80,11 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
+                {data ? (
                 <Card>
                     <div className="flex justify-end">
                         <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
                     </div>
-                    {data ? (
                         <>
                             {userInfo ? (
                                 data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
@@ -138,10 +138,10 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                 <Button className="font-SUITE-Regular" onClick={updateDocument}>수정하기</Button>
                             </CardFooter>
                         </>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
                 </Card>
+                ) : (
+                    <p>Loading...</p>
+                )}
             </section>
         </>
     )

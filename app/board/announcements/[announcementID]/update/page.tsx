@@ -79,11 +79,11 @@ export default function IndexPage({ params }: { params: { announcementID: string
             }
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 수정하기</h1>
+                {data ? (
                 <Card>
                     <div className="flex justify-end">
                         <Link href="/board/announcements" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
                     </div>
-                    {data ? (
                         <>
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">공지사항 수정입력하기</CardTitle>
@@ -111,10 +111,10 @@ export default function IndexPage({ params }: { params: { announcementID: string
                                 <Button className="font-SUITE-Regular" onClick={updateDocument}>수정하기</Button>
                             </CardFooter>
                         </>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
                 </Card>
+                ) : (
+                    <p>Loading...</p>
+                )}
             </section>
         </>
     )
