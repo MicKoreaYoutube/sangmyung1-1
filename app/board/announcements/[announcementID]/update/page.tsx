@@ -45,7 +45,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
 
     useEffect(() => {
         async function fetchSingleData() {
-            const docRef = doc(db, "anouncements", params.announcementID);
+            const docRef = doc(db, "announcements", params.announcementID);
             const docSnap = await getDoc(docRef);
 
             if (docSnap.exists()) {
