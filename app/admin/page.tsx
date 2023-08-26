@@ -43,7 +43,7 @@ export default function IndexPage() {
   const userTable = useRef(null)
   const pwdCard = useRef(null)
 
-  const [adminState, adminStateChanger] = useState(true)
+  const [adminState, adminStateChanger] = useState(false)
 
   const invoices = [
     {
@@ -100,19 +100,19 @@ export default function IndexPage() {
 
   function accessAdmin() {
     pwd.current.value == "MTxgdTBrl59RGGKV8OtH" ? (
-      console.log("Success!")
+      adminStateChanger(true)
     ) : displayError("옳지 않은 비밀번호입니다.")
   }
   return (
     <>
       <Card className="place-element-center m-4" ref={pwdCard}>
-        {adminState == true ? (
+        {adminState == false ? (
           <>
             <CardHeader>
-              <CardTitle>비밀번호 입력</CardTitle>
-              <CardDescription>관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
+              <CardTitle className="KBO-Dia-Gothic_bold">비밀번호 입력</CardTitle>
+              <CardDescription className="SUITE-Regular">관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="SUITE-Regular">
               <div className="flex flex-col space-y-1.5">
                 <div className="grid w-full items-center gap-4">
                   <div className="flex flex-col space-y-1.5">
@@ -128,19 +128,18 @@ export default function IndexPage() {
                 </AlertDescription>
               </Alert>
             </CardContent>
-            <CardFooter className="flex justify-end">
+            <CardFooter className="flex justify-end SUITE-Regular">
               <Button onClick={accessAdmin}>접속하기</Button>
             </CardFooter>
           </>
         ) : (
           <>
             <CardHeader>
-              <CardTitle>관리자 페이지</CardTitle>
-              <CardDescription>관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
+              <CardTitle className="KBO-Dia-Gothic_bold">관리자 페이지</CardTitle>
+              <CardDescription className="SUITE-Regular">관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="SUITE-Regular">
               <Table>
-                <TableCaption>A list of your recent invoices.</TableCaption>
                 <TableHeader>
                   <TableRow>
                     <TableHead className="w-[100px]">Invoice</TableHead>
