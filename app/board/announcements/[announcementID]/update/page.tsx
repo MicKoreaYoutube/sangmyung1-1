@@ -65,7 +65,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
     const updateDocument = async () => {
         const docRef = doc(db, "anouncements", params.announcementID)
         const currentDate = new Date();
-        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value };
+        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, title: title.current.value };
         try {
             await updateDoc(docRef, newData);
             location.href = '/board/anouncements'
