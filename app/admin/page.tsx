@@ -34,7 +34,7 @@ export default function IndexPage() {
         userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
       ) : accessDenied()
       }
-      <Card className="w-[350px]">
+      <Card className="place-element-center m-4">
       <CardHeader>
         <CardTitle>비밀번호 입력</CardTitle>
         <CardDescription>관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
