@@ -63,14 +63,18 @@ export default function IndexPage({ params }: { params: { announcementID: string
     }
 
     const updateDocument = async () => {
-        const docRef = doc(db, "anouncements", params.announcementID)
-        const currentDate = new Date();
-        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, title: title.current.value };
-        try {
-            await updateDoc(docRef, newData);
-            location.href = '/board/anouncements'
-        } catch (error) {
-            displayError(error)
+        if (title.current.value == null || content.current.innerHTML == null) {
+            displayError("모든 칸을 다 채워주세요.")
+        } else {
+            const docRef = doc(db, "anouncements", params.announcementID)
+            const currentDate = new Date();
+            const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, title: title.current.value };
+            try {
+                await updateDoc(docRef, newData);
+                location.href = '/board/anouncements'
+            } catch (error) {
+                displayError(error)
+            }
         }
     }
 

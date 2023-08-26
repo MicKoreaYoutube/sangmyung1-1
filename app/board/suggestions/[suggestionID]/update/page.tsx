@@ -57,16 +57,20 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
     }, []);
 
     const updateDocument = async () => {
-        const docRef = doc(db, "suggestions", params.suggestionID)
-        const currentDate = new Date();
-        const status_list = { 전체: "onlyStudent", 학생들만: "onlyAdmin", 관리자에게만: "onlyTeacher", 선생님에게만: "all", 익명: "anonymous" }
-        const statusValue: "전체" | "학생들만" | "관리자에게만" | "선생님에게만" | "익명" = status.current.innerHTML
-        const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
-        try {
-            await updateDoc(docRef, newData);
-            location.href = '/board/suggestions'
-        } catch (error) {
-            displayError(error)
+        if (title.current.value == null || content.current.innerHTML == null || status.current.innerHTML == "익명 여부") {
+            displayError("모든 칸을 다 채워주세요.")
+        } else {
+            const docRef = doc(db, "suggestions", params.suggestionID)
+            const currentDate = new Date();
+            const status_list = { 공개: "all", 익명: "anonymous" }
+            const statusValue: "공개" | "익명" = status.current.innerHTML
+            const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
+            try {
+                await updateDoc(docRef, newData);
+                location.href = '/board/suggestions'
+            } catch (error) {
+                displayError(error)
+            }
         }
     }
 
@@ -106,16 +110,13 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                         </p>
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="framework">공개 범위</Label>
+                                        <Label htmlFor="framework">익명 여부</Label>
                                         <Select>
                                             <SelectTrigger id="framework">
-                                                <SelectValue placeholder="공개 범위 지정하기" ref={status} />
+                                                <SelectValue placeholder="익명 여부" ref={status} />
                                             </SelectTrigger>
                                             <SelectContent position="popper">
                                                 <SelectItem value="all">전체</SelectItem>
-                                                <SelectItem value="onlyStudent">학생들만</SelectItem>
-                                                <SelectItem value="onlyAdmin">관리자에게만</SelectItem>
-                                                <SelectItem value="onlyTeacher">선생님에게만</SelectItem>
                                                 <SelectItem value="anonymous">익명</SelectItem>
                                             </SelectContent>
                                         </Select>
