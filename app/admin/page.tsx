@@ -40,6 +40,11 @@ import {
 
 export default function IndexPage() {
 
+  const userTable = useRef(null)
+  const pwdCard = useRef(null)
+
+  const [adminState, adminStateChanger] = useState(true)
+
   const invoices = [
     {
       invoice: "INV001",
@@ -100,51 +105,64 @@ export default function IndexPage() {
   }
   return (
     <>
-      <Card className="place-element-center m-4">
-        <CardHeader>
-          <CardTitle>비밀번호 입력</CardTitle>
-          <CardDescription>관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="flex flex-col space-y-1.5">
-            <div className="grid w-full items-center gap-4">
+      <Card className="place-element-center m-4" ref={pwdCard}>
+        {adminState == true ? (
+          <>
+            <CardHeader>
+              <CardTitle>비밀번호 입력</CardTitle>
+              <CardDescription>관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
+            </CardHeader>
+            <CardContent>
               <div className="flex flex-col space-y-1.5">
-                <Label htmlFor="pwd">비밀번호 입력</Label>
-                <Input placeholder="비밀번호를 입력해주세요..." ref={pwd} />
+                <div className="grid w-full items-center gap-4">
+                  <div className="flex flex-col space-y-1.5">
+                    <Label htmlFor="pwd">비밀번호 입력</Label>
+                    <Input placeholder="비밀번호를 입력해주세요..." ref={pwd} />
+                  </div>
+                </div>
               </div>
-            </div>
-          </div>
-          <Alert variant="destructive" className="hidden" id="error">
-            <AlertTitle>Error</AlertTitle>
-            <AlertDescription id="errorMessage">
-              Error Message
-            </AlertDescription>
-          </Alert>
-        </CardContent>
-        <CardFooter className="flex justify-end">
-          <Button onClick={accessAdmin}>접속하기</Button>
-        </CardFooter>
-        <Table>
-        <TableCaption>A list of your recent invoices.</TableCaption>
-        <TableHeader>
-          <TableRow>
-            <TableHead className="w-[100px]">Invoice</TableHead>
-            <TableHead>Status</TableHead>
-            <TableHead>Method</TableHead>
-            <TableHead className="text-right">Amount</TableHead>
-          </TableRow>
-        </TableHeader>
-        <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice}>
-              <TableCell className="font-medium">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
-              <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-            </TableRow>
-          ))}
-        </TableBody>
-      </Table>
+              <Alert variant="destructive" className="hidden" id="error">
+                <AlertTitle>Error</AlertTitle>
+                <AlertDescription id="errorMessage">
+                  Error Message
+                </AlertDescription>
+              </Alert>
+            </CardContent>
+            <CardFooter className="flex justify-end">
+              <Button onClick={accessAdmin}>접속하기</Button>
+            </CardFooter>
+          </>
+        ) : (
+          <>
+            <CardHeader>
+              <CardTitle>관리자 페이지</CardTitle>
+              <CardDescription>관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Table>
+                <TableCaption>A list of your recent invoices.</TableCaption>
+                <TableHeader>
+                  <TableRow>
+                    <TableHead className="w-[100px]">Invoice</TableHead>
+                    <TableHead>Status</TableHead>
+                    <TableHead>Method</TableHead>
+                    <TableHead className="text-right">Amount</TableHead>
+                  </TableRow>
+                </TableHeader>
+                <TableBody>
+                  {invoices.map((invoice) => (
+                    <TableRow key={invoice.invoice}>
+                      <TableCell className="font-medium">{invoice.invoice}</TableCell>
+                      <TableCell>{invoice.paymentStatus}</TableCell>
+                      <TableCell>{invoice.paymentMethod}</TableCell>
+                      <TableCell className="text-right">{invoice.totalAmount}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CardContent>
+          </>
+        )}
       </Card>
     </>
   )
