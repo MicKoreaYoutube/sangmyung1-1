@@ -103,7 +103,7 @@ export default function IndexPage() {
   }
 
   async function getAllData() {
-    const querySnapshot = await getDocs(collection(db, 'your-collection-name')); // 컬렉션 이름에 맞게 수정하세요
+    const querySnapshot = await getDocs(collection(db, 'user')); // 컬렉션 이름에 맞게 수정하세요
     const data: any = [];
   
     querySnapshot.forEach((doc) => {
