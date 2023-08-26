@@ -115,8 +115,8 @@ export default function IndexPage() {
         let userBanStartTime 
         let userBanEndTime 
 
-        userListData.userBanStartTime == null ? null : userBanStartTime = new Date(userListData.userBanStartTime.seconds * 1000);
-        userListData.userBanEndTime == null ? null : userBanEndTime = new Date(userListData.userBanEndTime.seconds * 1000);
+        userListData.userBanStartTime == null ? "해당 없음" : userBanStartTime = new Date(userListData.userBanStartTime.seconds * 1000);
+        userListData.userBanEndTime == null ? "해당 없음" : userBanEndTime = new Date(userListData.userBanEndTime.seconds * 1000);
         data.push({ 
           id: doc.id, 
           ...doc.data(),
@@ -176,18 +176,20 @@ export default function IndexPage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead className="w-[100px]">학번이름</TableHead>
+                        <TableHead>학번이름</TableHead>
                         <TableHead>정지 시작 시간</TableHead>
                         <TableHead>정지 종료 시간</TableHead>
+                        <TableHead>정지 횟수</TableHead>
                         <TableHead className="text-right">{" "}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
                       {userData.map((user) => (
                         <TableRow key={user.id}>
-                          <TableCell className="font-medium">{user.id}</TableCell>
+                          <TableCell>{user.id}</TableCell>
                           <TableCell>{user.userBanStartTime}</TableCell>
                           <TableCell>{user.userBanEndTime}</TableCell>
+                          <TableCell>0</TableCell>
                           <TableCell className="place-self-end"><Button>정지시키기</Button></TableCell>
                         </TableRow>
                       ))}
