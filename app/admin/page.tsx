@@ -31,9 +31,11 @@ export default function IndexPage() {
 
   const pwd = useRef(null)
 
-  userInfo ? (
-    userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
-  ) : accessDenied()
+  setTimeout(function() {
+    userInfo ? (
+      userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+    ) : accessDenied()
+  }, 500);
   
   return (
     <>
