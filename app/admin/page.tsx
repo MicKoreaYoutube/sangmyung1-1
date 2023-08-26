@@ -102,21 +102,21 @@ export default function IndexPage() {
     ) : displayError("옳지 않은 비밀번호입니다.")
   }
 
-  async function getAllData() {
-    const querySnapshot = await getDocs(collection(db, 'user')); // 컬렉션 이름에 맞게 수정하세요
-    const data: any = [];
-  
-    querySnapshot.forEach((doc) => {
-      data.push({ id: doc.id, ...doc.data() });
-    });
-  
-    return data;
-  }
-  
-  // 사용 예시
-  getAllData().then((data) => {
-    console.log(data); // 모든 문서 데이터 출력
-  });
+  const [userData, setUserData] = useState([])
+
+  useEffect(() => {
+    async function getAllData() {
+      const querySnapshot = await getDocs(collection(db, 'user')); // 컬렉션 이름에 맞게 수정하세요
+      const data: any = [];
+
+      querySnapshot.forEach((doc) => {
+        data.push({ id: doc.id, ...doc.data() });
+      });
+
+      setUserData(data)
+    }
+
+  }, []);
 
   return (
     <>
@@ -151,32 +151,38 @@ export default function IndexPage() {
           </>
         ) : (
           <>
-            <CardHeader>
-              <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">관리자 페이지</CardTitle>
-              <CardDescription className="font-SUITE-Regular md:text-2xl">관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
-            </CardHeader>
-            <CardContent className="font-SUITE-Regular">
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHead className="w-[100px]">학번이름</TableHead>
-                    <TableHead>정지 시작 시간</TableHead>
-                    <TableHead>정지 종료 시간</TableHead>
-                    <TableHead className="text-right">{" "}</TableHead>
-                  </TableRow>
-                </TableHeader>
-                <TableBody>
-                  {invoices.map((invoice) => (
-                    <TableRow key={invoice.invoice}>
-                      <TableCell className="font-medium">{invoice.invoice}</TableCell>
-                      <TableCell>{invoice.paymentStatus}</TableCell>
-                      <TableCell>{invoice.paymentMethod}</TableCell>
-                      <TableCell className="text-right">{invoice.totalAmount}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
+            {userData ? (
+              <>
+                <CardHeader>
+                  <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">관리자 페이지</CardTitle>
+                  <CardDescription className="font-SUITE-Regular md:text-2xl">관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
+                </CardHeader>
+                <CardContent className="font-SUITE-Regular">
+                  <Table>
+                    <TableHeader>
+                      <TableRow>
+                        <TableHead className="w-[100px]">학번이름</TableHead>
+                        <TableHead>정지 시작 시간</TableHead>
+                        <TableHead>정지 종료 시간</TableHead>
+                        <TableHead className="text-right">{" "}</TableHead>
+                      </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                      {userData.map((user) => (
+                        <TableRow key={user.id}>
+                          <TableCell className="font-medium">{user.id}</TableCell>
+                          <TableCell>{user.userBanStartTime}</TableCell>
+                          <TableCell>{user.userBanEndTime}</TableCell>
+                          <TableCell className="place-self-end"><Button>정지시키기</Button></TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </CardContent>
+              </>
+            ) : (
+              <p>Loding...</p>
+            )}
           </>
         )}
       </Card>
