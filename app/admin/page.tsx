@@ -8,7 +8,6 @@ import { accessDenied, displayError } from "@/public/js/function";
 import { siteConfig } from "@/config/site";
 
 import { collection, getDocs } from "firebase/firestore";
-import { setDoc, Timestamp, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -103,27 +102,21 @@ export default function IndexPage() {
     ) : displayError("옳지 않은 비밀번호입니다.")
   }
 
-  const Temp = useRef(null)
-
-  const currentDate = new Date()
-
-  async function TempFunc(user: any) {
-    try {
-      const docRef = doc(db, "user", user);
-      await setDoc(docRef, {userBanStartTime: null, userBanEndTime: null});
-      console.log("Document added or updated successfully!");
-    } catch (error) {
-      console.error("Error adding document:", error);
-    }
+  async function getAllData() {
+    const querySnapshot = await getDocs(collection(db, 'your-collection-name')); // 컬렉션 이름에 맞게 수정하세요
+    const data: any = [];
+  
+    querySnapshot.forEach((doc) => {
+      data.push({ id: doc.id, ...doc.data() });
+    });
+  
+    return data;
   }
-
-  function addUser() {
-    siteConfig.member.forEach((user) => {
-      TempFunc(user)
-    })
-  }
-
-  addUser()
+  
+  // 사용 예시
+  getAllData().then((data) => {
+    console.log(data); // 모든 문서 데이터 출력
+  });
 
   return (
     <>
