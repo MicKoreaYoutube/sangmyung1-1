@@ -70,8 +70,8 @@ export default function IndexPage() {
         let userBanStartTime 
         let userBanEndTime 
 
-        userListData.userBanStartTime == null ? "해당 없음" : userBanStartTime = new Date(userListData.userBanStartTime.seconds * 1000);
-        userListData.userBanEndTime == null ? "해당 없음" : userBanEndTime = new Date(userListData.userBanEndTime.seconds * 1000);
+        userBanStartTime = userListData.userBanStartTime == null ? "해당 없음" : new Date(userListData.userBanStartTime.seconds * 1000);
+        userBanEndTime = userListData.userBanEndTime == null ? "해당 없음" : new Date(userListData.userBanEndTime.seconds * 1000);
         data.push({ 
           id: doc.id, 
           ...doc.data(),
