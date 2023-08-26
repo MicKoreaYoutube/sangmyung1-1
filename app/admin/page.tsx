@@ -8,7 +8,6 @@ import { accessDenied, displayError } from "@/public/js/function";
 import { siteConfig } from "@/config/site";
 
 import { collection, getDocs } from "firebase/firestore";
-import { setDoc, Timestamp, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -111,9 +110,13 @@ export default function IndexPage() {
       const data: any = [];
 
       querySnapshot.forEach((doc) => {
-        const userPropsData = doc.data();
-        const userBanStartTime = new Date(userPropsData.userBanStartTime.seconds * 1000);
-        const userBanEndTime = new Date(userPropsData.userBanEndTime.seconds * 1000);
+        const userListData = doc.data();
+        
+        let userBanStartTime 
+        let userBanEndTime 
+
+        userListData.userBanStartTime == null ? null : userBanStartTime = new Date(userListData.userBanStartTime.seconds * 1000);
+        userListData.userBanEndTime == null ? null : userBanEndTime = new Date(userListData.userBanEndTime.seconds * 1000);
         data.push({ 
           id: doc.id, 
           ...doc.data(),
@@ -129,23 +132,6 @@ export default function IndexPage() {
     getAllData()
 
   }, []);
-
-  async function TempFunc(user: any) {
-    try {
-      const docRef = doc(db, "user", user);
-      await setDoc(docRef, {userBanStartTime: null, userBanEndTime: null});
-      console.log("Document added or updated successfully!");
-    } catch (error) {
-      console.error("Error adding document:", error);
-    }
-  }
-  function addUser() {
-    siteConfig.member.forEach((user) => {
-      TempFunc(user)
-    })
-  }
-
-  addUser()
 
   return (
     <>
