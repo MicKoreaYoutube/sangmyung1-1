@@ -49,6 +49,12 @@ export default function IndexPage() {
               <Input placeholder="비밀번호를 입력해주세요..." ref={pwd} />
             </div>
           </div>
+          <Alert variant="destructive" className="hidden" id="error">
+            <AlertTitle>Error</AlertTitle>
+            <AlertDescription id="errorMessage">
+              Error Message
+            </AlertDescription>
+          </Alert>
       </CardContent>
       <CardFooter className="flex justify-end">
         <Button>접속하기</Button>

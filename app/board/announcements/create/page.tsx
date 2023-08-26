@@ -83,7 +83,7 @@ export default function IndexPage() {
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="message-2">공지사항 내용</Label>
-                                <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." minLength={3} maxLength={1000} />
+                                <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." minLength={3} maxLength={1000} rows={8} />
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>

@@ -88,7 +88,7 @@ export default function IndexPage() {
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="message-2">건의 할 내용</Label>
-                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." minLength={3} maxLength={1000} />
+                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." minLength={3} maxLength={1000} rows={8} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="framework">익명 여부</Label>
