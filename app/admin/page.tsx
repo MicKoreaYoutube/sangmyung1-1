@@ -131,9 +131,9 @@ export default function IndexPage() {
                   <Table>
                     <TableHeader>
                       <TableRow>
-                        <TableHead>학번이름</TableHead>
-                        <TableHead>정지 시작 시간</TableHead>
-                        <TableHead>정지 종료 시간</TableHead>
+                        <TableHead className="w-40">학번이름</TableHead>
+                        <TableHead className="w-80">정지 시작 시간</TableHead>
+                        <TableHead className="w-80">정지 종료 시간</TableHead>
                         <TableHead>정지 횟수</TableHead>
                         <TableHead className="text-right">{" "}</TableHead>
                       </TableRow>
