@@ -69,7 +69,7 @@ export default function IndexPage() {
                   {suggestionsList.map((suggestion, index) => (
                     suggestion.status !== "delete" ? (
                       <>
-                        <div className="flex justify-between" key={index}>
+                        <div className="flex justify-between" key={suggestion.id}>
                           <Link href={`/board/suggestions/${suggestion.id}`} className="hover:underline hover:underline-offset-2 w-full">
                             <h1 className="text-xl md:text-3xl font-KBO-Dia-Gothic_bold tracking-tighter inline-block">{suggestion.title}</h1>
                           </Link>
