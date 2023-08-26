@@ -3,7 +3,7 @@
 import Link from "next/link"
 
 import { userInfo } from "@/public/js/firebase"
-import { accessDenied } from "@/public/js/function";
+import { accessDenied, displayError } from "@/public/js/function";
 
 import { collection, doc, getDoc, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
@@ -35,8 +35,12 @@ export default function IndexPage() {
     userInfo ? (
       userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
     ) : accessDenied()
-  }, 100);
-  
+  }, 500);
+  //MTxgdTBrl59RGGKV8OtH
+
+  function accessAdmin() {
+    pwd.current.value == "MTxgdTBrl59RGGKV8OtH" ? console.log("Success!") : displayError("옳지 않은 비밀번호입니다.")
+  }
   return (
     <>
       <Card className="place-element-center m-4">
