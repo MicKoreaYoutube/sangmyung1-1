@@ -71,7 +71,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
             const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, title: title.current.value };
             try {
                 await updateDoc(docRef, newData);
-                location.href = '/board/anouncements'
+                location.href = '/board/announcements'
             } catch (error) {
                 displayError(error)
             }
