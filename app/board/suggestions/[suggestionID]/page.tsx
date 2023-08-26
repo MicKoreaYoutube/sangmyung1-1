@@ -62,14 +62,12 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <Card className="justify-start">
-                    <div className="flex justify-end">
-                        <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
-                    </div>
                     {data ? (
                         <>
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl flex justify-between">
                                     <span>{data.title}</span>
+                                    <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
                                 </CardTitle>
                                 <CardDescription className="font-SUITE-Regular md:text-2xl">{data.status == "anonymous" ? "익명" : data.author} · {formatTimestamp(data.changeTime)}</CardDescription>
                             </CardHeader>
