@@ -7,17 +7,6 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Icons } from "@/components/icons"
 import { MainNav } from "@/components/main-nav"
 import { ThemeToggle } from "@/components/theme-toggle"
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInstagram, faGithub } from "@fortawesome/free-brands-svg-icons";
-import {
-    Sheet,
-    SheetContent,
-    SheetDescription,
-    SheetFooter,
-    SheetHeader,
-    SheetTitle,
-    SheetTrigger,
-} from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 import { Instagram } from "lucide-react"
 
@@ -32,7 +21,7 @@ export function SiteFooter() {
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">상명중1-1 건의함</span>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
                         <div>
                             <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
