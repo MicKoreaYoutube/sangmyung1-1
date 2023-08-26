@@ -25,10 +25,10 @@ const db = getFirestore(app);
 
 let userInfo: any
 
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    userInfo = user
-  }
-});
+const user = auth.currentUser;
+
+if (user) {
+  userInfo = user
+}
 
 export { app, auth, db, userInfo }

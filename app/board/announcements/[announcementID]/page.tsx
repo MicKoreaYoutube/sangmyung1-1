@@ -66,8 +66,6 @@ export default function IndexPage({ params }: { params: { announcementID: string
                     <div className="flex justify-end">
                         <Link href="/board/announcements" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
                     </div>
-                    
-                        <>
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl flex justify-between">
                                     <span>{data.title}</span>
@@ -87,8 +85,6 @@ export default function IndexPage({ params }: { params: { announcementID: string
                                     </div>
                                 ))}
                             </CardFooter>*/}
-                        </>
-                    
                 </Card>
             </section>
             ) : (

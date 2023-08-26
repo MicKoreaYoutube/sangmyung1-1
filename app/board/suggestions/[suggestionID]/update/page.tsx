@@ -82,18 +82,18 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                             ) : accessDenied()
                             }
                             <CardHeader>
-                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 입력하기</CardTitle>
+                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 수정하기</CardTitle>
                                 <CardDescription className="font-SUITE-Regular md:text-2xl">여러분이 생각하는 우리반에서 고쳐야 할 점이나 사이트에 대한 것 등을 건의해주세요!</CardDescription>
                             </CardHeader>
                             <CardContent className="font-SUITE-Regular">
                                 <div className="grid w-full items-center gap-4">
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="name">제목</Label>
-                                        <Input ref={title} placeholder="제목을 입력하세요..." max={127} defaultValue={data.title} />
+                                        <Input ref={title} placeholder="제목을 입력하세요..." min={3} max={127} defaultValue={data.title} />
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="message-2">건의 할 내용</Label>
-                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} defaultValue={data.content} rows={8} />
+                                        <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." minLength={3} maxLength={1000} defaultValue={data.content} rows={8} />
                                         <p className="text-sm text-muted-foreground">
                                             건의하기 버튼을 누르실 경우, 당신은 {" "}
                                             <Link
@@ -129,7 +129,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                 </div>
                             </CardContent>
                             <CardFooter className="flex justify-end">
-                                <Button className="font-SUITE-Regular" onClick={updateDocument}>건의하기</Button>
+                                <Button className="font-SUITE-Regular" onClick={updateDocument}>수정하기</Button>
                             </CardFooter>
                         </>
                     ) : (

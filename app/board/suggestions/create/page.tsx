@@ -81,11 +81,11 @@ export default function IndexPage() {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">제목</Label>
-                                <Input ref={title} placeholder="제목을 입력하세요..." max={127} />
+                                <Input ref={title} placeholder="제목을 입력하세요..." min={3} max={127} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="message-2">건의 할 내용</Label>
-                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." maxLength={1000} />
+                                <Textarea ref={content} placeholder="건의할 내용을 입력하세요..." minLength={3} maxLength={1000} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="framework">익명 여부</Label>

@@ -81,23 +81,23 @@ export default function IndexPage({ params }: { params: { announcementID: string
             ) : accessDenied()
             }
             <section className="container grid gap-6 my-28 max-w-[1000px]">
-                <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 작성하기</h1>
+                <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 수정하기</h1>
                 <Card>
                     {data ? (
                         <>
                             <CardHeader>
-                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">공지사항 입력하기</CardTitle>
-                                <CardDescription className="font-SUITE-Regular md:text-2xl">공지사항은 관리자가 올리는 게시물입니다. 한 단어 한 단어 주의해가며 작성해주세요!</CardDescription>
+                                <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">공지사항 수정입력하기</CardTitle>
+                                <CardDescription className="font-SUITE-Regular md:text-2xl">공지사항은 관리자가 올리는 게시물입니다. 한 단어 한 단어 주의해가며 수정해주세요!</CardDescription>
                             </CardHeader>
                             <CardContent className="font-SUITE-Regular">
                                 <div className="grid w-full items-center gap-4">
                                     <div className="flex flex-col space-y-1.5">
                                         <Label htmlFor="name">제목</Label>
-                                        <Input ref={title} placeholder="제목을 입력하세요..." max={127} />
+                                        <Input ref={title} placeholder="제목을 입력하세요..." min={3} max={127} defaultValue={data.title}/>
                                     </div>
                                     <div className="flex flex-col space-y-1.5">
-                                        <Label htmlFor="message-2">공지사항 내용</Label>
-                                        <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." maxLength={1000} />
+                                        <Label htmlFor="message-2">공지할 내용</Label>
+                                        <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." minLength={3} maxLength={1000} defaultValue={data.content}/>
                                     </div>
                                     <Alert variant="destructive" className="hidden" id="error">
                                         <AlertTitle>Error</AlertTitle>
@@ -108,7 +108,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
                                 </div>
                             </CardContent>
                             <CardFooter className="flex justify-end">
-                                <Button className="font-SUITE-Regular" onClick={updateDocument}>업로드하기</Button>
+                                <Button className="font-SUITE-Regular" onClick={updateDocument}>수정하기</Button>
                             </CardFooter>
                         </>
                     ) : (
