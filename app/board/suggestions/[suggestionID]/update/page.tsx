@@ -116,7 +116,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                                 <SelectValue placeholder="익명 여부" ref={status} />
                                             </SelectTrigger>
                                             <SelectContent position="popper">
-                                                <SelectItem value="all">전체</SelectItem>
+                                                <SelectItem value="all">공개</SelectItem>
                                                 <SelectItem value="anonymous">익명</SelectItem>
                                             </SelectContent>
                                         </Select>
