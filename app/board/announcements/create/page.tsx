@@ -39,23 +39,27 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         const collectionRef = collection(db, "announcements");
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const cutEmail = user.email.slice(0, 5)
-                const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                const currentDate = new Date(); 
-                const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
-                try {
-                    const newDocRef = await addDoc(collectionRef, newData);
-                    const commentsCollection = collection(newDocRef, 'comments');
-                    const commentData = { status: "delete" };
-                    const newCommentDocRef = await addDoc(commentsCollection, commentData);
-                } catch (error) {
-                    displayError(error)
+        if (title.current.value == null || content.current.innerHTML == null) {
+            displayError("모든 칸을 다 채워주세요.")
+        } else {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const cutEmail = user.email.slice(0, 5)
+                    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+                    const currentDate = new Date(); 
+                    const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
+                    try {
+                        const newDocRef = await addDoc(collectionRef, newData);
+                        const commentsCollection = collection(newDocRef, 'comments');
+                        const commentData = { status: "delete" };
+                        const newCommentDocRef = await addDoc(commentsCollection, commentData);
+                        location.href = '/board/announcements'
+                    } catch (error) {
+                        displayError(error)
+                    }
                 }
-            }
-        });
-        
+            });
+        } 
     }
 
     return (
@@ -75,11 +79,11 @@ export default function IndexPage() {
                         <div className="grid w-full items-center gap-4">
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="name">제목</Label>
-                                <Input ref={title} placeholder="제목을 입력하세요..." max={127} />
+                                <Input ref={title} placeholder="제목을 입력하세요..." min={3} max={127} />
                             </div>
                             <div className="flex flex-col space-y-1.5">
                                 <Label htmlFor="message-2">공지사항 내용</Label>
-                                <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." maxLength={1000} />
+                                <Textarea ref={content} placeholder="작성할 내용을 입력하세요..." minLength={3} maxLength={1000} />
                             </div>
                             <Alert variant="destructive" className="hidden" id="error">
                                 <AlertTitle>Error</AlertTitle>
