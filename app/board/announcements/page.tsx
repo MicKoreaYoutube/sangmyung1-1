@@ -6,11 +6,8 @@ import { collection, getDocs, orderBy, query } from "firebase/firestore";
 import { db, userInfo } from "@/public/js/firebase";
 import React, { useState, useEffect } from 'react';
 
-import { ScrollArea } from "@/components/ui/scroll-area"
 import { Separator } from "@/components/ui/separator"
 import { Button, buttonVariants } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
 import {
   Card,
   CardContent,
@@ -19,33 +16,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
-import {
-  Select,
-  SelectContent,
-  SelectGroup,
-  SelectItem,
-  SelectLabel,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"
-import { Textarea } from "@/components/ui/textarea"
-
-import {
-  Cloud,
-  CreditCard,
-  Github,
-  Keyboard,
-  LifeBuoy,
-  LogOut,
-  Mail,
-  MessageSquare,
-  Plus,
-  PlusCircle,
-  Settings,
-  User,
-  UserPlus,
-  Users,
-} from "lucide-react"
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -97,7 +67,7 @@ export default function IndexPage() {
                   if (announcements.status !== "delete") {
                     return (
                       <>
-                        <div className="flex justify-between">
+                        <div className={`flex justify-between items-start ${index == 0 ? "ml-2" : ""}`}>
                           <Link key={index} href={`/board/announcements/${announcements.id}`} className="hover:underline hover:underline-offset-2 w-full">
                             <h1 className="text-xl md:text-3xl font-KBO-Dia-Gothic_bold tracking-tighter inline-block">{announcements.title}</h1>
                           </Link>
