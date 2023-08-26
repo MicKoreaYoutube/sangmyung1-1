@@ -39,7 +39,7 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         const collectionRef = collection(db, "announcements");
-        if (title.current.value == null || content.current.innerHTML == null) {
+        if (title.current.value == "" || content.current.innerHTML == "") {
             displayError("모든 칸을 다 채워주세요.")
         } else {
             onAuthStateChanged(auth, async (user) => {

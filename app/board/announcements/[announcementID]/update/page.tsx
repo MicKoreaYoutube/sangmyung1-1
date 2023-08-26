@@ -63,10 +63,10 @@ export default function IndexPage({ params }: { params: { announcementID: string
     }
 
     const updateDocument = async () => {
-        if (title.current.value == null || content.current.innerHTML == null) {
+        if (title.current.value == "" || content.current.innerHTML == "") {
             displayError("모든 칸을 다 채워주세요.")
         } else {
-            const docRef = doc(db, "anouncements", params.announcementID)
+            const docRef = doc(db, "announcements", params.announcementID)
             const currentDate = new Date();
             const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, title: title.current.value };
             try {

@@ -57,7 +57,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
     }, []);
 
     const updateDocument = async () => {
-        if (title.current.value == null || content.current.innerHTML == null || status.current.innerHTML == "익명 여부") {
+        if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
             displayError("모든 칸을 다 채워주세요.")
         } else {
             const docRef = doc(db, "suggestions", params.suggestionID)
