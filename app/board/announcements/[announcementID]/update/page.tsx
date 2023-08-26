@@ -2,16 +2,16 @@
 
 import Link from "next/link"
 
-import { displayError } from "@/public/js/function";
-import { auth } from "@/public/js/firebase"
+import { ChevronRight } from 'lucide-react';
 
-import { onAuthStateChanged } from "firebase/auth"
-import { doc, updateDoc, Timestamp, collection, getDoc, getDocs } from "firebase/firestore";
+import { displayError } from "@/public/js/function";
+
+import { doc, updateDoc, Timestamp, getDoc } from "firebase/firestore";
 import { db, userInfo } from "@/public/js/firebase";
 import { accessDenied } from "@/public/js/function";
 import React, { useRef, useState, useEffect } from 'react';
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -22,13 +22,6 @@ import {
     CardHeader,
     CardTitle,
 } from "@/components/ui/card"
-import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-} from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import {
     Alert,
@@ -87,6 +80,9 @@ export default function IndexPage({ params }: { params: { announcementID: string
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 수정하기</h1>
                 <Card>
+                    <div className="flex justify-end">
+                        <Link href="/board/announcements" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
+                    </div>
                     {data ? (
                         <>
                             <CardHeader>

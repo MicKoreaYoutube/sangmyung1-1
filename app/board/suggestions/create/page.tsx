@@ -2,6 +2,8 @@
 
 import Link from "next/link"
 
+import { ChevronRight } from 'lucide-react';
+
 import { displayError, logouted } from "@/public/js/function";
 
 import { collection, addDoc, Timestamp } from "firebase/firestore";
@@ -11,7 +13,7 @@ import { onAuthStateChanged } from "firebase/auth";
 
 import { siteConfig } from "@/config/site";
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -76,6 +78,9 @@ export default function IndexPage() {
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
                 <Card>
+                    <div className="flex justify-end">
+                        <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
+                    </div>
                     <CardHeader>
                         <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">건의사항 입력하기</CardTitle>
                         <CardDescription className="font-SUITE-Regular md:text-2xl">여러분이 생각하는 우리반에서 고쳐야 할 점이나 사이트에 대한 것 등을 건의해주세요!</CardDescription>

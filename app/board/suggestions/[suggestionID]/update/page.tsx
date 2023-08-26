@@ -2,14 +2,16 @@
 
 import Link from "next/link"
 
+import { ChevronRight } from 'lucide-react';
+
 import { displayError } from "@/public/js/function";
 
-import { doc, updateDoc, Timestamp, collection, getDoc, getDocs } from "firebase/firestore";
+import { doc, updateDoc, Timestamp, getDoc } from "firebase/firestore";
 import { db, userInfo } from "@/public/js/firebase";
 import { accessDenied } from "@/public/js/function";
 import React, { useRef, useState, useEffect } from 'react';
 
-import { Button } from "@/components/ui/button"
+import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import {
@@ -79,6 +81,9 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
                 <Card>
+                    <div className="flex justify-end">
+                        <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
+                    </div>
                     {data ? (
                         <>
                             {userInfo ? (

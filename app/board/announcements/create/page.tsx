@@ -2,18 +2,18 @@
 
 import Link from "next/link"
 
+import { ChevronRight } from 'lucide-react';
+
 import { displayError } from "@/public/js/function";
 
 import { collection, addDoc, Timestamp } from "firebase/firestore";
 import { db, auth, userInfo } from "@/public/js/firebase";
 import { accessDenied } from "@/public/js/function";
-import React, { useState, useRef } from 'react';
+import React, { useRef } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
 import { siteConfig } from "@/config/site";
 
-import { ScrollArea } from "@/components/ui/scroll-area"
-import { Separator } from "@/components/ui/separator"
 import { Button, buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
@@ -71,6 +71,9 @@ export default function IndexPage() {
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">공지사항 작성하기</h1>
                 <Card>
+                    <div className="flex justify-end">
+                        <Link href="/board/announcements" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
+                    </div>
                     <CardHeader>
                         <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">공지사항 입력하기</CardTitle>
                         <CardDescription className="font-SUITE-Regular md:text-2xl">공지사항은 관리자가 올리는 게시물입니다. 한 단어 한 단어 주의해가며 작성해주세요!</CardDescription>
