@@ -7,7 +7,8 @@ import { accessDenied, displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, updateDoc } from "firebase/firestore";
+import { setDoc, Timestamp, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -42,51 +43,6 @@ export default function IndexPage() {
   const pwdCard = useRef(null)
 
   const [adminState, adminStateChanger] = useState(false)
-
-  const invoices = [
-    {
-      invoice: "INV001",
-      paymentStatus: "Paid",
-      totalAmount: "$250.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV002",
-      paymentStatus: "Pending",
-      totalAmount: "$150.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV003",
-      paymentStatus: "Unpaid",
-      totalAmount: "$350.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV004",
-      paymentStatus: "Paid",
-      totalAmount: "$450.00",
-      paymentMethod: "Credit Card",
-    },
-    {
-      invoice: "INV005",
-      paymentStatus: "Paid",
-      totalAmount: "$550.00",
-      paymentMethod: "PayPal",
-    },
-    {
-      invoice: "INV006",
-      paymentStatus: "Pending",
-      totalAmount: "$200.00",
-      paymentMethod: "Bank Transfer",
-    },
-    {
-      invoice: "INV007",
-      paymentStatus: "Unpaid",
-      totalAmount: "$300.00",
-      paymentMethod: "Credit Card",
-    },
-  ]
 
   const pwd = useRef(null)
 
@@ -132,6 +88,24 @@ export default function IndexPage() {
     getAllData()
 
   }, []);
+
+  const currentDate = new Date()
+  async function TempFunc(user: any) {
+    try {
+      const docRef = doc(db, "user", user);
+      await updateDoc(docRef, {userBanCount: 0});
+      console.log("Document added or updated successfully!");
+    } catch (error) {
+      console.error("Error adding document:", error);
+    }
+  }
+  function addUser() {
+    siteConfig.member.forEach((user) => {
+      TempFunc(user)
+    })
+  }
+
+  addUser()
 
   return (
     <>
