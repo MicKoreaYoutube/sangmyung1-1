@@ -36,7 +36,6 @@ export default function IndexPage() {
       userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
     ) : accessDenied()
   }, 500);
-  //MTxgdTBrl59RGGKV8OtH
 
   function accessAdmin() {
     pwd.current.value == "MTxgdTBrl59RGGKV8OtH" ? console.log("Success!") : displayError("옳지 않은 비밀번호입니다.")
@@ -63,7 +62,7 @@ export default function IndexPage() {
           </Alert>
       </CardContent>
       <CardFooter className="flex justify-end">
-        <Button>접속하기</Button>
+        <Button onClick={accessAdmin}>접속하기</Button>
       </CardFooter>
     </Card>
     </>
