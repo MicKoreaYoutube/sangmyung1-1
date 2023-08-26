@@ -7,7 +7,7 @@ import { accessDenied, displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site";
 
-import { collection, setDoc, Timestamp, doc } from "firebase/firestore";
+import { collection, getDocs } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -107,24 +107,26 @@ export default function IndexPage() {
         {adminState == false ? (
           <>
             <CardHeader>
-              <CardTitle className="font-KBO-Dia-Gothic_bold">비밀번호 입력</CardTitle>
-              <CardDescription className="font-SUITE-Regular">관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
+              <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">비밀번호 입력</CardTitle>
+              <CardDescription className="font-SUITE-Regular md:text-2xl">관리자 페이지에 접근하려면 비밀번호를 입력하세요.</CardDescription>
             </CardHeader>
             <CardContent className="font-SUITE-Regular">
-              <div className="flex flex-col space-y-1.5">
-                <div className="grid w-full items-center gap-4">
-                  <div className="flex flex-col space-y-1.5">
-                    <Label htmlFor="pwd">비밀번호 입력</Label>
-                    <Input placeholder="비밀번호를 입력해주세요..." ref={pwd} />
+              <div className="grid w-full items-center gap-4">
+                <div className="flex flex-col space-y-1.5">
+                  <div className="grid w-full items-center gap-4">
+                    <div className="flex flex-col space-y-1.5">
+                      <Label htmlFor="pwd">비밀번호 입력</Label>
+                      <Input placeholder="비밀번호를 입력해주세요..." ref={pwd} />
+                    </div>
                   </div>
                 </div>
+                <Alert variant="destructive" className="hidden" id="error">
+                  <AlertTitle>Error</AlertTitle>
+                  <AlertDescription id="errorMessage">
+                    Error Message
+                  </AlertDescription>
+                </Alert>
               </div>
-              <Alert variant="destructive" className="hidden" id="error">
-                <AlertTitle>Error</AlertTitle>
-                <AlertDescription id="errorMessage">
-                  Error Message
-                </AlertDescription>
-              </Alert>
             </CardContent>
             <CardFooter className="flex justify-end SUITE-Regular">
               <Button onClick={accessAdmin}>접속하기</Button>
@@ -133,8 +135,8 @@ export default function IndexPage() {
         ) : (
           <>
             <CardHeader>
-              <CardTitle className="font-KBO-Dia-Gothic_bold">관리자 페이지</CardTitle>
-              <CardDescription className="font-SUITE-Regular">관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
+              <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl">관리자 페이지</CardTitle>
+              <CardDescription className="font-SUITE-Regular md:text-2xl">관리자가 유저를 관리, 정지 등을 할 수 있는 페이지입니다. 조심해서 다뤄주세요!</CardDescription>
             </CardHeader>
             <CardContent className="font-SUITE-Regular">
               <Table>
