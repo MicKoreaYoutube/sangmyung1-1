@@ -123,7 +123,7 @@ export default function IndexPage() {
     })
   }
 
-  addUser
+  addUser()
 
   return (
     <>
