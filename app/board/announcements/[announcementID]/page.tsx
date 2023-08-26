@@ -60,12 +60,13 @@ export default function IndexPage({ params }: { params: { announcementID: string
 
     return (
         <>
+            {data ? (
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <Card className="justify-start">
                     <div className="flex justify-end">
                         <Link href="/board/announcements" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
                     </div>
-                    {data ? (
+                    
                         <>
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl flex justify-between">
@@ -87,11 +88,12 @@ export default function IndexPage({ params }: { params: { announcementID: string
                                 ))}
                             </CardFooter>*/}
                         </>
-                    ) : (
-                        <p>Loading...</p>
-                    )}
+                    
                 </Card>
             </section>
+            ) : (
+                <p>Loading...</p>
+            )}
         </>
     )
 }

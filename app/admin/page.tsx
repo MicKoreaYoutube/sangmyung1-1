@@ -7,7 +7,7 @@ import { accessDenied } from "@/public/js/function";
 
 import { collection, doc, getDoc, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import {
   Card,
@@ -28,6 +28,9 @@ import {
 } from "@/components/ui/alert"
 
 export default function IndexPage() {
+
+  const pwd = useRef(null)
+
   return (
     <>
       {userInfo ? (
@@ -43,7 +46,7 @@ export default function IndexPage() {
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
               <Label htmlFor="pwd">비밀번호 입력</Label>
-              <Input placeholder="비밀번호를 입력해주세요..." />
+              <Input placeholder="비밀번호를 입력해주세요..." ref={pwd} />
             </div>
           </div>
       </CardContent>
