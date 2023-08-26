@@ -32,24 +32,6 @@ import {
 export default function IndexPage() {
 
   const pwd = useRef(null)
-  const Temp = useRef(null)
-
-  const currentDate = new Date()
-
-  async function TempFunc(user: any) {
-    try {
-      const docRef = doc(db, "user", user);
-      await setDoc(docRef, {userBanStartTime: Timestamp.fromDate(currentDate), userBanEndTime: Timestamp.fromDate(currentDate)});
-      console.log("Document added or updated successfully!");
-    } catch (error) {
-      console.error("Error adding document:", error);
-    }
-  }
-
-  
-  const addUser = () => siteConfig.member.forEach((user) => {
-    TempFunc(user)
-  });
 
   setTimeout(function() {
     userInfo ? (
@@ -89,7 +71,6 @@ export default function IndexPage() {
           <Button onClick={accessAdmin}>접속하기</Button>
         </CardFooter>
       </Card>
-      <Input ref={Temp} onClick={addUser}/>
     </>
   )
 }
