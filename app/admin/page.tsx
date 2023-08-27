@@ -8,6 +8,7 @@ import { accessDenied, displayError } from "@/public/js/function";
 import { siteConfig } from "@/config/site";
 
 import { collection, getDocs, Timestamp } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -91,6 +92,23 @@ export default function IndexPage() {
 
   }, []);
 
+  async function TempFunc(user: any) {
+    try {
+      const docRef = doc(db, "user", user);
+      await setDoc(docRef, {userBanStartTime: null, userBanEndTime: null, userBanReason: "해당 없음", userBanCount: 0});
+      console.log("Document added or updated successfully!");
+    } catch (error) {
+      console.error("Error adding document:", error);
+    }
+  }
+  function addUser() {
+    siteConfig.member.forEach((user) => {
+      TempFunc(user)
+    })
+  }
+
+  addUser()
+
   return (
     <>
       <Card className="place-element-center m-4" ref={pwdCard}>
@@ -135,10 +153,10 @@ export default function IndexPage() {
                     <TableHeader>
                       <TableRow>
                         <TableHead className="w-40">학번이름</TableHead>
-                        <TableHead className="w-80">정지 시작 시간</TableHead>
-                        <TableHead className="w-80">정지 종료 시간</TableHead>
+                        <TableHead className="w-56">정지 시작 시간</TableHead>
+                        <TableHead className="w-56">정지 종료 시간</TableHead>
                         <TableHead>정지 횟수</TableHead>
-                        <TableHead>정지 사유</TableHead>
+                        <TableHead className="w-80">정지 사유</TableHead>
                         <TableHead className="text-right">{" "}</TableHead>
                       </TableRow>
                     </TableHeader>

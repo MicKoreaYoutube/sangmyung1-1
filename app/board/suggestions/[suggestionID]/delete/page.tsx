@@ -68,10 +68,11 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     return (
         <>
-            {userInfo ? (
-                data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
-            ) : accessDenied()
-            }
+            {data ? (
+                userInfo ? (
+                    data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+                ) : accessDenied()
+            ) : null}
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline" ref={deleteData} className="hidden">Show Dialog</Button>

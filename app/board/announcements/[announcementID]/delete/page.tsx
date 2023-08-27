@@ -2,10 +2,10 @@
 
 import { displayError } from "@/public/js/function";
 
-import { doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc, getDoc } from "firebase/firestore";
 import { db, userInfo } from "@/public/js/firebase";
 import { accessDenied } from "@/public/js/function";
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 
 import { Button } from "@/components/ui/button"
 import {
@@ -25,7 +25,7 @@ import {
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 
-export default function IndexPage({ params }: { params: { anouncementID: string } }) {
+export default function IndexPage({ params }: { params: { announcementID: string } }) {
 
     const deleteData = useRef(null);
 
@@ -39,8 +39,24 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
         location.href = '/board/announcements'
     }
 
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        async function fetchSingleData() {
+            const docRef = doc(db, "suggestions", params.announcementID);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setData({ id: docSnap.id, ...docSnap.data() });
+            } else {
+                console.log("No such document!");
+            }
+        }
+        fetchSingleData();
+    }, []);
+
     const forceDelete = async () => {
-        const docRef = doc(db, "announcements", params.anouncementID)
+        const docRef = doc(db, "announcements", params.announcementID)
         const newData = { status: "delete" };
         try {
             await updateDoc(docRef, newData);
@@ -52,10 +68,11 @@ export default function IndexPage({ params }: { params: { anouncementID: string 
 
     return (
         <>
-            {userInfo ? (
-                userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
-            ) : accessDenied()
-            }
+            {data ? (
+                userInfo ? (
+                    data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
+                ) : accessDenied()
+            ) : null}
             <AlertDialog>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline" ref={deleteData} className="hidden">Show Dialog</Button>
