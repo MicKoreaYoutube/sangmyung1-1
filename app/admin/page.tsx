@@ -32,12 +32,20 @@ import {
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog"
 
 export default function IndexPage() {
   const pwdCard = useRef(null)
@@ -67,7 +75,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     async function getAllData() {
-      const querySnapshot = await getDocs(collection(db, 'user')); 
+      const querySnapshot = await getDocs(collection(db, 'user'));
       const data: any = [];
 
       querySnapshot.forEach((doc) => {
@@ -95,7 +103,7 @@ export default function IndexPage() {
   async function TempFunc(user: any) {
     try {
       const docRef = doc(db, "user", user);
-      await setDoc(docRef, {userBanStartTime: null, userBanEndTime: null, userBanReason: "해당 없음", userBanCount: 0});
+      await setDoc(docRef, { userBanStartTime: null, userBanEndTime: null, userBanReason: "해당 없음", userBanCount: 0 });
       console.log("Document added or updated successfully!");
     } catch (error) {
       console.error("Error adding document:", error);
@@ -157,7 +165,7 @@ export default function IndexPage() {
                         <TableHead className="w-56">정지 종료 시간</TableHead>
                         <TableHead>정지 횟수</TableHead>
                         <TableHead className="w-80">정지 사유</TableHead>
-                        <TableHead className="text-right">{" "}</TableHead>
+                        <TableHead className="place-self-end">{" "}</TableHead>
                       </TableRow>
                     </TableHeader>
                     <TableBody>
@@ -168,7 +176,38 @@ export default function IndexPage() {
                           <TableCell>{user.userBanEndTime}</TableCell>
                           <TableCell>{user.userBanCount}</TableCell>
                           <TableCell>{user.userBanReason}</TableCell>
-                          <TableCell className="place-self-end"><Button>정지시키기</Button></TableCell>
+                          <TableCell>
+                            <Dialog>
+                              <DialogTrigger asChild>
+                                <Button variant="outline" className="place-self-end">정지시키기</Button>
+                              </DialogTrigger>
+                              <DialogContent className="sm:max-w-[425px]">
+                                <DialogHeader>
+                                  <DialogTitle>유저 정지시키기</DialogTitle>
+                                  <DialogDescription>
+                                    잘못된 정지는 유저에게 피해가 될 뿐입니다. 유저 정지는 심사숙고 하여 판단해주세요.
+                                  </DialogDescription>
+                                </DialogHeader>
+                                <div className="grid gap-4 py-4">
+                                  <div className="grid grid-cols-4 items-center gap-4">
+                                    <Label htmlFor="name" className="text-right">
+                                      Name
+                                    </Label>
+                                    <Input id="name" value="Pedro Duarte" className="col-span-3" />
+                                  </div>
+                                  <div className="grid grid-cols-4 items-center gap-4">
+                                    <Label htmlFor="username" className="text-right">
+                                      Username
+                                    </Label>
+                                    <Input id="username" value="@peduarte" className="col-span-3" />
+                                  </div>
+                                </div>
+                                <DialogFooter>
+                                  <Button type="submit">Save changes</Button>
+                                </DialogFooter>
+                              </DialogContent>
+                            </Dialog>
+                          </TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
