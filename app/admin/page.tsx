@@ -1,6 +1,6 @@
 'use client';
 
-import Link from "next/link"
+import { cn } from "@/lib/utils"
 
 import { userInfo } from "@/public/js/firebase"
 import { accessDenied, displayError } from "@/public/js/function";
@@ -12,6 +12,9 @@ import { setDoc, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
+import { addDays, format } from "date-fns"
+import { Calendar as CalendarIcon } from "lucide-react"
+import { DateRange } from "react-day-picker"
 import {
   Card,
   CardContent,
@@ -46,11 +49,25 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Calendar } from "@/components/ui/calendar"
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
 
-export default function IndexPage() {
+export default function IndexPage({
+  className,
+}: React.HTMLAttributes<HTMLDivElement>) {
+
+  const [date, setDate] = React.useState<DateRange | undefined>({
+    from: new Date(2022, 0, 20),
+    to: addDays(new Date(2022, 0, 20), 20),
+  })
+
   const pwdCard = useRef(null)
 
-  const [adminState, adminStateChanger] = useState(false)
+  const [adminState, adminStateChanger] = useState(true)
 
   const pwd = useRef(null)
 
@@ -91,16 +108,12 @@ export default function IndexPage() {
           userBanEndTime: userBanEndTime,
         });
       });
-
       setUserData(data)
-
     }
-
     getAllData()
-
   }, []);
 
-  async function TempFunc(user: any) {
+  /*async function TempFunc(user: any) {
     try {
       const docRef = doc(db, "user", user);
       await setDoc(docRef, { userBanStartTime: null, userBanEndTime: null, userBanReason: "해당 없음", userBanCount: 0 });
@@ -115,7 +128,7 @@ export default function IndexPage() {
     })
   }
 
-  addUser()
+  addUser()*/
 
   return (
     <>
@@ -179,7 +192,7 @@ export default function IndexPage() {
                           <TableCell>
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="outline" className="place-self-end">정지시키기</Button>
+                                <Button variant="destructive" className="place-self-end">정지시키기</Button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader>
@@ -188,19 +201,43 @@ export default function IndexPage() {
                                     잘못된 정지는 유저에게 피해가 될 뿐입니다. 유저 정지는 심사숙고 하여 판단해주세요.
                                   </DialogDescription>
                                 </DialogHeader>
-                                <div className="grid gap-4 py-4">
-                                  <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="name" className="text-right">
-                                      Name
-                                    </Label>
-                                    <Input id="name" value="Pedro Duarte" className="col-span-3" />
-                                  </div>
-                                  <div className="grid grid-cols-4 items-center gap-4">
-                                    <Label htmlFor="username" className="text-right">
-                                      Username
-                                    </Label>
-                                    <Input id="username" value="@peduarte" className="col-span-3" />
-                                  </div>
+                                <div className={cn("grid gap-2", className)}>
+                                  <Popover>
+                                    <PopoverTrigger asChild>
+                                      <Button
+                                        id="date"
+                                        variant={"outline"}
+                                        className={cn(
+                                          "w-[300px] justify-start text-left font-normal",
+                                          !date && "text-muted-foreground"
+                                        )}
+                                      >
+                                        <CalendarIcon className="mr-2 h-4 w-4" />
+                                        {date?.from ? (
+                                          date.to ? (
+                                            <>
+                                              {format(date.from, "LLL dd, y")} -{" "}
+                                              {format(date.to, "LLL dd, y")}
+                                            </>
+                                          ) : (
+                                            format(date.from, "LLL dd, y")
+                                          )
+                                        ) : (
+                                          <span>Pick a date</span>
+                                        )}
+                                      </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0" align="start">
+                                      <Calendar
+                                        initialFocus
+                                        mode="range"
+                                        defaultMonth={date?.from}
+                                        selected={date}
+                                        onSelect={setDate}
+                                        numberOfMonths={2}
+                                      />
+                                    </PopoverContent>
+                                  </Popover>
                                 </div>
                                 <DialogFooter>
                                   <Button type="submit">Save changes</Button>

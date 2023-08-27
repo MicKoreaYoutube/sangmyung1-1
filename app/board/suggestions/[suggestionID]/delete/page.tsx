@@ -79,13 +79,13 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle>진짜로 삭제하시겠습니까?</AlertDialogTitle>
-                        <AlertDialogDescription>
+                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold">진짜로 삭제하시겠습니까?</AlertDialogTitle>
+                        <AlertDialogDescription className="font-SUITE-Regular">
                             건의 사항을 삭제하시면 건의 사항과 그 게시물의 댓글도 전부 삭제됩니다.
                             그래도 진짜로 삭제하시겠습니까?
                         </AlertDialogDescription>
                     </AlertDialogHeader>
-                    <AlertDialogFooter>
+                    <AlertDialogFooter className="font-SUITE-Regular">
                         <AlertDialogCancel onClick={goBack}>취소</AlertDialogCancel>
                         <AlertDialogAction onClick={forceDelete}>삭제</AlertDialogAction>
                     </AlertDialogFooter>
