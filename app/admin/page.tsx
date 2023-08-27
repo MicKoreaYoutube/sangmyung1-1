@@ -63,11 +63,9 @@ export default function IndexPage({
   const today = new Date();
   const convertedDate = `${today.getFullYear()}, ${today.getMonth()}, ${today.getDate()}`;
 
-  console.log(convertedDate)
-
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: new Date(convertedDate),
+    to: addDays(new Date(convertedDate), 3),
   })
 
   const pwdCard = useRef(null)
