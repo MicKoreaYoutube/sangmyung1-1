@@ -60,6 +60,11 @@ export default function IndexPage({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
 
+  const today = new Date();
+  const convertedDate = `${today.getFullYear()}, ${today.getMonth()}, ${today.getDate()}`;
+
+  console.log(convertedDate)
+
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: new Date(2022, 0, 20),
     to: addDays(new Date(2022, 0, 20), 20),
@@ -192,12 +197,12 @@ export default function IndexPage({
                           <TableCell>
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="destructive" className="place-self-end">정지시키기</Button>
+                                <Button variant="destructive" className="place-self-end ">정지시키기</Button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader>
-                                  <DialogTitle>유저 정지시키기</DialogTitle>
-                                  <DialogDescription>
+                                  <DialogTitle className="font-KBO-Dia-Gothic_bold">유저 정지시키기</DialogTitle>
+                                  <DialogDescription className="font-SUITE-Regular">
                                     잘못된 정지는 유저에게 피해가 될 뿐입니다. 유저 정지는 심사숙고 하여 판단해주세요.
                                   </DialogDescription>
                                 </DialogHeader>
