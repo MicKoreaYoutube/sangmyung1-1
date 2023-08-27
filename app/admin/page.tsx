@@ -67,12 +67,9 @@ export default function IndexPage() {
       querySnapshot.forEach((doc) => {
         const userListData = doc.data();
         
-        let userBanStartTime 
-        let userBanEndTime 
-
-        userBanStartTime = userListData.userBanStartTime == null ? "해당 없음" : new Date(userListData.userBanStartTime.seconds * 1000);
-        userBanEndTime = userListData.userBanEndTime == null ? "해당 없음" : new Date(userListData.userBanEndTime.seconds * 1000);
-
+        let userBanStartTime = userListData.userBanStartTime ? new Date(userListData.userBanStartTime.seconds * 1000) : "해당 없음";
+        let userBanEndTime = userListData.userBanEndTime ? new Date(userListData.userBanEndTime.seconds * 1000) : "해당 없음";
+        
         data.push({ 
           id: doc.id, 
           ...doc.data(),
