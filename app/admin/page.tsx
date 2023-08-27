@@ -8,6 +8,7 @@ import { accessDenied, displayError } from "@/public/js/function";
 import { siteConfig } from "@/config/site";
 
 import { collection, getDocs } from "firebase/firestore";
+import { setDoc, Timestamp, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -72,6 +73,7 @@ export default function IndexPage() {
 
         userBanStartTime = userListData.userBanStartTime == null ? "해당 없음" : new Date(userListData.userBanStartTime.seconds * 1000);
         userBanEndTime = userListData.userBanEndTime == null ? "해당 없음" : new Date(userListData.userBanEndTime.seconds * 1000);
+
         data.push({ 
           id: doc.id, 
           ...doc.data(),
@@ -87,6 +89,24 @@ export default function IndexPage() {
     getAllData()
 
   }, []);
+
+
+  async function TempFunc(user: any) {
+    try {
+      const docRef = doc(db, "user", user);
+      await setDoc(docRef, {userBanStartTime: null, userBanEndTime: null, userBanReason: "해당 없음"});
+      console.log("Document added or updated successfully!");
+    } catch (error) {
+      console.error("Error adding document:", error);
+    }
+  }
+  function addUser() {
+    siteConfig.member.forEach((user) => {
+      TempFunc(user)
+    })
+  }
+
+  addUser()
 
   return (
     <>
@@ -135,6 +155,7 @@ export default function IndexPage() {
                         <TableHead className="w-80">정지 시작 시간</TableHead>
                         <TableHead className="w-80">정지 종료 시간</TableHead>
                         <TableHead>정지 횟수</TableHead>
+                        <TableHead>정지 사유</TableHead>
                         <TableHead className="text-right">{" "}</TableHead>
                       </TableRow>
                     </TableHeader>
@@ -145,6 +166,7 @@ export default function IndexPage() {
                           <TableCell>{user.userBanStartTime}</TableCell>
                           <TableCell>{user.userBanEndTime}</TableCell>
                           <TableCell>{user.userBanCount}</TableCell>
+                          <TableCell>{user.userBanReason}</TableCell>
                           <TableCell className="place-self-end"><Button>정지시키기</Button></TableCell>
                         </TableRow>
                       ))}
