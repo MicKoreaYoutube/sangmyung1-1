@@ -221,7 +221,7 @@ export default function IndexPage({
                                 <div className="flex flex-col space-y-1.5">
                                   <span>정지 할 유저: <span ref={userName}>{user.id}</span></span>
                                 </div>
-                                <div className={cn("grid gap-2 flex flex-col space-y-1.5", className)}>
+                                <div className={cn("flex flex-col space-y-1.5", className)}>
                                   <Popover>
                                     <PopoverTrigger asChild>
                                       <Button
