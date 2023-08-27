@@ -65,14 +65,16 @@ export default function IndexPage({
 
   const [date, setDate] = React.useState<DateRange | undefined>({
     from: new Date(convertedDate),
-    to: addDays(new Date(convertedDate), 3),
+    to: addDays(new Date(convertedDate), 2),
   })
 
   const pwdCard = useRef(null)
+  const pwd = useRef(null)
+  const dateRange = useRef(null)
+  const banReasonInput = useRef(null)
+  const userName = useRef(null)
 
   const [adminState, adminStateChanger] = useState(true)
-
-  const pwd = useRef(null)
 
   setTimeout(function () {
     userInfo ? (
@@ -115,6 +117,18 @@ export default function IndexPage({
     }
     getAllData()
   }, []);
+
+  async function banUser() {
+    /*const docRef = doc(db, "user", userName.current.innerHTML)
+    const newData = {  };
+    try {
+      await updateDoc(docRef, newData);
+      location.href = '/board/suggestions'
+    } catch (error) {
+      displayError(error)
+    }*/
+    console.log(dateRange.current.innerHTML, banReasonInput.current.value, userName.current.innerHTML)
+  }
 
   /*async function TempFunc(user: any) {
     try {
@@ -195,7 +209,7 @@ export default function IndexPage({
                           <TableCell>
                             <Dialog>
                               <DialogTrigger asChild>
-                                <Button variant="destructive" className="place-self-end ">정지시키기</Button>
+                                <Button variant="destructive" className="place-self-end ">정지 시키기</Button>
                               </DialogTrigger>
                               <DialogContent className="sm:max-w-[425px]">
                                 <DialogHeader>
@@ -204,7 +218,10 @@ export default function IndexPage({
                                     잘못된 정지는 유저에게 피해가 될 뿐입니다. 유저 정지는 심사숙고 하여 판단해주세요.
                                   </DialogDescription>
                                 </DialogHeader>
-                                <div className={cn("grid gap-2", className)}>
+                                <div className="flex flex-col space-y-1.5">
+                                  <span>정지 할 유저: <span ref={userName}>{user.id}</span></span>
+                                </div>
+                                <div className={cn("grid gap-2 flex flex-col space-y-1.5", className)}>
                                   <Popover>
                                     <PopoverTrigger asChild>
                                       <Button
@@ -218,10 +235,10 @@ export default function IndexPage({
                                         <CalendarIcon className="mr-2 h-4 w-4" />
                                         {date?.from ? (
                                           date.to ? (
-                                            <>
+                                            <span ref={dateRange}>
                                               {format(date.from, "LLL dd, y")} -{" "}
                                               {format(date.to, "LLL dd, y")}
-                                            </>
+                                            </span>
                                           ) : (
                                             format(date.from, "LLL dd, y")
                                           )
@@ -242,8 +259,12 @@ export default function IndexPage({
                                     </PopoverContent>
                                   </Popover>
                                 </div>
-                                <DialogFooter>
-                                  <Button type="submit">Save changes</Button>
+                                <div className="flex flex-col space-y-1.5">
+                                  <Label htmlFor="name">정지 사유</Label>
+                                  <Input ref={banReasonInput} placeholder="정지 사유를 입력하세요..." />
+                                </div>
+                                <DialogFooter className="font-SUITE-Regular">
+                                  <Button type="submit" onClick={banUser}>정지 시키기</Button>
                                 </DialogFooter>
                               </DialogContent>
                             </Dialog>
