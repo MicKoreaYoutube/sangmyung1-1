@@ -7,7 +7,7 @@ import { accessDenied, displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site";
 
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, Timestamp } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -59,19 +59,24 @@ export default function IndexPage() {
 
   const [userData, setUserData] = useState([])
 
+  function formatTimestamp(timestamp: Timestamp) {
+    const dateObject = new Date(timestamp.seconds * 1000);
+    return dateObject.toLocaleString();
+  }
+
   useEffect(() => {
     async function getAllData() {
-      const querySnapshot = await getDocs(collection(db, 'user')); // 컬렉션 이름에 맞게 수정하세요
+      const querySnapshot = await getDocs(collection(db, 'user')); 
       const data: any = [];
 
       querySnapshot.forEach((doc) => {
         const userListData = doc.data();
-        
-        let userBanStartTime = userListData.userBanStartTime ? new Date(userListData.userBanStartTime.seconds * 1000) : "해당 없음";
-        let userBanEndTime = userListData.userBanEndTime ? new Date(userListData.userBanEndTime.seconds * 1000) : "해당 없음";
-        
-        data.push({ 
-          id: doc.id, 
+
+        let userBanStartTime = userListData.userBanStartTime ? formatTimestamp(userListData.userBanStartTime) : "해당 없음";
+        let userBanEndTime = userListData.userBanEndTime ? formatTimestamp(userListData.userBanEndTime) : "해당 없음";
+
+        data.push({
+          id: doc.id,
           ...doc.data(),
           userBanStartTime: userBanStartTime,
           userBanEndTime: userBanEndTime,
