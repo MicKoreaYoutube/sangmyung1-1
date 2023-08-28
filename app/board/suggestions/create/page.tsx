@@ -46,7 +46,7 @@ import {
     AlertDialogHeader,
     AlertDialogTitle,
     AlertDialogTrigger,
-  } from "@/components/ui/alert-dialog"
+} from "@/components/ui/alert-dialog"
 
 export default function IndexPage() {
 
@@ -57,29 +57,26 @@ export default function IndexPage() {
     const userBanReason = useRef(null);
     const userBanRange = useRef(null);
 
+    const cutEmail = userInfo.email.slice(0, 5)
+    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+
+    const [data, setData] = useState(null);
+
+    useEffect(() => {
+        async function fetchSingleData() {
+            const docRef = doc(db, "user", id[0]);
+            const docSnap = await getDoc(docRef);
+
+            if (docSnap.exists()) {
+                setData({ id: docSnap.id, ...docSnap.data() });
+            }
+        }
+        fetchSingleData();
+    }, []);
+
     async function addNewDocument() {
         if (isBetweenTimestamps) {
-            const cutEmail = userInfo.email.slice(0, 5)
-            const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-
-            useEffect(() => {
-                if (BanDialogButton.current) {
-                    BanDialogButton.current.click();
-                }
-            }, []);
-            const [data, setData] = useState(null);
-
-            useEffect(() => {
-                async function fetchSingleData() {
-                    const docRef = doc(db, "user", id[0]);
-                    const docSnap = await getDoc(docRef);
-        
-                    if (docSnap.exists()) {
-                        setData({ id: docSnap.id, ...docSnap.data() });
-                    }
-                }
-                fetchSingleData();
-            }, []);
+            BanDialogButton.current.click();
 
             userBanReason.current.innerHTML = data.userBanReason
             userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
@@ -90,8 +87,6 @@ export default function IndexPage() {
                 const collectionRef = collection(db, "suggestions");
                 onAuthStateChanged(auth, async (user) => {
                     if (user) {
-                        const cutEmail = user.email.slice(0, 5)
-                        const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                         const currentDate = new Date();
                         const status_list = { 공개: "all", 익명: "anonymous" }
                         const statusValue: "공개" | "익명" = status.current.innerHTML
