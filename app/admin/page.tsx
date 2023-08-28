@@ -127,7 +127,7 @@ export default function IndexPage({
     } catch (error) {
       displayError(error)
     }*/
-    console.log(dateRange.current.innerHTML, banReasonInput.current.value, userName.current.innerHTML)
+    console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
   }
 
   /*async function TempFunc(user: any) {
