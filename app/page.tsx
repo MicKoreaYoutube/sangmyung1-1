@@ -19,7 +19,6 @@ export default function IndexPage() {
         <div className="flex gap-4 place-content-center font-SUITE-Regular">
           <Link
             href="/board/suggestions"
-            target="_blank"
             rel="noreferrer"
             className={buttonVariants()}
           >
@@ -27,7 +26,6 @@ export default function IndexPage() {
           </Link>
           <Link
             href="/board/announcements"
-            target="_blank"
             rel="noreferrer"
             className={buttonVariants({ variant: "outline" })}
           >
