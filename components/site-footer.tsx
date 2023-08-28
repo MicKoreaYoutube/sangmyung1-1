@@ -21,7 +21,7 @@ export function SiteFooter() {
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">상명중1-1 건의함</span>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 md:gap-6 md:grid-cols-4">
+                    <div className="grid grid-cols-2 gap-8 md:gap-6 md:grid-cols-3">
                         <div>
                             <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
@@ -38,17 +38,6 @@ export function SiteFooter() {
                                 </li>
                                 <li>
                                     <Link href="/board/suggestions" className="hover:underline hover:text-dark">건의 게시판</Link>
-                                </li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">기타 이스터에그(?)</h2>
-                            <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                <li className="mb-4">
-                                    <Link href="/giveMeMoney" className="hover:underline hover:text-dark">돈 벌어다주기</Link>
-                                </li>
-                                <li>
-                                    <Link href="#" className="hover:underline hover:text-dark">????</Link>
                                 </li>
                             </ul>
                         </div>
