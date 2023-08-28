@@ -1,6 +1,8 @@
 import { auth } from "@/public/js/firebase"
 import { onAuthStateChanged } from "firebase/auth";
 
+import { Timestamp } from "firebase/firestore";
+
 export function displayError(msg: any) {
     if (typeof window !== "undefined") {
         document.querySelector('#errorMessage').innerHTML = msg;
@@ -38,5 +40,15 @@ export function accessDenied() {
     if (typeof window !== 'undefined') {
         alert('권한이 부족합니다.')
         location.href = '/'
+    }
+}
+
+export function isBetweenTimestamps(startTime: Timestamp, endTime: Timestamp) {
+    const currentTime = Timestamp.now(); // 현재 시각을 가져옵니다.
+
+    if (currentTime >= startTime && currentTime <= endTime) {
+        return true
+    } else {
+        return false
     }
 }

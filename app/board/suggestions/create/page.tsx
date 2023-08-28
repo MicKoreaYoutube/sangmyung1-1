@@ -4,11 +4,11 @@ import Link from "next/link"
 
 import { ChevronRight } from 'lucide-react';
 
-import { displayError, logouted } from "@/public/js/function";
+import { displayError, logouted, isBetweenTimestamps } from "@/public/js/function";
 
-import { collection, addDoc, Timestamp } from "firebase/firestore";
+import { collection, addDoc, Timestamp, doc, getDoc } from "firebase/firestore";
 import { db, auth, userInfo } from "@/public/js/firebase";
-import React, { useRef } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { onAuthStateChanged } from "firebase/auth";
 
 import { siteConfig } from "@/config/site";
@@ -37,39 +37,79 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import {
+    AlertDialog,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+  } from "@/components/ui/alert-dialog"
 
 export default function IndexPage() {
 
     const title = useRef(null);
     const content = useRef(null);
     const status = useRef(null);
+    const BanDialogButton = useRef(null);
+    const userBanReason = useRef(null);
+    const userBanRange = useRef(null);
 
     async function addNewDocument() {
-        if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
-            displayError("모든 칸을 다 채워주세요.")
-        } else {
-            const collectionRef = collection(db, "suggestions");
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    const cutEmail = user.email.slice(0, 5)
-                    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                    const currentDate = new Date(); 
-                    const status_list = { 공개: "all", 익명: "anonymous" }
-                    const statusValue: "공개" | "익명" = status.current.innerHTML
-                    const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
-                    try {
-                        const newDocRef = await addDoc(collectionRef, newData);
-                        const commentsCollection = collection(newDocRef, 'comments');
-                        const commentData = { status: "delete" };
-                        const newCommentDocRef = await addDoc(commentsCollection, commentData);
+        if (isBetweenTimestamps) {
+            const cutEmail = userInfo.email.slice(0, 5)
+            const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
 
-                        location.href = '/board/suggestions'
-                    } catch (error) {
-                        displayError(error)
+            useEffect(() => {
+                if (BanDialogButton.current) {
+                    BanDialogButton.current.click();
+                }
+            }, []);
+            const [data, setData] = useState(null);
+
+            useEffect(() => {
+                async function fetchSingleData() {
+                    const docRef = doc(db, "user", id[0]);
+                    const docSnap = await getDoc(docRef);
+        
+                    if (docSnap.exists()) {
+                        setData({ id: docSnap.id, ...docSnap.data() });
                     }
                 }
-            });
-        } 
+                fetchSingleData();
+            }, []);
+
+            userBanReason.current.innerHTML = data.userBanReason
+            userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
+        } else {
+            if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
+                displayError("모든 칸을 다 채워주세요.")
+            } else {
+                const collectionRef = collection(db, "suggestions");
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        const cutEmail = user.email.slice(0, 5)
+                        const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+                        const currentDate = new Date();
+                        const status_list = { 공개: "all", 익명: "anonymous" }
+                        const statusValue: "공개" | "익명" = status.current.innerHTML
+                        const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
+                        try {
+                            const newDocRef = await addDoc(collectionRef, newData);
+                            const commentsCollection = collection(newDocRef, 'comments');
+                            const commentData = { status: "delete" };
+                            const newCommentDocRef = await addDoc(commentsCollection, commentData);
+
+                            location.href = '/board/suggestions'
+                        } catch (error) {
+                            displayError(error)
+                        }
+                    }
+                });
+            }
+        }
     }
 
     return (
@@ -130,6 +170,24 @@ export default function IndexPage() {
                     </CardFooter>
                 </Card>
             </section>
+            <AlertDialog>
+                <AlertDialogTrigger asChild>
+                    <Button variant="outline" className="hidden" ref={BanDialogButton}>Show Dialog</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle>귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
+                        <AlertDialogDescription>
+                            귀하는 이용약관 위반으로 현재 정지 상태이십니다.
+                            정지 사유: <span ref={userBanReason}>정지사유</span>
+                            정지 기간: <span ref={userBanRange}>정지사유</span>
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>확인</AlertDialogCancel>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </>
     )
 }

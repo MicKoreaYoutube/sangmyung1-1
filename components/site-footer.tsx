@@ -21,7 +21,7 @@ export function SiteFooter() {
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">상명중1-1 건의함</span>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 md:gap-6 md:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-8 md:gap-12 md:grid-cols-3">
                         <div>
                             <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
