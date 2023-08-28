@@ -81,9 +81,8 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         if (isBetweenTimestamps) {
-            userBanReason.current.innerHTML = data.userBanReason
-            userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
-            
+            console.log(data)
+
             BanDialogButton.current.click();
         } else {
             if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
