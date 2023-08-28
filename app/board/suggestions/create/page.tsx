@@ -81,10 +81,10 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         if (isBetweenTimestamps) {
-            BanDialogButton.current.click();
-
             userBanReason.current.innerHTML = data.userBanReason
             userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
+            
+            BanDialogButton.current.click();
         } else {
             if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
                 displayError("모든 칸을 다 채워주세요.")
