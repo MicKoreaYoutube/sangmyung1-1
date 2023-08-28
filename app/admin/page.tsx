@@ -120,42 +120,28 @@ export default function IndexPage({
 
   async function banUser() {
     let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
+    const timestamp = Timestamp.fromDate(dateObject);
 
-    // 원하는 형식으로 포맷팅
-    const userBanStartTime = dateObject.toLocaleString("ko-KR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      timeZoneName: "short",
-      timeZone: "Asia/Seoul",
-    });
-
-    dateObject = new Date(dateRange.current.innerHTML.split(" - ")[1]);
-
-    const userBanEndTime = dateObject.toLocaleString("ko-KR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-      second: "numeric",
-      timeZoneName: "short",
-      timeZone: "Asia/Seoul",
-    });
+    console.log(timestamp)
 
     // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
-    const docRef = doc(db, "user", userName.current.innerHTML)
-    const newData = { userBanStartTime: userBanStartTime, userBanEndTime: userBanEndTime, userBanReason: banReasonInput.current.value };
+    /*const docRef = doc(db, "user", userName.current.innerHTML)
+    const newData: {
+      userBanStartTime: Timestamp,
+      userBanEndTime: Timestamp,
+      userBanReason: string
+    } = {
+      userBanStartTime: userBanStartTime,
+      userBanEndTime: userBanEndTime,
+      userBanReason: banReasonInput.current.value
+    };
     try {
       await updateDoc(docRef, newData);
       history.go(0)
     } catch (error) {
       displayError(error)
-    }
+    }*/
   }
 
   /*async function TempFunc(user: any) {
@@ -221,7 +207,6 @@ export default function IndexPage({
                         <TableHead className="w-40">학번이름</TableHead>
                         <TableHead className="w-56">정지 시작 시간</TableHead>
                         <TableHead className="w-56">정지 종료 시간</TableHead>
-                        <TableHead>정지 횟수</TableHead>
                         <TableHead className="w-80">정지 사유</TableHead>
                         <TableHead className="place-self-end">{" "}</TableHead>
                       </TableRow>
@@ -232,7 +217,6 @@ export default function IndexPage({
                           <TableCell>{user.id}</TableCell>
                           <TableCell>{user.userBanStartTime}</TableCell>
                           <TableCell>{user.userBanEndTime}</TableCell>
-                          <TableCell>{user.userBanCount}</TableCell>
                           <TableCell>{user.userBanReason}</TableCell>
                           <TableCell>
                             <Dialog>
