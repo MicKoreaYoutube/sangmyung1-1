@@ -137,6 +137,7 @@ export default function IndexPage({
       hour: "numeric",
       minute: "numeric",
       second: "numeric",
+      timeZoneName: "short",
       timeZone: "Asia/Seoul",
     });
 
