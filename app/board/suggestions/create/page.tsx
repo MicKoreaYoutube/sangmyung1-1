@@ -57,16 +57,21 @@ export default function IndexPage() {
     const userBanReason = useRef(null);
     const userBanRange = useRef(null);
 
-    const cutEmail = userInfo.email.slice(0, 5)
-    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+    let userId: any
 
     const [data, setData] = useState(null);
 
     useEffect(() => {
         async function fetchSingleData() {
-            const docRef = doc(db, "user", id[0]);
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const cutEmail = user.email.slice(0, 5)
+                    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+                    userId = id
+                }
+            });
+            const docRef = doc(db, "user", userId[0]);
             const docSnap = await getDoc(docRef);
-
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
             }
