@@ -127,10 +127,11 @@ export default function IndexPage({
     } catch (error) {
       displayError(error)
     }*/
-    const dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
+
+    let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
 
     // 원하는 형식으로 포맷팅
-    const formattedDate = dateObject.toLocaleString("ko-KR", {
+    const userBanStartTime = dateObject.toLocaleString("ko-KR", {
       year: "numeric",
       month: "long",
       day: "numeric",
@@ -141,7 +142,8 @@ export default function IndexPage({
       timeZone: "Asia/Seoul",
     });
 
-    console.log(formattedDate); // 예: "2023년 7월 29일 오전 12시 0분 0초 UTC+9"
+    console.log(dateObject, userBanStartTime)
+
     console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
   }
 
