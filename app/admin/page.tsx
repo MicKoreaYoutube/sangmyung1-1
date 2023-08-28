@@ -120,18 +120,15 @@ export default function IndexPage({
 
   async function banUser() {
     let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
-    const timestamp = Timestamp.fromDate(dateObject);
+    const userBanStartTime = Timestamp.fromDate(dateObject);
 
-    console.log(timestamp)
+    dateObject = new Date(dateRange.current.innerHTML.split(" - ")[1]);
+    const userBanEndTime = Timestamp.fromDate(dateObject);
 
     // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
-    /*const docRef = doc(db, "user", userName.current.innerHTML)
-    const newData: {
-      userBanStartTime: Timestamp,
-      userBanEndTime: Timestamp,
-      userBanReason: string
-    } = {
+    const docRef = doc(db, "user", userName.current.innerHTML)
+    const newData = {
       userBanStartTime: userBanStartTime,
       userBanEndTime: userBanEndTime,
       userBanReason: banReasonInput.current.value
@@ -141,7 +138,7 @@ export default function IndexPage({
       history.go(0)
     } catch (error) {
       displayError(error)
-    }*/
+    }
   }
 
   /*async function TempFunc(user: any) {
