@@ -7,7 +7,7 @@ import { accessDenied, displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site";
 
-import { collection, getDocs, Timestamp } from "firebase/firestore";
+import { collection, getDocs, Timestamp, updateDoc } from "firebase/firestore";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
 import React, { useState, useEffect, useRef } from 'react';
@@ -119,15 +119,6 @@ export default function IndexPage({
   }, []);
 
   async function banUser() {
-    /*const docRef = doc(db, "user", userName.current.innerHTML)
-    const newData = {  };
-    try {
-      await updateDoc(docRef, newData);
-      location.href = '/board/suggestions'
-    } catch (error) {
-      displayError(error)
-    }*/
-
     let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
 
     // 원하는 형식으로 포맷팅
@@ -142,9 +133,29 @@ export default function IndexPage({
       timeZone: "Asia/Seoul",
     });
 
-    console.log(dateObject, userBanStartTime)
+    dateObject = new Date(dateRange.current.innerHTML.split(" - ")[1]);
 
-    console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
+    const userBanEndTime = dateObject.toLocaleString("ko-KR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+      second: "numeric",
+      timeZoneName: "short",
+      timeZone: "Asia/Seoul",
+    });
+
+    // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
+
+    const docRef = doc(db, "user", userName.current.innerHTML)
+    const newData = { userBanStartTime: userBanStartTime, userBanEndTime: userBanEndTime, userBanReason: banReasonInput.current.value };
+    try {
+      await updateDoc(docRef, newData);
+      history.go(0)
+    } catch (error) {
+      displayError(error)
+    }
   }
 
   /*async function TempFunc(user: any) {
@@ -280,6 +291,12 @@ export default function IndexPage({
                                   <Label htmlFor="name">정지 사유</Label>
                                   <Input ref={banReasonInput} placeholder="정지 사유를 입력하세요..." />
                                 </div>
+                                <Alert variant="destructive" className="hidden" id="error">
+                                  <AlertTitle>Error</AlertTitle>
+                                  <AlertDescription id="errorMessage">
+                                    Error Message
+                                  </AlertDescription>
+                                </Alert>
                                 <DialogFooter className="font-SUITE-Regular">
                                   <Button type="submit" onClick={banUser}>정지 시키기</Button>
                                 </DialogFooter>
