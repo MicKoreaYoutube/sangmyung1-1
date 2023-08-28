@@ -87,6 +87,8 @@ export default function IndexPage() {
                 const collectionRef = collection(db, "suggestions");
                 onAuthStateChanged(auth, async (user) => {
                     if (user) {
+                        const cutEmail = user.email.slice(0, 5)
+                        const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
                         const currentDate = new Date();
                         const status_list = { 공개: "all", 익명: "anonymous" }
                         const statusValue: "공개" | "익명" = status.current.innerHTML
