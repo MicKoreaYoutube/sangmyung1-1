@@ -147,6 +147,7 @@ export default function IndexPage({
         userBanEndTime: userBanEndTime,
         userBanReason: banReasonInput.current.value
       })
+      console.log(userBanStartTime, userBanEndTime, banReasonInput.current.value)
     }
 
     console.log(userBanData, userName.current.innerHTML)
