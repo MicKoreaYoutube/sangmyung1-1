@@ -61,7 +61,7 @@ export default function IndexPage() {
 
     const [data, setData] = useState(null);
 
-    useEffect(() => {
+    setTimeout(() => {
         async function fetchSingleData() {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
@@ -78,7 +78,7 @@ export default function IndexPage() {
             console.log(data)
         }
         fetchSingleData();
-    }, []);
+    }, 500);
 
     async function addNewDocument() {
         if (isBetweenTimestamps) {
