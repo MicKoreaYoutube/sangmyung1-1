@@ -67,10 +67,10 @@ export default function IndexPage() {
                 if (user) {
                     const cutEmail = user.email.slice(0, 5)
                     const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                    userId = id
+                    userId = id[0]
                 }
             });
-            const docRef = doc(db, "user", userId[0]);
+            const docRef = doc(db, "user", userId);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
