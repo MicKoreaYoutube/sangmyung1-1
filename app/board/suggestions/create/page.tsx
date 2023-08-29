@@ -61,26 +61,24 @@ export default function IndexPage() {
 
     const [data, setData] = useState(null);
 
-    setTimeout(function(){
-        useEffect(() => {
-            async function fetchSingleData() {
-                onAuthStateChanged(auth, async (user) => {
-                    if (user) {
-                        const cutEmail = user.email.slice(0, 5)
-                        const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                        userId = id[0]
-                    }
-                });
-                const docRef = doc(db, "user", userId);
-                const docSnap = await getDoc(docRef);
-                if (docSnap.exists()) {
-                    setData({ id: docSnap.id, ...docSnap.data() });
+    useEffect(() => {
+        async function fetchSingleData() {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const cutEmail = user.email.slice(0, 5)
+                    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+                    userId = id[0]
                 }
-                console.log(data)
+            });
+            const docRef = doc(db, "user", userId);
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setData({ id: docSnap.id, ...docSnap.data() });
             }
-            fetchSingleData();
-        }, []);
-    }, 500)
+            console.log(data)
+        }
+        fetchSingleData();
+    });
 
     async function addNewDocument() {
         if (isBetweenTimestamps) {
