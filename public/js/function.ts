@@ -43,12 +43,7 @@ export function accessDenied() {
     }
 }
 
-export function isBetweenTimestamps(startTime: Date, endTime: Date) {
-    const currentTime = new Date(); // 현재 시각을 가져옵니다.
-
-    if (currentTime >= startTime && currentTime <= endTime) {
-        return true
-    } else {
-        return false
-    }
-}
+export function isDateInRange(startDate: Date, endDate: Date) {
+    const currentDate = new Date();
+    return startDate <= currentDate && currentDate <= endDate;
+  }

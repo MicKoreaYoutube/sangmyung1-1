@@ -4,7 +4,7 @@ import Link from "next/link"
 
 import { ChevronRight } from 'lucide-react';
 
-import { displayError, logouted, isBetweenTimestamps } from "@/public/js/function";
+import { displayError, logouted, isDateInRange } from "@/public/js/function";
 
 import { collection, addDoc, Timestamp, doc, getDoc } from "firebase/firestore";
 import { db, auth, userInfo } from "@/public/js/firebase";
@@ -57,27 +57,30 @@ export default function IndexPage() {
     const userBanReason = useRef(null);
     const userBanRange = useRef(null);
 
-    const [userId, userIdChanger] = useState(null)
-
-    const [data, setData] = useState(null);
+    let data: any
 
     setTimeout(() => {
         async function fetchSingleData() {
             const id = siteConfig.member.filter(item => item.toString().includes(userInfo.email.slice(0, 5).toString()));
-            userIdChanger(id[0])
 
-            const docRef = doc(db, "user", userId);
+            const docRef = doc(db, "user", id[0]);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
-                setData({ id: docSnap.id, ...docSnap.data() });
+                data = { id: docSnap.id, ...docSnap.data() };
             }
             console.log(data)
         }
         fetchSingleData();
     }, 500);
 
+    function formatTimestamp(timestamp: Timestamp) {
+        const dateObject = new Date(timestamp.seconds * 1000);
+        return dateObject
+    }
+
     async function addNewDocument() {
-        if (isBetweenTimestamps(data.userBanStartTime, data.userBanEndTime)) {
+        
+        if (isDateInRange(formatTimestamp(data.userBanStartTime), formatTimestamp(data.userBanEndTime))) {
             userBanReason.current.innerHTML = data.userBanReason
             userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
 

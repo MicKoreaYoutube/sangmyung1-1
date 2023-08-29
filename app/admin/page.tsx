@@ -149,13 +149,12 @@ export default function IndexPage({
       }
     }
 
-    console.log(userBanData)
-
     // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
     const docRef = doc(db, "user", userName.current.innerHTML)
     try {
       await updateDoc(docRef, userBanData);
+      history.go(0)
     } catch (error) {
       displayError(error)
     }
