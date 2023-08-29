@@ -118,7 +118,7 @@ export default function IndexPage({
     getAllData()
   }, []);
 
-  const [userBanData, userBanDataChanger] = useState({})
+  const [userBanData, userBanDataChanger] = useState(null)
   const [userBanStartTime, setUserBanStartTime] = useState<Timestamp>(Timestamp.fromDate(new Date()))
   const [userBanEndTime, setUserBanEndTime] = useState<Timestamp>(Timestamp.fromDate(new Date()))
 
@@ -147,7 +147,6 @@ export default function IndexPage({
         userBanEndTime: userBanEndTime,
         userBanReason: banReasonInput.current.value
       })
-      console.log(userBanStartTime, userBanEndTime, banReasonInput.current.value)
     }
 
     console.log(userBanData, userName.current.innerHTML)
