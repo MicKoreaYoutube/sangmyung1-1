@@ -39,9 +39,9 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         const collectionRef = collection(db, "announcements");
-        if (title.current.value == "" || content.current.innerHTML == "") {
+        /*if (title.current.value == "" || content.current.innerHTML == "") {
             displayError("모든 칸을 다 채워주세요.")
-        } else {
+        } else {*/
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     const cutEmail = user.email.slice(0, 5)
@@ -59,7 +59,7 @@ export default function IndexPage() {
                     }
                 }
             });
-        } 
+        //} 
     }
 
     return (
