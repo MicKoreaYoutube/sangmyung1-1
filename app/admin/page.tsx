@@ -149,6 +149,8 @@ export default function IndexPage({
       })
     }
 
+    console.log(userBanData, userName.current.innerHTML)
+
     // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
     const docRef = doc(db, "user", userName.current.innerHTML)
