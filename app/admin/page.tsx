@@ -156,7 +156,6 @@ export default function IndexPage({
     const docRef = doc(db, "user", userName.current.innerHTML)
     try {
       await updateDoc(docRef, userBanData);
-      history.go(0)
     } catch (error) {
       displayError(error)
     }
