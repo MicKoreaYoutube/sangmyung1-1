@@ -78,7 +78,7 @@ export default function IndexPage() {
             console.log(data)
         }
         fetchSingleData();
-    });
+    }, []);
 
     async function addNewDocument() {
         if (isBetweenTimestamps) {
