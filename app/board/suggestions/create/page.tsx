@@ -60,7 +60,7 @@ export default function IndexPage() {
     let data: any
     async function fetchSingleData() {
         const cutEmail = userInfo?.email.slice(0, 5)
-        const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+        const id = siteConfig.member.filter(item => item?.toString()?.includes(cutEmail.toString()));
 
         const docRef = doc(db, "user", "19072김두한");
         const docSnap = await getDoc(docRef);
