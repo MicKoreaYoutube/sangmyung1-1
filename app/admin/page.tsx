@@ -132,9 +132,11 @@ export default function IndexPage({
     } else {
       if (dateRange.current.innerHTML.includes("-")) {
         let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
+        console.log(dateObject)
         setUserBanStartTime(Timestamp.fromDate(dateObject))
   
         dateObject = new Date(dateRange.current.innerHTML.split(" - ")[1]);
+        console.log(dateObject)
         setUserBanEndTime(Timestamp.fromDate(dateObject))
       } else {
         let dateObject = new Date(dateRange.current.innerHTML);
