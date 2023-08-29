@@ -23,12 +23,6 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-let userInfo: any
-
-onAuthStateChanged(auth, (user) => {
-  if (user) {
-    userInfo = user
-  }
-});
+const userInfo = auth.currentUser;
 
 export { app, auth, db, userInfo }

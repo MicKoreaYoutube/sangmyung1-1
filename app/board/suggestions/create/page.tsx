@@ -59,7 +59,7 @@ export default function IndexPage() {
 
     let data: any
 
-    setTimeout(() => {
+    useEffect(() => {
         async function fetchSingleData() {
             const id = siteConfig.member.filter(item => item.toString().includes(userInfo.email.slice(0, 5).toString()));
 
@@ -70,7 +70,7 @@ export default function IndexPage() {
             }
         }
         fetchSingleData();
-    }, 500);
+    })
 
     console.log(data)
 
@@ -80,7 +80,7 @@ export default function IndexPage() {
     }
 
     async function addNewDocument() {
-        
+
         if (isDateInRange(formatTimestamp(data.userBanStartTime), formatTimestamp(data.userBanEndTime))) {
             BanDialogButton.current.click();
 
@@ -183,7 +183,7 @@ export default function IndexPage() {
                         <AlertDialogDescription className="font-SUITE-Regular">
                             귀하는 이용약관 위반으로 현재 정지 상태이십니다.
                             정지 사유: <span ref={userBanReason}>정지사유</span><br />
-                            정지 기간: <span ref={userBanRange}>정지기간</span> 
+                            정지 기간: <span ref={userBanRange}>정지기간</span>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
