@@ -118,17 +118,17 @@ export default function IndexPage({
     getAllData()
   }, []);
 
-  const [userBanData, userBanDataChanger] = useState(null)
+  let userBanData: any
   const [userBanStartTime, setUserBanStartTime] = useState<Timestamp>(Timestamp.fromDate(new Date()))
   const [userBanEndTime, setUserBanEndTime] = useState<Timestamp>(Timestamp.fromDate(new Date()))
 
   async function banUser() {
     if (dateRange.current.innerHTML == "Pick a date") {
-      userBanDataChanger({
+      userBanData = {
         userBanStartTime: null,
         userBanEndTime: null,
         userBanReason: "해당 없음"
-      })
+      }
     } else {
       if (dateRange.current.innerHTML.includes("-")) {
         let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
@@ -142,14 +142,14 @@ export default function IndexPage({
   
         setUserBanEndTime(null)
       }
-      userBanDataChanger({
+      userBanData = {
         userBanStartTime: userBanStartTime,
         userBanEndTime: userBanEndTime,
         userBanReason: banReasonInput.current.value
-      })
+      }
     }
 
-    console.log(userBanData, userName.current.innerHTML)
+    console.log(userBanData)
 
     // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
