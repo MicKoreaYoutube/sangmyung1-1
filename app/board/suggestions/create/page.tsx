@@ -72,6 +72,8 @@ export default function IndexPage() {
         fetchSingleData();
     }, 500);
 
+    console.log(data.userBanStartTime)
+
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
         return dateObject
@@ -180,8 +182,8 @@ export default function IndexPage() {
                         <AlertDialogTitle className="font-KBO-Dia-Gothic_bold">귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
                         <AlertDialogDescription className="font-SUITE-Regular">
                             귀하는 이용약관 위반으로 현재 정지 상태이십니다.
-                            정지 사유: <p ref={userBanReason}>정지사유</p>
-                            정지 기간: <p ref={userBanRange}>정지기간</p> 
+                            정지 사유: <span ref={userBanReason}>정지사유</span><br />
+                            정지 기간: <span ref={userBanRange}>정지기간</span> 
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
