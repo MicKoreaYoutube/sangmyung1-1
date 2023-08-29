@@ -82,7 +82,8 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         if (isBetweenTimestamps) {
-            console.log(data)
+            userBanReason.current.innerHTML = data.userBanReason
+            userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
 
             BanDialogButton.current.click();
         } else {
