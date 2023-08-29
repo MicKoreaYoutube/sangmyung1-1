@@ -57,33 +57,33 @@ export default function IndexPage() {
     const userBanReason = useRef(null);
     const userBanRange = useRef(null);
 
-    /*let data: any
+    let data: any
     async function fetchSingleData() {
-        const cutEmail = userInfo.email.slice(0, 5)
+        const cutEmail = userInfo?.email.slice(0, 5)
         const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
 
         const docRef = doc(db, "user", "19072김두한");
         const docSnap = await getDoc(docRef);
         if (docSnap.exists()) {
             data = { id: docSnap.id, ...docSnap.data() };
+            console.log(data)
         }
     }
     fetchSingleData();
 
-    console.log(data)
-
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
         return dateObject
-    }*/
+    }
 
     async function addNewDocument() {
-        /*if (isDateInRange(formatTimestamp(data.userBanStartTime), formatTimestamp(data.userBanEndTime))) {
+
+        if (isDateInRange(formatTimestamp(data.userBanStartTime), formatTimestamp(data.userBanEndTime))) {
             BanDialogButton.current.click();
 
             userBanReason.current.innerHTML = data.userBanReason
             userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
-        } else {*/
+        } else {
             if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
                 displayError("모든 칸을 다 채워주세요.")
             } else {
@@ -109,7 +109,7 @@ export default function IndexPage() {
                     }
                 });
             }
-       // }
+        }
     }
 
     return (
