@@ -72,7 +72,7 @@ export default function IndexPage() {
         fetchSingleData();
     }, 500);
 
-    console.log(data.userBanStartTime)
+    console.log(data)
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
