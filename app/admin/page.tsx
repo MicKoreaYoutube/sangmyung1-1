@@ -268,7 +268,7 @@ export default function IndexPage({
                                               {format(date.to, "LLL dd, y")}
                                             </span>
                                           ) : (
-                                            <span ref={dateRange}>format(date.from, "LLL dd, y")</span>
+                                            <span ref={dateRange}>{format(date.from, "LLL dd, y")}</span>
                                           )
                                         ) : (
                                           <span ref={dateRange}>Pick a date</span>
