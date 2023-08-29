@@ -67,7 +67,7 @@ export default function IndexPage() {
                 if (user) {
                     const cutEmail = user.email.slice(0, 5)
                     const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                    userId = id[0]
+                    console.log(id, id[0])
                 }
             });
             const docRef = doc(db, "user", userId);
