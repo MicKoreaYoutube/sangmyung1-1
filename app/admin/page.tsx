@@ -74,7 +74,7 @@ export default function IndexPage({
   const banReasonInput = useRef(null)
   const userName = useRef(null)
 
-  const [adminState, adminStateChanger] = useState(false)
+  const [adminState, adminStateChanger] = useState(true)
 
   setTimeout(function () {
     userInfo ? (
@@ -118,23 +118,42 @@ export default function IndexPage({
     getAllData()
   }, []);
 
-  async function banUser() {
-    let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
-    const userBanStartTime = Timestamp.fromDate(dateObject);
+  const [userBanData, userBanDataChanger] = useState({})
+  const [userBanStartTime, setUserBanStartTime] = useState<Timestamp>(Timestamp.fromDate(new Date()))
+  const [userBanEndTime, setUserBanEndTime] = useState<Timestamp>(Timestamp.fromDate(new Date()))
 
-    dateObject = new Date(dateRange.current.innerHTML.split(" - ")[1]);
-    const userBanEndTime = Timestamp.fromDate(dateObject);
+  async function banUser() {
+    if (dateRange.current.innerHTML == "Pick a date") {
+      userBanDataChanger({
+        userBanStartTime: null,
+        userBanEndTime: null,
+        userBanReason: "해당 없음"
+      })
+    } else {
+      if (dateRange.current.innerHTML.includes("-")) {
+        let dateObject = new Date(dateRange.current.innerHTML.split(" - ")[0]);
+        setUserBanStartTime(Timestamp.fromDate(dateObject))
+  
+        dateObject = new Date(dateRange.current.innerHTML.split(" - ")[1]);
+        setUserBanEndTime(Timestamp.fromDate(dateObject))
+      } else {
+        let dateObject = new Date(dateRange.current.innerHTML);
+        setUserBanStartTime(Timestamp.fromDate(dateObject))
+  
+        setUserBanEndTime(null)
+      }
+      userBanDataChanger({
+        userBanStartTime: userBanStartTime,
+        userBanEndTime: userBanEndTime,
+        userBanReason: banReasonInput.current.value
+      })
+    }
 
     // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
     const docRef = doc(db, "user", userName.current.innerHTML)
-    const newData = {
-      userBanStartTime: userBanStartTime,
-      userBanEndTime: userBanEndTime,
-      userBanReason: banReasonInput.current.value
-    };
     try {
-      await updateDoc(docRef, newData);
+      await updateDoc(docRef, userBanData);
       history.go(0)
     } catch (error) {
       displayError(error)
@@ -249,10 +268,10 @@ export default function IndexPage({
                                               {format(date.to, "LLL dd, y")}
                                             </span>
                                           ) : (
-                                            format(date.from, "LLL dd, y")
+                                            <span ref={dateRange}>format(date.from, "LLL dd, y")</span>
                                           )
                                         ) : (
-                                          <span>Pick a date</span>
+                                          <span ref={dateRange}>Pick a date</span>
                                         )}
                                       </Button>
                                     </PopoverTrigger>

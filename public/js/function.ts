@@ -43,8 +43,8 @@ export function accessDenied() {
     }
 }
 
-export function isBetweenTimestamps(startTime: Timestamp, endTime: Timestamp) {
-    const currentTime = Timestamp.now(); // 현재 시각을 가져옵니다.
+export function isBetweenTimestamps(startTime: Date, endTime: Date) {
+    const currentTime = new Date(); // 현재 시각을 가져옵니다.
 
     if (currentTime >= startTime && currentTime <= endTime) {
         return true

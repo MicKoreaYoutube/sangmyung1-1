@@ -57,19 +57,15 @@ export default function IndexPage() {
     const userBanReason = useRef(null);
     const userBanRange = useRef(null);
 
-    let userId: any
+    const [userId, userIdChanger] = useState(null)
 
     const [data, setData] = useState(null);
 
     setTimeout(() => {
         async function fetchSingleData() {
-            onAuthStateChanged(auth, async (user) => {
-                if (user) {
-                    const cutEmail = user.email.slice(0, 5)
-                    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-                    userId = id[0]
-                }
-            });
+            const id = siteConfig.member.filter(item => item.toString().includes(userInfo.email.slice(0, 5).toString()));
+            userIdChanger(id[0])
+
             const docRef = doc(db, "user", userId);
             const docSnap = await getDoc(docRef);
             if (docSnap.exists()) {
@@ -81,7 +77,7 @@ export default function IndexPage() {
     }, 500);
 
     async function addNewDocument() {
-        if (isBetweenTimestamps) {
+        if (isBetweenTimestamps(data.userBanStartTime, data.userBanEndTime)) {
             userBanReason.current.innerHTML = data.userBanReason
             userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
 
