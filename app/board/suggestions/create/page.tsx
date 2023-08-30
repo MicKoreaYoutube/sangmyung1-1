@@ -71,6 +71,8 @@ export default function IndexPage() {
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
                         console.log(userBanData)
+                    } else {
+                        console.log("그딴거 없음 ㅅㄱ")
                     }
                 }
             })
