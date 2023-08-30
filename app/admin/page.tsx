@@ -140,7 +140,7 @@ export default function IndexPage({
         let dateObject = new Date(dateRange.current.innerHTML);
         userBanStartTime = Timestamp.fromDate(dateObject)
   
-        userBanEndTime = "영구 정지"
+        userBanEndTime = null
       }
       userBanData = {
         userBanStartTime: userBanStartTime,

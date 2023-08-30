@@ -47,7 +47,7 @@ export function isDateInRange(startDate: Date | null, endDate: Date | string) {
     if (startDate == null) {
         return false
     } else {
-        if (endDate == "영구정지") {
+        if (endDate == null) {
             return true
         } else {
             const currentDate = new Date();
