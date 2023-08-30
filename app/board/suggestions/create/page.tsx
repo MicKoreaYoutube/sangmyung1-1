@@ -60,7 +60,7 @@ export default function IndexPage() {
     const [userBanData, setUserBanData] = useState(null)
 
     useEffect(() => {
-        async function fetchSingleData() {
+        function fetchSingleData() {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     const cutEmail = user.email.slice(0, 5)
