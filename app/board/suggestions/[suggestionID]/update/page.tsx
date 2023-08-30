@@ -95,7 +95,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
     function formatTimestamp(timestamp: any) {
         if (timestamp !== null) {
             const dateObject = new Date(timestamp?.seconds * 1000);
-            return dateObject.toLocaleString()
+            return dateObject
         } else {
             return timestamp
         }
