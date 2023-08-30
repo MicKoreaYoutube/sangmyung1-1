@@ -57,24 +57,26 @@ export default function IndexPage() {
     const userBanReason = useRef(null);
     const userBanRange = useRef(null);
 
-    /*let data: any
-    async function fetchSingleData() {
-        const cutEmail = userInfo.email.slice(0, 5)
-        const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
-
-        const docRef = doc(db, "user", "19072김두한");
-        const docSnap = await getDoc(docRef);
-        if (docSnap.exists()) {
-            data = { id: docSnap.id, ...docSnap.data() };
-            console.log(data)
+    const [userBanData, setUserBanData] = useState(null)
+    useEffect(()=>{
+        async function fetchSingleData() {
+            const cutEmail = userInfo.email.slice(0, 5)
+            const id = siteConfig.member.filter(item => item && item.toString().includes(cutEmail.toString()));
+    
+            const docRef = doc(db, "user", "19072김두한");
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                setUserBanData({ id: docSnap.id, ...docSnap.data() })
+                console.log(userBanData)
+            }
         }
-    }
-    fetchSingleData();
+        fetchSingleData();
+    })
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
         return dateObject
-    }*/
+    }
 
     async function addNewDocument() {
 
