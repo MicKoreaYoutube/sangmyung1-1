@@ -70,6 +70,7 @@ export default function IndexPage() {
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
+                        console.log(userBanData)
                     }
                 }
             })
@@ -195,11 +196,6 @@ export default function IndexPage() {
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-            {userBanData ? (
-                <span>{userBanData} {userBanData.id} {userBanData.userBanReason}</span>
-            ) : (
-                <span>시발</span>
-            )}
         </>
     )
 }
