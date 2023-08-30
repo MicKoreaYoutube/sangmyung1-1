@@ -75,7 +75,7 @@ export default function IndexPage() {
             })
         }
         fetchSingleData();
-    }, [])
+    }, [userBanData])
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
