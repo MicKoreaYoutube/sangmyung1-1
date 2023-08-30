@@ -67,7 +67,7 @@ export default function IndexPage() {
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
-                        console.log(userBanData)
+                        console.log(userBanData.id)
                     }
         }
         fetchSingleData();
