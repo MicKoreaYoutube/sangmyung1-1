@@ -67,11 +67,10 @@ export default function IndexPage() {
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
-                        console.log(userBanData?.id)
                     }
         }
         fetchSingleData();
-    }, [])
+    }, [userBanData])
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
