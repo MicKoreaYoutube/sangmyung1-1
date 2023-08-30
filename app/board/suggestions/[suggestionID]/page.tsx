@@ -30,6 +30,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
+                console.log(data)
             }
         }
         fetchSingleData();
@@ -60,12 +61,14 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
     return (
         <>
-            {data ? (
+
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <Card className="justify-start">
-                    <div className="flex justify-end">
-                        <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
-                    </div>
+                    {data ? (
+                        <>
+                            <div className="flex justify-end">
+                                <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
+                            </div>
                             <CardHeader>
                                 <CardTitle className="font-KBO-Dia-Gothic_bold md:text-4xl flex justify-between">
                                     <span>{data.title}</span>
@@ -85,11 +88,12 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                     </div>
                                 ))}
                             </CardFooter> */}
+                        </>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
                 </Card>
             </section>
-            ) : (
-                <p>Loading...</p>
-            )}
         </>
     )
 }
