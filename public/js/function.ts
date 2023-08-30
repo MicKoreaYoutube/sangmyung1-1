@@ -43,11 +43,11 @@ export function accessDenied() {
     }
 }
 
-export function isDateInRange(startDate: Date | null, endDate: Date | null) {
+export function isDateInRange(startDate: Date | null, endDate: Date | string) {
     if (startDate == null) {
         return false
     } else {
-        if (endDate == null) {
+        if (endDate == "영구정지") {
             return true
         } else {
             const currentDate = new Date();
