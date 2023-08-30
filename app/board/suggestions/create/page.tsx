@@ -70,7 +70,6 @@ export default function IndexPage() {
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
-                        console.log(userBanData)
                     }
                 }
             })
@@ -79,9 +78,14 @@ export default function IndexPage() {
         fetchSingleData();
     }, [userBanData])
 
-    function formatTimestamp(timestamp: Timestamp) {
-        const dateObject = new Date(timestamp.seconds * 1000);
-        return dateObject
+    function formatTimestamp(timestamp: any) {
+        if (timestamp !== null) {
+            const dateObject = new Date(timestamp.seconds * 1000);
+            return dateObject
+        } else {
+            return timestamp
+        }
+        
     }
 
     async function addNewDocument() {

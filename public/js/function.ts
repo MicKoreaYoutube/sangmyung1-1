@@ -43,7 +43,15 @@ export function accessDenied() {
     }
 }
 
-export function isDateInRange(startDate: Date, endDate: Date) {
-    const currentDate = new Date();
-    return startDate <= currentDate && currentDate <= endDate;
-  }
+export function isDateInRange(startDate: Date | null, endDate: Date | null) {
+    if (startDate == null) {
+        return false
+    } else {
+        if (endDate == null) {
+            return true
+        } else {
+            const currentDate = new Date();
+            return startDate <= currentDate && currentDate <= endDate;
+        }
+    }
+}
