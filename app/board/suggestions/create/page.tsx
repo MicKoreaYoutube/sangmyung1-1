@@ -58,6 +58,7 @@ export default function IndexPage() {
     const userBanRange = useRef(null);
 
     const [userBanData, setUserBanData] = useState(null)
+
     useEffect(() => {
         async function fetchSingleData() {
             onAuthStateChanged(auth, async (user) => {
@@ -75,7 +76,7 @@ export default function IndexPage() {
 
         }
         fetchSingleData();
-    })
+    }, [])
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
