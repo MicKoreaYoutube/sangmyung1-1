@@ -4,11 +4,13 @@ import Link from "next/link"
 
 import { ChevronRight } from 'lucide-react';
 
-import { displayError } from "@/public/js/function";
+import { siteConfig } from "@/config/site";
 
 import { doc, updateDoc, Timestamp, getDoc } from "firebase/firestore";
-import { db, userInfo } from "@/public/js/firebase";
-import { accessDenied } from "@/public/js/function";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { auth, db, userInfo } from "@/public/js/firebase";
+import { accessDenied, displayError, isDateInRange } from "@/public/js/function";
 import React, { useRef, useState, useEffect } from 'react';
 
 import { Button, buttonVariants } from "@/components/ui/button"
@@ -35,12 +37,23 @@ import {
     AlertDescription,
     AlertTitle,
 } from "@/components/ui/alert"
+import {
+    AlertDialog,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
 
 export default function IndexPage({ params }: { params: { suggestionID: string } }) {
 
     const title = useRef(null);
     const content = useRef(null);
     const status = useRef(null);
+    const BanDialogButton = useRef(null);
 
     const [data, setData] = useState(null);
 
@@ -58,20 +71,57 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         fetchSingleData();
     }, []);
 
-    const updateDocument = async () => {
-        if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
-            displayError("모든 칸을 다 채워주세요.")
+    const [userBanData, setUserBanData] = useState(null)
+
+    useEffect(() => {
+        function fetchSingleData() {
+            onAuthStateChanged(auth, async (user) => {
+                if (user) {
+                    const cutEmail = user.email.slice(0, 5)
+                    const id = siteConfig.member.filter(item => item && item.toString().includes(cutEmail.toString()));
+
+                    const docRef = doc(db, "user", "19072김두한");
+                    const docSnap = await getDoc(docRef);
+                    if (docSnap.exists()) {
+                        setUserBanData({ id: docSnap.id, ...docSnap.data() })
+                    }
+                }
+            })
+
+        }
+        fetchSingleData();
+    }, [userBanData])
+
+    function formatTimestamp(timestamp: any) {
+        if (timestamp !== null) {
+            const dateObject = new Date(timestamp.seconds * 1000);
+            return dateObject
         } else {
-            const docRef = doc(db, "suggestions", params.suggestionID)
-            const currentDate = new Date();
-            const status_list = { 공개: "all", 익명: "anonymous" }
-            const statusValue: "공개" | "익명" = status.current.innerHTML
-            const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
-            try {
-                await updateDoc(docRef, newData);
-                location.href = '/board/suggestions'
-            } catch (error) {
-                displayError(error)
+            return timestamp
+        }
+
+    }
+
+    const updateDocument = async () => {
+        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
+            BanDialogButton.current.click();
+
+            console.log(userBanData.userBanReason, `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`)
+        } else {
+            if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
+                displayError("모든 칸을 다 채워주세요.")
+            } else {
+                const docRef = doc(db, "suggestions", params.suggestionID)
+                const currentDate = new Date();
+                const status_list = { 공개: "all", 익명: "anonymous" }
+                const statusValue: "공개" | "익명" = status.current.innerHTML
+                const newData = { changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value };
+                try {
+                    await updateDoc(docRef, newData);
+                    location.href = '/board/suggestions'
+                } catch (error) {
+                    displayError(error)
+                }
             }
         }
     }
@@ -80,12 +130,12 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
         <>
             <section className="container grid gap-6 my-28 max-w-[1000px]">
                 <h1 className="font-KBO-Dia-Gothic_bold text-4xl md:text-7xl text-center">나도 건의하기</h1>
-                {data ? (
                 <Card>
-                    <div className="flex justify-end">
-                        <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
-                    </div>
+                    {data ? (
                         <>
+                            <div className="flex justify-end">
+                                <Link href="/board/suggestions" className={buttonVariants({ variant: "ghost" }) + "font-SUITE-Regular px-2 absolute m-2"}><ChevronRight /></Link>
+                            </div>
                             {userInfo ? (
                                 data.author.slice(0, 5) == userInfo.email.slice(0, 5) || userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
                             ) : accessDenied()
@@ -138,11 +188,29 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                                 <Button className="font-SUITE-Regular" onClick={updateDocument}>수정하기</Button>
                             </CardFooter>
                         </>
+                    ) : (
+                        <p>Loading...</p>
+                    )}
                 </Card>
-                ) : (
-                    <p>Loading...</p>
-                )}
             </section>
+            <AlertDialog>
+                <AlertDialogTrigger asChild>
+                    <Button variant="outline" className="hidden" ref={BanDialogButton}>Show Dialog</Button>
+                </AlertDialogTrigger>
+                <AlertDialogContent>
+                    <AlertDialogHeader>
+                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold">귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
+                        <AlertDialogDescription className="font-SUITE-Regular">
+                            귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
+                            정지 사유: <span>{userBanData?.userBanReason}</span><br />
+                            정지 기간: <span>{userBanData?.userBanStartTime} ~ {userBanData?.userBanEndTime}</span>
+                        </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                        <AlertDialogCancel>확인</AlertDialogCancel>
+                    </AlertDialogFooter>
+                </AlertDialogContent>
+            </AlertDialog>
         </>
     )
 }

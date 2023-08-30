@@ -74,7 +74,7 @@ export default function IndexPage({
   const banReasonInput = useRef(null)
   const userName = useRef(null)
 
-  const [adminState, adminStateChanger] = useState(true)
+  const [adminState, adminStateChanger] = useState(false)
 
   setTimeout(function () {
     userInfo ? (

@@ -54,8 +54,6 @@ export default function IndexPage() {
     const content = useRef(null);
     const status = useRef(null);
     const BanDialogButton = useRef(null);
-    const userBanReason = useRef(null);
-    const userBanRange = useRef(null);
 
     const [userBanData, setUserBanData] = useState(null)
 
@@ -66,7 +64,7 @@ export default function IndexPage() {
                     const cutEmail = user.email.slice(0, 5)
                     const id = siteConfig.member.filter(item => item && item.toString().includes(cutEmail.toString()));
 
-                    const docRef = doc(db, "user", "19072김두한");
+                    const docRef = doc(db, "user", id[0]);
                     const docSnap = await getDoc(docRef);
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
@@ -89,12 +87,9 @@ export default function IndexPage() {
     }
 
     async function addNewDocument() {
-
         if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
             BanDialogButton.current.click();
 
-            userBanReason.current.innerHTML = userBanData.userBanReason
-            userBanRange.current.innerHTML = `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`
             console.log(userBanData.userBanReason, `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`)
         } else {
             if (title.current.value == "" || content.current.value == "" || status.current.innerHTML == "익명 여부") {
@@ -191,9 +186,9 @@ export default function IndexPage() {
                     <AlertDialogHeader>
                         <AlertDialogTitle className="font-KBO-Dia-Gothic_bold">귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
                         <AlertDialogDescription className="font-SUITE-Regular">
-                            귀하는 이용약관 위반으로 현재 정지 상태이십니다.
-                            정지 사유: <span ref={userBanReason}>정지사유</span><br />
-                            정지 기간: <span ref={userBanRange}>정지기간</span>
+                            귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
+                            정지 사유: <span>{userBanData?.userBanReason}</span><br />
+                            정지 기간: <span>{userBanData?.userBanStartTime} ~ {userBanData?.userBanEndTime}</span>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
