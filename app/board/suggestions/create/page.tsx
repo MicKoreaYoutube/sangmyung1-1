@@ -76,18 +76,17 @@ export default function IndexPage() {
         fetchSingleData();
     }, [userBanData])
 
-    function formatTimestamp(timestamp: Timestamp) {
+    function formatTimestamp(timestamp: any) {
         if (timestamp !== null) {
             const dateObject = new Date(timestamp.seconds * 1000);
             return dateObject.toLocaleString()
         } else {
             return timestamp
         }
-
     }
 
     async function addNewDocument() {
-        if (isDateInRange(userBanData.userBanStartTime, userBanData.userBanEndTime)) {
+        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
             BanDialogButton.current.click();
 
             console.log(userBanData.userBanReason, `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`)
