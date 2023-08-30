@@ -79,7 +79,7 @@ export default function IndexPage() {
     function formatTimestamp(timestamp: any) {
         if (timestamp !== null) {
             const dateObject = new Date(timestamp?.seconds * 1000);
-            return dateObject
+            return dateObject.toLocaleString()
         } else {
             return timestamp
         }
