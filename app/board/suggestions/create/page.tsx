@@ -96,7 +96,7 @@ export default function IndexPage() {
             userBanReason.current.innerHTML = userBanData.userBanReason
             userBanRange.current.innerHTML = `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`
         } else {
-            if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
+            if (title.current.value == "" || content.current.innerHTML == "") {
                 displayError("모든 칸을 다 채워주세요.")
             } else {
                 const collectionRef = collection(db, "suggestions");
