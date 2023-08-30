@@ -76,7 +76,7 @@ export default function IndexPage() {
         fetchSingleData();
     }, [userBanData])
 
-    function formatTimestamp(timestamp: any) {
+    function formatTimestamp(timestamp: Timestamp) {
         if (timestamp !== null) {
             const dateObject = new Date(timestamp.seconds * 1000);
             return dateObject.toLocaleString()
@@ -87,7 +87,7 @@ export default function IndexPage() {
     }
 
     async function addNewDocument() {
-        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
+        if (isDateInRange(userBanData.userBanStartTime, userBanData.userBanEndTime)) {
             BanDialogButton.current.click();
 
             console.log(userBanData.userBanReason, `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`)
@@ -188,7 +188,7 @@ export default function IndexPage() {
                         <AlertDialogDescription className="font-SUITE-Regular">
                             귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
                             정지 사유: <span>{userBanData?.userBanReason}</span><br />
-                            정지 기간: <span>{formatTimestamp(userBanData?.userBanStartTime)} ~ {formatTimestamp(userBanData?.userBanEndTime)}</span>
+                            정지 기간: <span>{userBanData.userBanStartTime} ~ {userBanData.userBanEndTime}</span>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
