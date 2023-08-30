@@ -83,7 +83,7 @@ export default function IndexPage() {
         } else {
             return timestamp
         }
-        
+
     }
 
     async function addNewDocument() {
@@ -185,11 +185,19 @@ export default function IndexPage() {
                 <AlertDialogContent>
                     <AlertDialogHeader>
                         <AlertDialogTitle className="font-KBO-Dia-Gothic_bold">귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
-                        <AlertDialogDescription className="font-SUITE-Regular">
-                            귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
-                            정지 사유: <span>{userBanData?.userBanReason}</span><br />
-                            정지 기간: <span>{userBanData.userBanStartTime} ~ {userBanData.userBanEndTime}</span>
-                        </AlertDialogDescription>
+                        {userBanData ? (
+                            <AlertDialogDescription className="font-SUITE-Regular">
+                                귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
+                                정지 사유: <span>{userBanData.userBanReason}</span><br />
+                                정지 기간: <span>{userBanData.userBanStartTime} ~ {userBanData.userBanEndTime}</span>
+                            </AlertDialogDescription>
+                        ) : (
+                            <AlertDialogDescription className="font-SUITE-Regular">
+                                귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
+                                정지 사유: <span>정지사유</span><br />
+                                정지 기간: <span>정지기간</span>
+                            </AlertDialogDescription>
+                        )}
                     </AlertDialogHeader>
                     <AlertDialogFooter>
                         <AlertDialogCancel>확인</AlertDialogCancel>
