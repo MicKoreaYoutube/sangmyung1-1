@@ -71,15 +71,13 @@ export default function IndexPage() {
                     if (docSnap.exists()) {
                         setUserBanData({ id: docSnap.id, ...docSnap.data() })
                         console.log(userBanData)
-                    } else {
-                        console.log("그딴거 없음 ㅅㄱ")
                     }
                 }
             })
 
         }
         fetchSingleData();
-    }, [])
+    }, [userBanData])
 
     function formatTimestamp(timestamp: Timestamp) {
         const dateObject = new Date(timestamp.seconds * 1000);
@@ -88,38 +86,38 @@ export default function IndexPage() {
 
     async function addNewDocument() {
 
-        /*if (isDateInRange(formatTimestamp(data.userBanStartTime), formatTimestamp(data.userBanEndTime))) {
+        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
             BanDialogButton.current.click();
 
-            userBanReason.current.innerHTML = data.userBanReason
-            userBanRange.current.innerHTML = `${data.userBanStartTime} ~ ${data.userBanEndTime}`
-        } else {*/
-        /*if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
-            displayError("모든 칸을 다 채워주세요.")
-        } else {*/
-        const collectionRef = collection(db, "suggestions");
-        onAuthStateChanged(auth, async (user) => {
-            if (user) {
-                const cutEmail = user.email.slice(0, 5)
-                const id = siteConfig.member.filter(item => item && item.toString().includes(cutEmail.toString()));
-                const currentDate = new Date();
-                const status_list = { 공개: "all", 익명: "anonymous" }
-                const statusValue: "공개" | "익명" = status.current.innerHTML
-                const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
-                try {
-                    const newDocRef = await addDoc(collectionRef, newData);
-                    const commentsCollection = collection(newDocRef, 'comments');
-                    const commentData = { status: "delete" };
-                    const newCommentDocRef = await addDoc(commentsCollection, commentData);
+            userBanReason.current.innerHTML = userBanData.userBanReason
+            userBanRange.current.innerHTML = `${userBanData.userBanStartTime} ~ ${userBanData.userBanEndTime}`
+        } else {
+            if (title.current.value == "" || content.current.innerHTML == "" || status.current.innerHTML == "익명 여부") {
+                displayError("모든 칸을 다 채워주세요.")
+            } else {
+                const collectionRef = collection(db, "suggestions");
+                onAuthStateChanged(auth, async (user) => {
+                    if (user) {
+                        const cutEmail = user.email.slice(0, 5)
+                        const id = siteConfig.member.filter(item => item && item.toString().includes(cutEmail.toString()));
+                        const currentDate = new Date();
+                        const status_list = { 공개: "all", 익명: "anonymous" }
+                        const statusValue: "공개" | "익명" = status.current.innerHTML
+                        const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: status_list[statusValue], title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
+                        try {
+                            const newDocRef = await addDoc(collectionRef, newData);
+                            const commentsCollection = collection(newDocRef, 'comments');
+                            const commentData = { status: "delete" };
+                            const newCommentDocRef = await addDoc(commentsCollection, commentData);
 
-                    location.href = '/board/suggestions'
-                } catch (error) {
-                    displayError(error)
-                }
+                            location.href = '/board/suggestions'
+                        } catch (error) {
+                            displayError(error)
+                        }
+                    }
+                });
             }
-        });
-        //}
-        //}
+        }
     }
 
     return (
