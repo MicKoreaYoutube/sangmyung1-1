@@ -203,7 +203,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                         <AlertDialogDescription className="font-SUITE-Regular">
                             귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
                             정지 사유: <span>{userBanData?.userBanReason}</span><br />
-                            정지 기간: <span>{userBanData?.userBanStartTime} ~ {userBanData?.userBanEndTime}</span>
+                            정지 기간: <span>{formatTimestamp(userBanData?.userBanStartTime)} ~ {formatTimestamp(userBanData?.userBanEndTime)}</span>
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
