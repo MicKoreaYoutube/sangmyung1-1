@@ -2,11 +2,12 @@
 
 import { cn } from "@/lib/utils"
 
-import { userInfo } from "@/public/js/firebase"
+import { userInfo, auth } from "@/public/js/firebase"
 import { accessDenied, displayError } from "@/public/js/function";
 
 import { siteConfig } from "@/config/site";
 
+import { onAuthStateChanged } from "firebase/auth";
 import { collection, getDocs, Timestamp, updateDoc } from "firebase/firestore";
 import { setDoc, doc } from "firebase/firestore";
 import { db } from "@/public/js/firebase";
@@ -76,11 +77,15 @@ export default function IndexPage({
 
   const [adminState, adminStateChanger] = useState(false)
 
-  setTimeout(function () {
-    userInfo ? (
-      userInfo.email.slice(0, 5) == "10103" || userInfo.email.slice(0, 5) == "10132" ? null : accessDenied()
-    ) : accessDenied()
-  }, 500);
+  useEffect(()=>{
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        user.email.slice(0, 5) == "10103" || user.email.slice(0, 5) == "10132" ? null : accessDenied()
+      } else {
+        accessDenied()
+      }
+    })
+  })
 
   function accessAdmin() {
     pwd.current.value == "MTxgdTBrl59RGGKV8OtH" ? (
@@ -140,7 +145,7 @@ export default function IndexPage({
         let dateObject = new Date(dateRange.current.innerHTML);
         userBanStartTime = Timestamp.fromDate(dateObject)
   
-        userBanEndTime = null
+        userBanEndTime = "영구 정지"
       }
       userBanData = {
         userBanStartTime: userBanStartTime,
