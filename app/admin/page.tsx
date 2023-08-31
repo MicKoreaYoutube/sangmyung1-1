@@ -237,7 +237,7 @@ export default function IndexPage({
                         <TableRow key={user.id}>
                           <TableCell>{user.id}</TableCell>
                           <TableCell>{user.userBanStartTime}</TableCell>
-                          <TableCell>{user.userBanEndTime}</TableCell>
+                          <TableCell>{user.userBanEndTime == "영구 정지" ? "영구 정지" : formatTimestamp(user.userBanEndTime).toLocaleString()}</TableCell>
                           <TableCell>{user.userBanReason}</TableCell>
                           <TableCell>
                             <Dialog>
