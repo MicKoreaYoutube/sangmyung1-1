@@ -13,6 +13,7 @@ export default function IndexPage() {
             2023-08-29 beta 0.7.1 - 유저 정지 기능 추가<br />
             2023-08-30 beta 0.7.2 - 유저 정지 기능 정비 및 영구 정지 추가<br />
             2023-08-31 beta 0.8.0 - 버그 수정 및 기능 최적화<br />
+            2023-08-31 official release 1.0.0 - 출시<br />
             <br />
             더 업데이트 예정<br />
         </p>
