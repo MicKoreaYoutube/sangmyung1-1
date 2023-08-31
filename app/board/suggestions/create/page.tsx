@@ -190,7 +190,7 @@ export default function IndexPage() {
                             <AlertDialogDescription className="font-SUITE-Regular md:text-xl">
                                 귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
                                 정지 사유: <span>{userBanData.userBanReason}</span><br />
-                                정지 기간: <span>{formatTimestamp(userBanData.userBanStartTime).toLocaleString()} ~ {userBanData.userBanEndTime == "영구 정지" ? "영구 정지" : formatTimestamp(userBanData.userBanEndTime).toLocaleString()}</span>
+                                정지 기간: <span>{userBanData.userBanStartTime ? formatTimestamp(userBanData.userBanStartTime).toLocaleString() : null} ~ {userBanData.userBanEndTime == "영구 정지" ? "영구 정지" : (userBanData.userBanEndTime ? formatTimestamp(userBanData.userBanEndTime).toLocaleString() : null)}</span>
                             </AlertDialogDescription>
                         ) : null}
                     </AlertDialogHeader>
