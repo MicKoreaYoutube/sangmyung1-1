@@ -82,7 +82,7 @@ export default function IndexPage() {
                 return timestamp
             } else {
                 const dateObject = new Date(timestamp.seconds * 1000);
-                return dateObject
+                return dateObject.toLocaleString()
             }
         } else {
             return timestamp
