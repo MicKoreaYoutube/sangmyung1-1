@@ -30,7 +30,6 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
 
             if (docSnap.exists()) {
                 setData({ id: docSnap.id, ...docSnap.data() });
-                console.log(data)
             }
         }
         fetchSingleData();

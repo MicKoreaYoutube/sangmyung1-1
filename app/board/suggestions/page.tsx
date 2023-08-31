@@ -53,7 +53,7 @@ export default function IndexPage() {
     fetchSortedData();
   }, []);
 
-  const suggestionsListFilterd = suggestionsList.filter(suggestion => suggestion.status == "delete")
+  const suggestionsListFilterd = suggestionsList.filter(suggestion => suggestion.status !== "delete")
 
   return (
     <>
