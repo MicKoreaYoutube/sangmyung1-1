@@ -93,7 +93,7 @@ export default function IndexPage() {
         if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
             BanDialogButton.current.click();
 
-            console.log(userBanData.userBanReason, `${Timestamp.fromDate(userBanData.userBanStartTime)} ~ ${Timestamp.fromDate(userBanData.userBanEndTime)}`)
+            console.log(userBanData.userBanReason, `${formatTimestamp(userBanData.userBanStartTime)} ~ ${formatTimestamp(userBanData.userBanEndTime)}`)
         } else {
             if (title.current.value == "" || content.current.value == "" || status.current.innerHTML == "익명 여부") {
                 displayError("모든 칸을 다 채워주세요.")
