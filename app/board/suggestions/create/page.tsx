@@ -185,9 +185,9 @@ export default function IndexPage() {
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold md:text-5xl">귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
+                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold md:text-3xl">귀하는 현재 정지 상태 입니다.</AlertDialogTitle>
                         {userBanData ? (
-                            <AlertDialogDescription className="font-SUITE-Regular md:text-2xl">
+                            <AlertDialogDescription className="font-SUITE-Regular md:text-xl">
                                 귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
                                 정지 사유: <span>{userBanData.userBanReason}</span><br />
                                 정지 기간: <span>{formatTimestamp(userBanData.userBanStartTime).toLocaleString()} ~ {userBanData.userBanEndTime == "영구 정지" ? "영구 정지" : formatTimestamp(userBanData.userBanEndTime).toLocaleString()}</span>

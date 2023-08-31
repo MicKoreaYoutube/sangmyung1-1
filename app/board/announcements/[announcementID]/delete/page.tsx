@@ -79,8 +79,8 @@ export default function IndexPage({ params }: { params: { announcementID: string
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold">진짜로 삭제하시겠습니까?</AlertDialogTitle>
-                        <AlertDialogDescription className="font-SUITE-Regular">
+                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold md:text-3xl">진짜로 삭제하시겠습니까?</AlertDialogTitle>
+                        <AlertDialogDescription className="font-SUITE-Regular md:text-xl">
                             공지사항을 삭제하시면 공지사항과 그 게시물의 댓글도 전부 삭제됩니다.
                             그래도 진짜로 삭제하시겠습니까?
                         </AlertDialogDescription>

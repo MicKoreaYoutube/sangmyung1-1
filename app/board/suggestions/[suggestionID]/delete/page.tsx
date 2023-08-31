@@ -79,8 +79,8 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
                 </AlertDialogTrigger>
                 <AlertDialogContent>
                     <AlertDialogHeader>
-                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold md:text-5xl">진짜로 삭제하시겠습니까?</AlertDialogTitle>
-                        <AlertDialogDescription className="font-SUITE-Regular md:text-2xl">
+                        <AlertDialogTitle className="font-KBO-Dia-Gothic_bold md:text-3xl">진짜로 삭제하시겠습니까?</AlertDialogTitle>
+                        <AlertDialogDescription className="font-SUITE-Regular md:text-xl">
                             건의 사항을 삭제하시면 건의 사항과 그 게시물의 댓글도 전부 삭제됩니다.
                             그래도 진짜로 삭제하시겠습니까?
                         </AlertDialogDescription>
