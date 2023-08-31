@@ -53,6 +53,8 @@ export default function IndexPage() {
     fetchSortedData();
   }, []);
 
+  const suggestionsListFilterd = suggestionsList.filter(suggestion => suggestion.status == "delete")
+
   return (
     <>
       <section className="container grid gap-6 my-28 max-w-[1000px]">
@@ -64,9 +66,9 @@ export default function IndexPage() {
           </CardHeader>
           <CardContent>
             <div className="p-1 md:p-4">
-              {suggestionsList?.length ? (
+              {suggestionsListFilterd?.length ? (
                 <nav className="flex flex-col space-x-2 w-full">
-                  {suggestionsList.map((suggestion, index) => (
+                  {suggestionsListFilterd.map((suggestion, index) => (
                     suggestion.status !== "delete" ? (
                       <>
                         <div className={`flex justify-between items-start ${index == 0 ? "ml-2" : ""}`} key={index}>

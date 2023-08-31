@@ -36,11 +36,11 @@ export default function IndexPage() {
       const sortedData: any = [];
 
       querySnapshot.forEach((doc) => {
-        const suggestionData = doc.data();
-        const changeTime = new Date(suggestionData.changeTime.seconds * 1000);
+        const announcementData = doc.data();
+        const changeTime = new Date(announcementData.changeTime.seconds * 1000);
         sortedData.push({
           id: doc.id,
-          ...suggestionData,
+          ...announcementData,
           changeTime: changeTime,
         });
       });
@@ -50,6 +50,8 @@ export default function IndexPage() {
 
     fetchSortedData();
   }, []);
+
+  const announcementsListFilterd = announcementsList.filter(announcement => announcement.status == "delete")
 
   return (
     <>
