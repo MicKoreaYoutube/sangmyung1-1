@@ -93,7 +93,7 @@ export default function IndexPage() {
         if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
             BanDialogButton.current.click();
 
-            console.log(userBanData.userBanReason, `${formatTimestamp(userBanData.userBanStartTime)} ~ ${formatTimestamp(userBanData.userBanEndTime)}`)
+            console.log(userBanData.userBanReason, `${Timestamp.fromDate(userBanData.userBanStartTime)} ~ ${Timestamp.fromDate(userBanData.userBanEndTime)}`)
         } else {
             if (title.current.value == "" || content.current.value == "" || status.current.innerHTML == "익명 여부") {
                 displayError("모든 칸을 다 채워주세요.")
@@ -192,7 +192,7 @@ export default function IndexPage() {
                             <AlertDialogDescription className="font-SUITE-Regular">
                                 귀하는 이용약관 위반으로 현재 정지 상태이십니다.<br />
                                 정지 사유: <span>{userBanData.userBanReason}</span><br />
-                                정지 기간: <span>{formatTimestamp(userBanData.userBanStartTime)} ~ {formatTimestamp(userBanData.userBanEndTime)}</span>
+                                정지 기간: <span>{formatTimestamp(userBanData.userBanStartTime)} ~ {}</span>
                             </AlertDialogDescription>
                         ) : null}
                     </AlertDialogHeader>
