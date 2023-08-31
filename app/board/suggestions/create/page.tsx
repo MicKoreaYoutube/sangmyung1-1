@@ -92,10 +92,8 @@ export default function IndexPage() {
     async function addNewDocument() {
         if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
             BanDialogButton.current.click();
-
-            console.log(userBanData.userBanReason, `${formatTimestamp(userBanData.userBanStartTime).toLocaleString()} ~ ${formatTimestamp(userBanData.userBanEndTime).toLocaleString()}`)
         } else {
-            if (title.current.value == "" || content.current.value == "" || status.current.innerHTML == "익명 여부") {
+            if (title.current.value == "" || content.current.value == "" || status.current.value == "익명 여부") {
                 displayError("모든 칸을 다 채워주세요.")
             } else {
                 const collectionRef = collection(db, "suggestions");

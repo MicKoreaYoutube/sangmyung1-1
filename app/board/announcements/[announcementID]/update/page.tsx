@@ -56,7 +56,7 @@ export default function IndexPage({ params }: { params: { announcementID: string
     }
 
     const updateDocument = async () => {
-        if (title.current.value == "" || content.current.innerHTML == "") {
+        if (title.current.value == "" || content.current.value == "") {
             displayError("모든 칸을 다 채워주세요.")
         } else {
             const docRef = doc(db, "announcements", params.announcementID)

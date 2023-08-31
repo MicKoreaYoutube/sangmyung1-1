@@ -39,13 +39,13 @@ export default function IndexPage() {
 
     async function addNewDocument() {
         const collectionRef = collection(db, "announcements");
-        /*if (title.current.value == "" || content.current.innerHTML == "") {
+        if (title.current.value == "" || content.current.value == "") {
             displayError("모든 칸을 다 채워주세요.")
-        } else {*/
+        } else {
             onAuthStateChanged(auth, async (user) => {
                 if (user) {
                     const cutEmail = user.email.slice(0, 5)
-                    const id = siteConfig.member.filter(item => item.toString().includes(cutEmail.toString()));
+                    const id = siteConfig.member.filter(item => item && item.toString().includes(cutEmail.toString()));
                     const currentDate = new Date(); 
                     const newData = { author: id[0], changeTime: Timestamp.fromDate(currentDate), content: content.current.value, status: "all", title: title.current.value, uploadTime: Timestamp.fromDate(currentDate) }
                     try {
@@ -59,7 +59,7 @@ export default function IndexPage() {
                     }
                 }
             });
-        //} 
+        } 
     }
 
     return (
