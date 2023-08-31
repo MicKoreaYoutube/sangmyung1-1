@@ -103,7 +103,7 @@ export default function IndexPage({ params }: { params: { suggestionID: string }
     }
 
     const updateDocument = async () => {
-        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
+        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime)) || userBanData.userBanEndTime == "영구 정지") {
             BanDialogButton.current.click();
         } else {
             if (title.current.value == "" || content.current.value == "" || status.current.innerHTML == "익명 여부") {
