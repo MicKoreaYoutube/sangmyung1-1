@@ -21,11 +21,11 @@ export function SiteFooter() {
                             <span className="self-center text-3xl font-semibold whitespace-nowrap dark:text-white">상명중1-1 건의함</span>
                         </Link>
                     </div>
-                    <div className="grid grid-cols-2 gap-8 md:gap-12 md:grid-cols-3">
+                    <div className="grid grid-cols-2 gap-8 md:gap-20 md:grid-cols-3">
                         <div>
                             <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">법 관련</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                <li>
+                                <li className="mb-4">
                                     <Link href="/terms" className="hover:underline hover:text-dark">이용약관</Link>
                                 </li>
                             </ul>
@@ -36,7 +36,7 @@ export function SiteFooter() {
                                 <li className="mb-4">
                                     <Link href="/board/announcements" className="hover:underline hover:text-dark">공지사항</Link>
                                 </li>
-                                <li>
+                                <li className="mb-4">
                                     <Link href="/board/suggestions" className="hover:underline hover:text-dark">건의 게시판</Link>
                                 </li>
                             </ul>
@@ -44,10 +44,10 @@ export function SiteFooter() {
                         <div>
                             <h2 className="mb-6 text-xl font-semibold text-gray-900 uppercase dark:text-white">개발</h2>
                             <ul className="text-gray-500 dark:text-gray-400 font-medium">
-                                <li>
+                                <li className="mb-4">
                                     <Link href="https://github.com/MicKoreaYoutube/sangmyung1-1" className="hover:underline hover:text-dark">깃허브</Link>
                                 </li>
-                                <li>
+                                <li className="mb-4">
                                     <Link href="/releaseNote" className="hover:underline hover:text-dark">릴리스 노트</Link>
                                 </li>
                             </ul>
