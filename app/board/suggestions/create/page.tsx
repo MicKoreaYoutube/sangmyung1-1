@@ -90,7 +90,7 @@ export default function IndexPage() {
     }
 
     async function addNewDocument() {
-        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime))) {
+        if (isDateInRange(formatTimestamp(userBanData.userBanStartTime), formatTimestamp(userBanData.userBanEndTime || userBanData.userBanEndTime == "영구 정지"))) {
             BanDialogButton.current.click();
         } else {
             if (title.current.value == "" || content.current.value == "" || status.current.value == "익명 여부") {
