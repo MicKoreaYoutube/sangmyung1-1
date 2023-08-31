@@ -132,7 +132,7 @@ export default function IndexPage() {
                             </Alert>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg" onClick={changeStatusMessage}>Save changes</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={changeStatusMessage}>변경 사항 저장하기</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
@@ -158,7 +158,7 @@ export default function IndexPage() {
                             </Alert>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg" onClick={codeError}>Save changes</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={codeError}>코드 확인</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
@@ -191,7 +191,7 @@ export default function IndexPage() {
                             </Alert>
                         </CardContent>
                         <CardFooter>
-                            <Button className="font-SUITE-Regular text-lg" onClick={changePwd}>Save password</Button>
+                            <Button className="font-SUITE-Regular text-lg" onClick={changePwd}>비밀번호 변경하기</Button>
                         </CardFooter>
                     </Card>
                 </TabsContent>
