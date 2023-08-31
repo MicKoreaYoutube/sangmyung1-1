@@ -19,11 +19,6 @@ export const siteConfig = {
       title: "건의 게시판",
       href: "/board/suggestions",
       disabled: false
-    },
-    {
-      title: "돈 벌어다주기",
-      href: "/giveMeMoney",
-      disabled: false
     }
   ],
   links: {
