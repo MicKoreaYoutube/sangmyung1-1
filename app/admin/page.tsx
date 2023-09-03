@@ -108,8 +108,8 @@ export default function IndexPage({
       querySnapshot.forEach((doc) => {
         const userListData = doc.data();
 
-        let userBanStartTime = userListData.userBanStartTime ? formatTimestamp(userListData.userBanStartTime) : "해당 없음";
-        let userBanEndTime = userListData.userBanEndTime ? (userListData.userBanEndTime == "영구 정지" ? userListData.userBanEndTime : formatTimestamp(userListData.userBanEndTime)) : "해당 없음";
+        let userBanStartTime = userListData.userBanStartTime ? formatTimestamp(userListData.userBanStartTime).toLocaleString() : "해당 없음";
+        let userBanEndTime = userListData.userBanEndTime ? (userListData.userBanEndTime == "영구 정지" ? userListData.userBanEndTime : formatTimestamp(userListData.userBanEndTime)).toLocaleString() : "해당 없음";
 
         data.push({
           id: doc.id,
@@ -237,7 +237,7 @@ export default function IndexPage({
                         <TableRow key={user.id}>
                           <TableCell>{user.id}</TableCell>
                           <TableCell>{user.userBanStartTime}</TableCell>
-                          <TableCell>{user.userBanEndTime == "영구 정지" || user.userBanEndTime == "해당 없음" ? user.userBanEndTime : formatTimestamp(user.userBanEndTime).toLocaleString()}</TableCell>
+                          <TableCell>{user.userBanEndTime}</TableCell>
                           <TableCell>{user.userBanReason}</TableCell>
                           <TableCell>
                             <Dialog>
