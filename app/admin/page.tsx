@@ -62,11 +62,13 @@ export default function IndexPage({
 }: React.HTMLAttributes<HTMLDivElement>) {
 
   const today = new Date();
-  const convertedDate = `${today.getFullYear()}, ${today.getMonth() + 1}, ${today.getDate()}`;
+  function convertDate(date: Date) {
+    return `${date.getFullYear()}, ${date.getMonth() + 1}, ${date.getDate()}`
+  }
 
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(convertedDate),
-    to: addDays(new Date(convertedDate), 2),
+    from: new Date(convertDate(today)),
+    to: addDays(new Date(convertDate(today)), 3),
   })
 
   const pwdCard = useRef(null)
@@ -97,7 +99,7 @@ export default function IndexPage({
 
   function formatTimestamp(timestamp: Timestamp) {
     const dateObject = new Date(timestamp.seconds * 1000);
-    return dateObject.toLocaleString();
+    return dateObject
   }
 
   useEffect(() => {
@@ -153,8 +155,6 @@ export default function IndexPage({
         userBanReason: banReasonInput.current.value
       }
     }
-
-    // console.log(dateRange.current.innerHTML.split(" - "), banReasonInput.current.value, userName.current.innerHTML)
 
     const docRef = doc(db, "user", userName.current.innerHTML)
     try {
